@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.stereotype.Service;
 import com.worldpay.aop.SysLogAnnotation;
 import com.worldpay.base.BaseApiService;
@@ -30,7 +29,6 @@ import com.worldpay.utils.I18nUtil;
 
 @Service
 @Transactional
-@CrossOrigin
 public class DicServiceImpl extends BaseApiService implements DicService{
 	
 	@Autowired

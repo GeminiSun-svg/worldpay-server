@@ -42,37 +42,37 @@ public class WalletController {
 
     @PostMapping("/topin-usdt-notify")
     @Operation(summary = "USDT 链上充值回调")
-    public ApiResponseEntity topinUsdtNotify(UsdtTopinNotifyEntity entity,HttpServletRequest req) {
+    public ApiResponseEntity topinUsdtNotify(@RequestBody UsdtTopinNotifyEntity entity, HttpServletRequest req) {
         return walletService.topinUsdtNotify(entity, req);
     }
 
     @PostMapping("/wallet-log")
     @Operation(summary = "查询钱包日志")
-    public ResponseBase walletLog(WalletLogEntity entity) {
+    public ResponseBase walletLog(@RequestBody WalletLogEntity entity) {
         return walletService.walletLog(entity);
     }
 
     @PostMapping("/wallet-log-stat")
     @Operation(summary = "钱包日志统计")
-    public ResponseBase walletLogStat(PublicQueryEntity entity) {
+    public ResponseBase walletLogStat(@RequestBody PublicQueryEntity entity) {
         return walletService.walletLogStat(entity);
     }
 
     @PostMapping("/wallet-top-up")
     @Operation(summary = "钱包充值")
-    public ResponseBase walletTopUp(WalletManualLogEntity entity,HttpServletRequest req) {
+    public ResponseBase walletTopUp(@RequestBody WalletManualLogEntity entity, HttpServletRequest req) {
         return walletService.walletTopUp(entity, req);
     }
 
     @PostMapping("/find-wallet-log")
     @Operation(summary = "查询钱包日志")
-    public ResponseBase findWalletLog(WalletLogEntity entity) {
+    public ResponseBase findWalletLog(@RequestBody WalletLogEntity entity) {
         return walletService.findWalletLog(entity);
     }
 
     @PostMapping("/transfer")
     @Operation(summary = "钱包转账")
-    public ResponseBase transfer(WalletTransfetListEntity entity) {
+    public ResponseBase transfer(@RequestBody WalletTransfetListEntity entity) {
         return walletService.transfer(entity);
     }
 
@@ -90,7 +90,7 @@ public class WalletController {
 
     @PostMapping("/withdrawal-notify")
     @Operation(summary = "提现回调")
-    public ApiResponseEntity withdrawalNotify(WithdrawalCallbackEntity entity) {
+    public ApiResponseEntity withdrawalNotify(@RequestBody WithdrawalCallbackEntity entity) {
         return walletService.withdrawalNotify(entity);
     }
 }

@@ -29,7 +29,7 @@ public class RechargeHistoryController {
 
     @PostMapping("/list")
     @Operation(summary = "条件查询充值记录列表")
-    public ResponseBase findList(RechargeHistoryEntity entity) {
+    public ResponseBase findList(@RequestBody RechargeHistoryEntity entity) {
         return rechargeHistoryService.findList(entity);
     }
 }

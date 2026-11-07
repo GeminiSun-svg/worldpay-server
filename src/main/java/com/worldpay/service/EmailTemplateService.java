@@ -1,8 +1,5 @@
 package com.worldpay.service;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.worldpay.base.ResponseBase;
 import com.worldpay.entity.system.EmailTemplateEntity;
@@ -21,12 +18,8 @@ EmailTemplateEntity findCode(Integer code);
 
 ResponseBase findList(EmailTemplateEntity entity);
 //	
-//	@GetMapping("/send")
-//	@Operation(summary = "")
 //	void send(String userEmail, Integer code,String language, Object... arg);
 //	
-//	@GetMapping("/sendTest")
-//	@Operation(summary = "")
 //	void sendTest(String userEmail, Integer code,String language);
 
 }

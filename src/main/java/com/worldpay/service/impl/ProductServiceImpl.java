@@ -6,8 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -50,7 +48,6 @@ import lombok.Synchronized;
 
 @Service
 @Transactional
-@CrossOrigin
 public class ProductServiceImpl extends BaseApiService implements ProductService{
 	
 	@Autowired
@@ -164,7 +161,7 @@ public class ProductServiceImpl extends BaseApiService implements ProductService
 	
 	@Override
 	@SysLogAnnotation(module = "理财产品", type = "post", remark = "理财产品列表")
-	public ResponseBase findList(@RequestBody ProductEntity entity) {
+	public ResponseBase findList(ProductEntity entity) {
 		try {
 			entity.setLanguage(LanguageContext.getLanguage());
 			entity.setProductStateId(ProductStateEnums.SUPERIOR_ZH.getIndex());
@@ -187,7 +184,7 @@ public class ProductServiceImpl extends BaseApiService implements ProductService
 	@Override
 	@Synchronized
 	@SysLogAnnotation(module = "理财产品", type = "post", remark = "购买理财产品")
-	public ResponseBase pay(@RequestBody ProductPayEntity entity) {
+	public ResponseBase pay(ProductPayEntity entity) {
 		try {
 			AppUserEntity userData = appUserDao.findByUid(entity.getUid());
 			if(userData != null) {
@@ -273,7 +270,7 @@ public class ProductServiceImpl extends BaseApiService implements ProductService
 
 	@Override
 	@SysLogAnnotation(module = "理财产品", type = "post", remark = "查询订单")
-	public ResponseBase orderList(@RequestBody ProductOrderEntity entity) {
+	public ResponseBase orderList(ProductOrderEntity entity) {
 		try {
 			PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 			List<ProductOrderEntity> list = productOrderDao.findList(entity);
@@ -344,7 +341,7 @@ public class ProductServiceImpl extends BaseApiService implements ProductService
 
 	@Override
 	@SysLogAnnotation(module = "理财产品", type = "post", remark = "理财产品列表")
-	public ResponseBase pcFindList(@RequestBody ProductEntity entity) {
+	public ResponseBase pcFindList(ProductEntity entity) {
 		try {
 			PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 			entity.setDeleteState(PublicEnums.ONE.getIndex());

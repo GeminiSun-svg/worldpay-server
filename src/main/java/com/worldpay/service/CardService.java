@@ -2,9 +2,6 @@ package com.worldpay.service;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.worldpay.api.request.RechargeCardEntity;
@@ -27,13 +24,9 @@ public interface CardService {
 
 	ResponseBase update(CardEntity entity);
 	
-//	@PostMapping("/openCardApplyV1")
-//	@Operation(summary = "")
 
 //	ResponseBase openCardApply(CardApplyQueryEntity entity);
 //	
-//	@PostMapping("/topUpV1")
-//	@Operation(summary = "")
 
 //	ResponseBase topUp(RechargeCardEntity entity);
 

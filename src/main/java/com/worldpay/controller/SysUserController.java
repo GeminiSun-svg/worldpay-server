@@ -32,7 +32,7 @@ public class SysUserController {
 
     @PostMapping("/list")
     @Operation(summary = "条件查询系统用户列表")
-    public ResponseBase findList(SysUserEntity entity) {
+    public ResponseBase findList(@RequestBody SysUserEntity entity) {
         return sysUserService.findList(entity);
     }
 
@@ -86,7 +86,7 @@ public class SysUserController {
 
     @PutMapping("/device-model")
     @Operation(summary = "更新系统用户")
-    public ResponseBase updateDeviceModel(SysUserEntity entity) {
+    public ResponseBase updateDeviceModel(@RequestBody SysUserEntity entity) {
         return sysUserService.updateDeviceModel(entity);
     }
 

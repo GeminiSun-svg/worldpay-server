@@ -48,19 +48,19 @@ public class IosGoodsController {
 
     @PostMapping("/verify")
     @Operation(summary = "验证")
-    public ResponseBase verify(IosPayReqEntity entity) {
+    public ResponseBase verify(@RequestBody IosPayReqEntity entity) {
         return iosGoodsService.verify(entity);
     }
 
     @PostMapping
     @Operation(summary = "新增iOS 商品")
-    public ResponseBase add(IosGoodsEntity entity) {
+    public ResponseBase add(@RequestBody IosGoodsEntity entity) {
         return iosGoodsService.add(entity);
     }
 
     @PutMapping
     @Operation(summary = "更新iOS 商品")
-    public ResponseBase update(IosGoodsEntity entity) {
+    public ResponseBase update(@RequestBody IosGoodsEntity entity) {
         return iosGoodsService.update(entity);
     }
 
@@ -72,7 +72,7 @@ public class IosGoodsController {
 
     @PostMapping("/list")
     @Operation(summary = "条件查询iOS 商品列表")
-    public ResponseBase findList(IosGoodsEntity entity) {
+    public ResponseBase findList(@RequestBody IosGoodsEntity entity) {
         return iosGoodsService.findList(entity);
     }
 }

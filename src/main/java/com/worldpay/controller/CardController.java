@@ -40,13 +40,13 @@ public class CardController {
 
     @PostMapping("/list")
     @Operation(summary = "条件查询卡片列表")
-    public ResponseBase findList(CardEntity entity) {
+    public ResponseBase findList(@RequestBody CardEntity entity) {
         return cardService.findList(entity);
     }
 
     @PostMapping("/list-pag")
     @Operation(summary = "分页查询")
-    public ResponseBase findListPag(CardEntity entity) {
+    public ResponseBase findListPag(@RequestBody CardEntity entity) {
         return cardService.findListPag(entity);
     }
 
@@ -58,19 +58,19 @@ public class CardController {
 
     @PutMapping
     @Operation(summary = "更新卡片")
-    public ResponseBase update(CardEntity entity) {
+    public ResponseBase update(@RequestBody CardEntity entity) {
         return cardService.update(entity);
     }
 
     @PostMapping("/open-card-apply")
     @Operation(summary = "开通卡片申请（V2）")
-    public ResponseBase openCardApplyV2(CardApplyQueryEntity entity) {
+    public ResponseBase openCardApplyV2(@RequestBody CardApplyQueryEntity entity) {
         return cardService.openCardApplyV2(entity);
     }
 
     @PostMapping("/top-up")
     @Operation(summary = "卡片充值（V2）")
-    public ResponseBase topUpV2(RechargeCardEntity entity) {
+    public ResponseBase topUpV2(@RequestBody RechargeCardEntity entity) {
         return cardService.topUpV2(entity);
     }
 
@@ -82,7 +82,7 @@ public class CardController {
 
     @PostMapping("/shipping")
     @Operation(summary = "卡片邮寄")
-    public ResponseBase shipping(CardShippingEntity entity,HttpServletRequest request) {
+    public ResponseBase shipping(@RequestBody CardShippingEntity entity, HttpServletRequest request) {
         return cardService.shipping(entity, request);
     }
 

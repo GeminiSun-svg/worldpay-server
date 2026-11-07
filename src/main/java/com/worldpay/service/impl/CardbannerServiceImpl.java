@@ -8,8 +8,6 @@ import com.github.pagehelper.PageInfo;
 import com.worldpay.aop.SysLogAnnotation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,7 +26,6 @@ import com.worldpay.utils.S3FileUploadUtil;
 
 @Service
 @Transactional
-@CrossOrigin
 public class CardbannerServiceImpl extends BaseApiService implements CardbannerService{
 	
 	@Autowired
@@ -37,7 +34,7 @@ public class CardbannerServiceImpl extends BaseApiService implements CardbannerS
 
     @Override
     @SysLogAnnotation(module = "轮播图接口", type = "POST", remark = "查询所有轮播图")
-    public ResponseBase findAll(@RequestBody CardBannerEntity entity) {
+    public ResponseBase findAll(CardBannerEntity entity) {
         try {
             entity.setStatus(0);
             PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());

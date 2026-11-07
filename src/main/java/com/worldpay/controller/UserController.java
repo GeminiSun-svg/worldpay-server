@@ -49,7 +49,7 @@ public class UserController {
 
     @PostMapping("/updae-pwd")
     @Operation(summary = "修改登录密码")
-    public ResponseBase updaePwd(UpdatePwdEntity entity,HttpServletRequest request) {
+    public ResponseBase updaePwd(@RequestBody UpdatePwdEntity entity, HttpServletRequest request) {
         return userService.updaePwd(entity, request);
     }
 
@@ -67,7 +67,7 @@ public class UserController {
 
     @PostMapping("/list")
     @Operation(summary = "条件查询App 用户（后台管理）列表")
-    public ResponseBase findList(AppUserEntity entity) {
+    public ResponseBase findList(@RequestBody AppUserEntity entity) {
         return userService.findList(entity);
     }
 
@@ -91,7 +91,7 @@ public class UserController {
 
     @PostMapping("/up-pay-passwrod")
     @Operation(summary = "修改支付密码")
-    public ResponseBase upPayPasswrod(UpdatePwdEntity entity,HttpServletRequest request) {
+    public ResponseBase upPayPasswrod(@RequestBody UpdatePwdEntity entity, HttpServletRequest request) {
         return userService.upPayPasswrod(entity, request);
     }
 }

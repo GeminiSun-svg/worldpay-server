@@ -4,8 +4,6 @@ import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.stereotype.Service;
 
 import com.worldpay.base.BaseApiService;
@@ -24,7 +22,6 @@ import com.worldpay.utils.GenericityUtil;
 
 @Service
 @Transactional
-@CrossOrigin
 public class ApplyPayServiceImpl extends BaseApiService implements ApplyPayService {
 
 
@@ -32,7 +29,7 @@ public class ApplyPayServiceImpl extends BaseApiService implements ApplyPayServi
 	private WalletLogDao walletLogDao;
 
 	@Override
-	public ResponseBase createPayment(@RequestAttribute ApplyPayRequest entity) {
+	public ResponseBase createPayment(ApplyPayRequest entity) {
 		try {
 //			// 查询用户信息
 //			AppUserEntity userEntity = appUserDao.findByUid(entity.getUid());

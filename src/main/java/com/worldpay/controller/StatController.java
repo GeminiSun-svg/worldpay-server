@@ -30,7 +30,7 @@ public class StatController {
 
     @PostMapping("/admin-stat")
     @Operation(summary = "后台数据统计")
-    public ResponseBase adminStat(HttpServletRequest req, PublicQueryEntity entity) {
+    public ResponseBase adminStat(HttpServletRequest req, @RequestBody PublicQueryEntity entity) {
         return statService.adminStat(req, entity);
     }
 
@@ -54,7 +54,7 @@ public class StatController {
 
     @PostMapping("/channel-total")
     @Operation(summary = "渠道总额统计")
-    public ResponseBase channelTotal(PublicQueryEntity entity) {
+    public ResponseBase channelTotal(@RequestBody PublicQueryEntity entity) {
         return statService.channelTotal(entity);
     }
 }

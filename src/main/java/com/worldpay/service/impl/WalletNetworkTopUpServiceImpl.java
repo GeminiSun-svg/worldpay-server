@@ -5,8 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -34,7 +32,6 @@ import com.worldpay.utils.OrderCodeFactory;
 
 @Service
 @Transactional
-@CrossOrigin
 public class WalletNetworkTopUpServiceImpl extends BaseApiService implements WalletNetworkTopUpService{
 	
 	@Autowired
@@ -50,7 +47,7 @@ public class WalletNetworkTopUpServiceImpl extends BaseApiService implements Wal
 	private EmailTemplateDao emailTemplateDao;
 
 	@Override
-	public ResponseBase add(@RequestBody WalletNetworkTopUpEntity entity) {
+	public ResponseBase add(WalletNetworkTopUpEntity entity) {
 		try {
 			AppUserEntity appUser = appUserDao.findByUid(entity.getUid());
 			if(appUser == null) {
@@ -89,7 +86,7 @@ public class WalletNetworkTopUpServiceImpl extends BaseApiService implements Wal
 	}
 
 	@Override
-	public ResponseBase findList(@RequestBody WalletNetworkTopUpEntity entity) {
+	public ResponseBase findList(WalletNetworkTopUpEntity entity) {
 		try {
 			PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 			List<WalletNetworkTopUpEntity> list = walletNetworkTopUpDao.findList(entity);

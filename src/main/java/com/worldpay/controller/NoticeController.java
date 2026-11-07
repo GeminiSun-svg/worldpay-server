@@ -30,7 +30,7 @@ public class NoticeController {
 
     @PostMapping("/all")
     @Operation(summary = "查询公告列表")
-    public ResponseBase findAll(NoticeEntity entity) {
+    public ResponseBase findAll(@RequestBody NoticeEntity entity) {
         return noticeService.findAll(entity);
     }
 
@@ -42,19 +42,19 @@ public class NoticeController {
 
     @PostMapping("/list")
     @Operation(summary = "条件查询公告列表")
-    public ResponseBase findList(NoticeEntity entity) {
+    public ResponseBase findList(@RequestBody NoticeEntity entity) {
         return noticeService.findList(entity);
     }
 
     @PostMapping
     @Operation(summary = "新增公告")
-    public ResponseBase add(NoticeEntity entity) {
+    public ResponseBase add(@RequestBody NoticeEntity entity) {
         return noticeService.add(entity);
     }
 
     @PutMapping
     @Operation(summary = "更新公告")
-    public ResponseBase update(NoticeEntity entity) {
+    public ResponseBase update(@RequestBody NoticeEntity entity) {
         return noticeService.update(entity);
     }
 

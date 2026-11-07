@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
@@ -21,7 +19,6 @@ import com.worldpay.utils.I18nUtil;
 
 @Service
 @Transactional
-@CrossOrigin
 public class WalletTransfetRatesServiceImpl extends BaseApiService implements WalletTransfetRatesService{
 	
 	@Autowired
@@ -36,7 +33,7 @@ public class WalletTransfetRatesServiceImpl extends BaseApiService implements Wa
 	}
 
 	@Override
-	public ResponseBase add(@RequestBody WalletTransfetRatesEntity entity) {
+	public ResponseBase add(WalletTransfetRatesEntity entity) {
 		try {
 			WalletTransfetRatesEntity ratesEntity = walletTransfetRatesDao.selectOne(null);
 			if(ratesEntity != null) {
@@ -52,7 +49,7 @@ public class WalletTransfetRatesServiceImpl extends BaseApiService implements Wa
 	}
 
 	@Override
-	public ResponseBase update(@RequestBody WalletTransfetRatesEntity entity) {
+	public ResponseBase update(WalletTransfetRatesEntity entity) {
 		try {
 			WalletTransfetRatesEntity ratesEntity = walletTransfetRatesDao.selectById(entity.getId());
 			if(ratesEntity != null) {

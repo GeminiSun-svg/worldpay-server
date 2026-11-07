@@ -29,7 +29,7 @@ public class LogController {
 
     @PostMapping("/list")
     @Operation(summary = "条件查询日志列表")
-    public ResponseBase findList(SysLogEntity entity) {
+    public ResponseBase findList(@RequestBody SysLogEntity entity) {
         return logService.findList(entity);
     }
 }

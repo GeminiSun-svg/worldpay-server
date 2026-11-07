@@ -2,10 +2,6 @@ package com.worldpay.service;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.worldpay.base.ResponseBase;
 import com.worldpay.constants.ApiVersion;
@@ -38,7 +34,7 @@ ResponseBase checkGoogleSecretkey(String uid, Integer googleCode);
 
 ResponseBase cashAmount(HttpServletRequest request);
 
-ResponseBase withdrawalToWallet(@RequestBody AppUserEntity entity, HttpServletRequest request);
+ResponseBase withdrawalToWallet(AppUserEntity entity, HttpServletRequest request);
 
 ResponseBase findKycState(String uid);
 

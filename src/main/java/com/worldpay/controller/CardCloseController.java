@@ -29,7 +29,7 @@ public class CardCloseController {
 
     @PostMapping("/list")
     @Operation(summary = "查询用户卡片列表")
-    public ResponseBase findUserCardList(CardCloseEntity entity) {
+    public ResponseBase findUserCardList(@RequestBody CardCloseEntity entity) {
         return cardCloseService.findUserCardList(entity);
     }
 }

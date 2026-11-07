@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson2.JSON;
@@ -73,7 +71,6 @@ import com.worldpay.utils.RedisUtil;
 
 @Service
 @Transactional
-@CrossOrigin
 public class AppUserCardServiceImpl extends BaseApiService implements AppUserCardService{
 	
 	@Value("${EMS_API_KEY:}")
@@ -133,7 +130,7 @@ public class AppUserCardServiceImpl extends BaseApiService implements AppUserCar
 
 	@Override
 	@SysLogAnnotation(module = "用户银行卡", type = "post", remark = "查询用户持有银行卡列表")
-	public ResponseBase findUserCardList(@RequestBody AppUserCardEntity entity) {
+	public ResponseBase findUserCardList(AppUserCardEntity entity) {
 		try {
 			PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 			List<AppUserCardEntity> list = appUserCardDao.findStateList(entity);
@@ -152,7 +149,7 @@ public class AppUserCardServiceImpl extends BaseApiService implements AppUserCar
 	}
 	
 	@Override
-	public ResponseBase findUserCardActivationList(@RequestBody AppUserCardEntity entity) {
+	public ResponseBase findUserCardActivationList(AppUserCardEntity entity) {
 		try {
 			PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 			if(entity.getStatus() == null) {
@@ -177,7 +174,7 @@ public class AppUserCardServiceImpl extends BaseApiService implements AppUserCar
 
 	@Override
 	@SysLogAnnotation(module = "用户银行卡", type = "post", remark = "查询用户银行卡交易列表")
-	public ResponseBase findTransaction(@RequestBody CardTransactionEntity entity) {
+	public ResponseBase findTransaction(CardTransactionEntity entity) {
 		try {
 			PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 			List<CardTransactionEntity> list = new ArrayList<>();
@@ -228,7 +225,7 @@ public class AppUserCardServiceImpl extends BaseApiService implements AppUserCar
 
 	@Override
 	@SysLogAnnotation(module = "用户银行卡", type = "get", remark = "查询用户银行卡cvv")
-	public ResponseBase findCardCvv(@RequestBody PublicEntity entity) {
+	public ResponseBase findCardCvv(PublicEntity entity) {
 		try {
 			AppUserCardEntity cardEntity = appUserCardDao.selectById(entity.getId());
 			if(cardEntity != null) {
@@ -248,7 +245,7 @@ public class AppUserCardServiceImpl extends BaseApiService implements AppUserCar
 
 	@Override
 	@SysLogAnnotation(module = "用户银行卡", type = "post", remark = "查询用户银行卡到期时间")
-	public ResponseBase findCardExpirationTime(@RequestBody PublicEntity entity) {
+	public ResponseBase findCardExpirationTime(PublicEntity entity) {
 		try {
 			AppUserCardEntity cardEntity = appUserCardDao.selectById(entity.getId());
 			if(cardEntity != null) {
@@ -351,7 +348,7 @@ public class AppUserCardServiceImpl extends BaseApiService implements AppUserCar
 
 	@Override
 	@SysLogAnnotation(module = "用户银行卡", type = "post", remark = "查询用户持有银行卡列表")
-	public ResponseBase pcFindUserCardList(@RequestBody AppUserCardEntity entity) {
+	public ResponseBase pcFindUserCardList(AppUserCardEntity entity) {
 		try {
 			PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 			List<AppUserCardEntity> list = appUserCardDao.findPcList(entity);
@@ -374,7 +371,7 @@ public class AppUserCardServiceImpl extends BaseApiService implements AppUserCar
 
 
 	@Override
-	public ResponseBase closeCard(@RequestBody CardCloseEntity entity) {
+	public ResponseBase closeCard(CardCloseEntity entity) {
 		try {
 			AppUserCardEntity userCardEntity = appUserCardDao.findUserBankcardId(entity.getUserBankcardId());
 			if(userCardEntity == null) {
@@ -442,7 +439,7 @@ public class AppUserCardServiceImpl extends BaseApiService implements AppUserCar
 	
 
 	@Override
-	public ResponseBase upTag(@RequestBody UserCardTagEntity entity) {
+	public ResponseBase upTag(UserCardTagEntity entity) {
 		try {
 			AppUserCardEntity userCardEntity = appUserCardDao.findUserBankcardId(entity.getUserBankcardId());
 			if(userCardEntity != null) {
@@ -458,7 +455,7 @@ public class AppUserCardServiceImpl extends BaseApiService implements AppUserCar
 	}
 
 	@Override
-	public ResponseBase setPin(@RequestBody CardPinReqEntity entity) {
+	public ResponseBase setPin(CardPinReqEntity entity) {
 		try {
 			//支付密码校验
 			ResponseBase passwordBase = appUserServiceImpl.checkPayPasswrod(entity.getUid(), entity.getPayPassword());
@@ -515,7 +512,7 @@ public class AppUserCardServiceImpl extends BaseApiService implements AppUserCar
 	}
 
 //	@Override
-//	public ResponseBase findUserCardListV2(@RequestBody AppUserCardEntity entity) {
+//	public ResponseBase findUserCardListV2(AppUserCardEntity entity) {
 //		try {
 //			PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 //			List<AppUserCardEntity> list = appUserCardDao.findStateList(entity);
@@ -534,7 +531,7 @@ public class AppUserCardServiceImpl extends BaseApiService implements AppUserCar
 //	}
 //
 //	@Override
-//	public ResponseBase findUserCardActivationListV2(@RequestBody AppUserCardEntity entity) {
+//	public ResponseBase findUserCardActivationListV2(AppUserCardEntity entity) {
 //		try {
 //			PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 //			if(entity.getStatus() == null) {

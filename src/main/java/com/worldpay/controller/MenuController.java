@@ -54,7 +54,7 @@ public class MenuController {
 
     @PostMapping
     @Operation(summary = "新增菜单")
-    public ResponseBase add(SysMenuEntity entity) {
+    public ResponseBase add(@RequestBody SysMenuEntity entity) {
         return menuService.add(entity);
     }
 
@@ -66,7 +66,7 @@ public class MenuController {
 
     @PutMapping
     @Operation(summary = "更新菜单")
-    public ResponseBase update(SysMenuEntity entity) {
+    public ResponseBase update(@RequestBody SysMenuEntity entity) {
         return menuService.update(entity);
     }
 

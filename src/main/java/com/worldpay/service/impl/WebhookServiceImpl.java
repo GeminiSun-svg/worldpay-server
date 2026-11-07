@@ -9,12 +9,9 @@ import java.util.Date;
 import java.util.List;
 
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson2.JSON;
@@ -80,7 +77,6 @@ import lombok.extern.log4j.Log4j2;
 
 @Service
 @Transactional
-@CrossOrigin
 @Log4j2
 public class WebhookServiceImpl extends BaseApiService implements WebhookService {
 
@@ -134,7 +130,7 @@ public class WebhookServiceImpl extends BaseApiService implements WebhookService
 
 	@Override
 	@Synchronized
-	public ApiResponseEntity agentNotify(@RequestBody CardRechargeResult entity) {
+	public ApiResponseEntity agentNotify(CardRechargeResult entity) {
 		try {
 			if (entity != null && entity.getEventType().equals("cardRechargeResult")) {// 充值
 				return this.topUpCallback(entity);
@@ -641,7 +637,7 @@ public class WebhookServiceImpl extends BaseApiService implements WebhookService
 	 * @category 钱包地址更换
 	 */
 	@Override
-    public ResponseBase resetAddres(@Valid @RequestBody ResetAddressEntity entity, HttpServletRequest req) {
+    public ResponseBase resetAddres(ResetAddressEntity entity, HttpServletRequest req) {
         try {
             // 获取客户端 IP
             String ipAddress = ipUtil.getClientIp(req);

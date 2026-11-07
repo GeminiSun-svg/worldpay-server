@@ -32,19 +32,19 @@ public class AppUserController {
 
     @PostMapping("/sign-up")
     @Operation(summary = "用户注册（通用版）")
-    public ResponseBase signUp(AppUserEntity entity) {
+    public ResponseBase signUp(@RequestBody AppUserEntity entity) {
         return appUserService.signUp(entity);
     }
 
     @PostMapping
     @Operation(summary = "用户注册（iOS V2 版，含钱包/充值开关）")
-    public ResponseBase signUpV2(AppUserEntity entity) {
+    public ResponseBase signUpV2(@RequestBody AppUserEntity entity) {
         return appUserService.signUpV2(entity);
     }
 
     @PostMapping("/login")
     @Operation(summary = "用户登录")
-    public ResponseBase login(AppUserEntity entity, HttpServletRequest req) {
+    public ResponseBase login(@RequestBody AppUserEntity entity, HttpServletRequest req) {
         return appUserService.login(entity, req);
     }
 

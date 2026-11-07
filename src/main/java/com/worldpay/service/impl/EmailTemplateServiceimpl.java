@@ -4,8 +4,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
@@ -24,14 +22,13 @@ import com.worldpay.utils.MessageFormatUtils;
 
 @Service
 @Transactional
-@CrossOrigin
 public class EmailTemplateServiceimpl extends BaseApiService implements EmailTemplateService{
 	
 	@Autowired
 	private EmailTemplateDao emailTemplateDao;
 
 	@Override
-	public ResponseBase add(@RequestBody EmailTemplateEntity entity) {
+	public ResponseBase add(EmailTemplateEntity entity) {
 		try {
 			//查询相同语言下code是否已存在
 			EmailTemplateEntity template = emailTemplateDao.findByNum(entity.getTemplateNumber(),entity.getLanguage());
@@ -50,7 +47,7 @@ public class EmailTemplateServiceimpl extends BaseApiService implements EmailTem
 	}
 
 	@Override
-	public ResponseBase update(@RequestBody EmailTemplateEntity entity) {
+	public ResponseBase update(EmailTemplateEntity entity) {
 		try {
 			EmailTemplateEntity template = emailTemplateDao.selectById(entity.getId());
 			if(template != null) {
@@ -95,7 +92,7 @@ public class EmailTemplateServiceimpl extends BaseApiService implements EmailTem
 	}
 
 	@Override
-	public ResponseBase findList(@RequestBody EmailTemplateEntity entity) {
+	public ResponseBase findList(EmailTemplateEntity entity) {
 		PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 		List<EmailTemplateEntity> list = emailTemplateDao.findList(entity);
 		PageInfo<EmailTemplateEntity> info = new PageInfo<>(list);

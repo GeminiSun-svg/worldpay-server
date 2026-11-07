@@ -30,7 +30,7 @@ public class RoleController {
 
     @PostMapping("/all")
     @Operation(summary = "查询角色列表")
-    public ResponseBase findAll(SysRoleEntity entity) {
+    public ResponseBase findAll(@RequestBody SysRoleEntity entity) {
         return roleService.findAll(entity);
     }
 
@@ -42,13 +42,13 @@ public class RoleController {
 
     @PostMapping
     @Operation(summary = "新增角色")
-    public ResponseBase add(SysRoleEntity entity) {
+    public ResponseBase add(@RequestBody SysRoleEntity entity) {
         return roleService.add(entity);
     }
 
     @PutMapping
     @Operation(summary = "更新角色")
-    public ResponseBase update(SysRoleEntity entity) {
+    public ResponseBase update(@RequestBody SysRoleEntity entity) {
         return roleService.update(entity);
     }
 

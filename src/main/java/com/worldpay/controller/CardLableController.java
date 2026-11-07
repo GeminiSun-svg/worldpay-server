@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,7 +30,7 @@ public class CardLableController {
 
     @PostMapping
     @Operation(summary = "新增卡标签")
-    public ResponseBase add(CardLableEntity entity) {
+    public ResponseBase add(@RequestBody @Valid CardLableEntity entity) {
         return cardLableService.add(entity);
     }
 
@@ -41,7 +42,7 @@ public class CardLableController {
 
     @PostMapping("/list")
     @Operation(summary = "条件查询卡标签列表")
-    public ResponseBase findList(CardLableEntity entity) {
+    public ResponseBase findList(@RequestBody CardLableEntity entity) {
         return cardLableService.findList(entity);
     }
 

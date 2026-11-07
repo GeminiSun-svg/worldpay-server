@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
@@ -23,7 +21,6 @@ import com.worldpay.utils.I18nUtil;
 
 @Service
 @Transactional
-@CrossOrigin
 public class ProductTypeServiceImpl extends BaseApiService implements ProductTypeService{
 	
 	@Autowired
@@ -31,7 +28,7 @@ public class ProductTypeServiceImpl extends BaseApiService implements ProductTyp
 
 	@Override
 	@SysLogAnnotation(module = "理财产品分类管理", type = "post", remark = "新增理财产品类型")
-	public ResponseBase add(@RequestBody ProductTypeEntity entity) {
+	public ResponseBase add(ProductTypeEntity entity) {
 		try {
 			GenericityUtil.setDate(entity);
 			productTypeDao.insert(entity);
@@ -44,7 +41,7 @@ public class ProductTypeServiceImpl extends BaseApiService implements ProductTyp
 
 	@Override
 	@SysLogAnnotation(module = "理财产品分类管理", type = "post", remark = "理财产品类型列表")
-	public ResponseBase findList(@RequestBody ProductTypeEntity entity) {
+	public ResponseBase findList(ProductTypeEntity entity) {
 		PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 		List<ProductTypeEntity> list = productTypeDao.findList(entity);
 		if(list != null && list.size() > 0) {

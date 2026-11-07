@@ -3,12 +3,9 @@ package com.worldpay.service.impl;
 import java.util.Date;
 import java.util.List;
 
-import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -25,7 +22,6 @@ import com.worldpay.utils.I18nUtil;
 
 @Service
 @Transactional
-@CrossOrigin
 public class CardSynopsisServiceImpl extends BaseApiService implements CardSynopsisService{
 	
 	@Autowired
@@ -36,7 +32,7 @@ public class CardSynopsisServiceImpl extends BaseApiService implements CardSynop
 
 	@Override
 	@SysLogAnnotation(module = "银行卡简介管理", type = "post", remark = "新增简介")
-	public ResponseBase add(@RequestBody CardSynopsisEntity entity) {
+	public ResponseBase add(CardSynopsisEntity entity) {
 		try {
 			GenericityUtil.setDate(entity);
 			cardSynopsisDao.insert(entity);
@@ -49,7 +45,7 @@ public class CardSynopsisServiceImpl extends BaseApiService implements CardSynop
 
 	@Override
 	@SysLogAnnotation(module = "银行卡简介管理", type = "post", remark = "编辑简介")
-	public ResponseBase update(@RequestBody @Valid CardSynopsisEntity entity) {
+	public ResponseBase update(CardSynopsisEntity entity) {
 		try {
 			CardSynopsisEntity synopsisEntity = cardSynopsisDao.selectById(entity.getId());
 			if(synopsisEntity != null) {
@@ -79,7 +75,7 @@ public class CardSynopsisServiceImpl extends BaseApiService implements CardSynop
 
 	@Override
 	@SysLogAnnotation(module = "银行卡简介管理", type = "post", remark = "简介列表")
-	public ResponseBase findList(@RequestBody CardSynopsisEntity entity) {
+	public ResponseBase findList(CardSynopsisEntity entity) {
 		try {
 			PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 			List<CardSynopsisEntity> list = cardSynopsisDao.findList(entity);

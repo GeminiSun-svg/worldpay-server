@@ -25,7 +25,6 @@ import com.worldpay.utils.JwtUtil;
 import com.worldpay.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.stereotype.Service;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,7 +32,6 @@ import java.util.*;
 
 @Service
 @Transactional
-@CrossOrigin
 public class ChannelCardServiceImpl extends BaseApiService implements ChannelCardService {
 
     @Autowired

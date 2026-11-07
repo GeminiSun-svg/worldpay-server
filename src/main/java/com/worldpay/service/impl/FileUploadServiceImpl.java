@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import com.alibaba.fastjson2.JSONObject;
@@ -29,7 +28,6 @@ import com.worldpay.utils.S3FileUploadUtil;
 
 @Service
 @Transactional
-@CrossOrigin
 public class FileUploadServiceImpl extends BaseApiService implements FileUploadService{
 	
 	@Autowired

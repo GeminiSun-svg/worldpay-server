@@ -20,11 +20,9 @@ import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
 
 
 @Service
-@CrossOrigin
 @Transactional
 public class RoleServiceImpl extends BaseApiService implements RoleService{
 	
@@ -37,7 +35,7 @@ public class RoleServiceImpl extends BaseApiService implements RoleService{
 
 	@Override
 	@SysLogAnnotation(module = "角色接口", type = "POST", remark = "查询所有角色")
-	public ResponseBase findAll(@RequestBody SysRoleEntity entity) {
+	public ResponseBase findAll(SysRoleEntity entity) {
 		try {
 			entity.setDelFlag(RoleStateEnums.ROLE_DEL_FLAG_NORMAL.getIndex());
 			PageHelper.startPage(entity.getPageNum(), entity.getPageSize());
@@ -59,7 +57,7 @@ public class RoleServiceImpl extends BaseApiService implements RoleService{
 
 	@Override
 	@SysLogAnnotation(module = "角色接口", type = "POST", remark = "新增角色")
-	public ResponseBase add(@RequestBody SysRoleEntity entity) {
+	public ResponseBase add(SysRoleEntity entity) {
 		try {
 			SysRoleEntity roleEntity = sysRoleDao.findName(entity.getRoleName(),RoleStateEnums.ROLE_DEL_FLAG_NORMAL.getIndex());
 			if(roleEntity != null) {
@@ -86,7 +84,7 @@ public class RoleServiceImpl extends BaseApiService implements RoleService{
 
 	@Override
 	@SysLogAnnotation(module = "角色接口", type = "POST", remark = "编辑角色信息")
-	public ResponseBase update(@RequestBody SysRoleEntity entity) {
+	public ResponseBase update(SysRoleEntity entity) {
 		try {
 			SysRoleEntity roleEntity = sysRoleDao.selectById(entity.getRoleId());
 			if(roleEntity != null) {

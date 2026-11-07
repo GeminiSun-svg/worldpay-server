@@ -29,13 +29,13 @@ public class IpWhitelistController {
 
     @PostMapping("/list")
     @Operation(summary = "查询IP 白名单")
-    public ResponseBase findUserCardAssets(IpWhitelistEntity entity) {
+    public ResponseBase findUserCardAssets(@RequestBody IpWhitelistEntity entity) {
         return ipWhitelistService.findUserCardAssets(entity);
     }
 
     @PostMapping
     @Operation(summary = "新增IP 白名单")
-    public ResponseBase add(IpWhitelistEntity entity) {
+    public ResponseBase add(@RequestBody IpWhitelistEntity entity) {
         return ipWhitelistService.add(entity);
     }
 

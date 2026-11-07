@@ -3,8 +3,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import com.github.pagehelper.PageHelper;
@@ -23,14 +21,13 @@ import com.worldpay.utils.S3FileUploadUtil;
 
 @Service
 @Transactional
-@CrossOrigin
 public class HelpServiceImpl extends BaseApiService implements HelpService{
 	
 	@Autowired
 	private HelpDao helpDao;
 
 	@Override
-	public ResponseBase add(@RequestBody HelpEntity entity) {
+	public ResponseBase add(HelpEntity entity) {
 		try {
 			entity.setLanguageName(LanguageEnums.getLable(entity.getLanguage()));
 			MultipartFile file = com.worldpay.utils.FileUploadUtil.saveHtmlToFile(entity.getArticleContent(),FilePathEnums.HELP.getValue());
@@ -48,7 +45,7 @@ public class HelpServiceImpl extends BaseApiService implements HelpService{
 	
 
 	@Override
-	public ResponseBase update(@RequestBody HelpEntity entity) {
+	public ResponseBase update(HelpEntity entity) {
 		try {
 			HelpEntity helpEntity = helpDao.selectById(entity.getId());
 			if(helpEntity != null) {
@@ -85,7 +82,7 @@ public class HelpServiceImpl extends BaseApiService implements HelpService{
 	}
 
 	@Override
-	public ResponseBase findList(@RequestBody HelpEntity entity) {
+	public ResponseBase findList(HelpEntity entity) {
 		try {
 			String languag = LanguageContext.getLanguage();
 			entity.setLanguage(languag);
@@ -100,7 +97,7 @@ public class HelpServiceImpl extends BaseApiService implements HelpService{
 	}
 
 	@Override
-	public ResponseBase pcFindList(@RequestBody HelpEntity entity) {
+	public ResponseBase pcFindList(HelpEntity entity) {
 		try {
 			PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 			List<HelpEntity> list = helpDao.findList(entity);

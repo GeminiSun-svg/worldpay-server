@@ -35,7 +35,7 @@ public class MerchantController {
 
     @PostMapping("/recharge-list")
     @Operation(summary = "查询商户充值列表")
-    public ResponseBase rechargeList(RechargeEntity entity) {
+    public ResponseBase rechargeList(@RequestBody RechargeEntity entity) {
         return merchantService.rechargeList(entity);
     }
 }

@@ -40,19 +40,19 @@ public class AppUserCardController {
 
     @PostMapping("/user-card-list")
     @Operation(summary = "查询用户卡片列表")
-    public ResponseBase findUserCardList(AppUserCardEntity entity) {
+    public ResponseBase findUserCardList(@RequestBody AppUserCardEntity entity) {
         return appUserCardService.findUserCardList(entity);
     }
 
     @PostMapping("/user-card-activation-list")
     @Operation(summary = "查询用户卡激活列表")
-    public ResponseBase findUserCardActivationList(AppUserCardEntity entity) {
+    public ResponseBase findUserCardActivationList(@RequestBody AppUserCardEntity entity) {
         return appUserCardService.findUserCardActivationList(entity);
     }
 
     @PostMapping("/pc-find-user-card-list")
     @Operation(summary = "后台查询用户卡片列表")
-    public ResponseBase pcFindUserCardList(AppUserCardEntity entity) {
+    public ResponseBase pcFindUserCardList(@RequestBody AppUserCardEntity entity) {
         return appUserCardService.pcFindUserCardList(entity);
     }
 
@@ -64,37 +64,37 @@ public class AppUserCardController {
 
     @PostMapping("/transaction")
     @Operation(summary = "查询交易")
-    public ResponseBase findTransaction(CardTransactionEntity entity) {
+    public ResponseBase findTransaction(@RequestBody CardTransactionEntity entity) {
         return appUserCardService.findTransaction(entity);
     }
 
     @PostMapping("/card-cvv")
     @Operation(summary = "查询卡片 CVV")
-    public ResponseBase findCardCvv(PublicEntity entity) {
+    public ResponseBase findCardCvv(@RequestBody PublicEntity entity) {
         return appUserCardService.findCardCvv(entity);
     }
 
     @PostMapping("/card-expiration-time")
     @Operation(summary = "查询卡片有效期")
-    public ResponseBase findCardExpirationTime(PublicEntity entity) {
+    public ResponseBase findCardExpirationTime(@RequestBody PublicEntity entity) {
         return appUserCardService.findCardExpirationTime(entity);
     }
 
     @PostMapping("/close-card")
     @Operation(summary = "注销卡片")
-    public ResponseBase closeCard(CardCloseEntity entity) {
+    public ResponseBase closeCard(@RequestBody CardCloseEntity entity) {
         return appUserCardService.closeCard(entity);
     }
 
     @PostMapping("/up-tag")
     @Operation(summary = "更新卡标签")
-    public ResponseBase upTag(UserCardTagEntity entity) {
+    public ResponseBase upTag(@RequestBody UserCardTagEntity entity) {
         return appUserCardService.upTag(entity);
     }
 
     @PostMapping("/set-pin")
     @Operation(summary = "设置卡片 PIN 码")
-    public ResponseBase setPin(CardPinReqEntity entity) {
+    public ResponseBase setPin(@RequestBody CardPinReqEntity entity) {
         return appUserCardService.setPin(entity);
     }
 

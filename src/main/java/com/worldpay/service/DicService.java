@@ -1,7 +1,5 @@
 package com.worldpay.service;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.worldpay.base.ResponseBase;
 

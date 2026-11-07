@@ -1,8 +1,5 @@
 package com.worldpay.service;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.worldpay.api.request.CardPinReqEntity;
 import com.worldpay.api.request.PublicEntity;
@@ -22,13 +19,9 @@ public interface AppUserCardService {
 
 	ResponseBase findUserCardActivationList(AppUserCardEntity entity);
 	
-//	@PostMapping(value = "/findUserCardList", headers = { ApiVersion.HEADER_V2_0,ClientType.HEADER_CLIENT_IOS })
-//	@Operation(summary = "")
 
 //	ResponseBase findUserCardListV2(AppUserCardEntity entity);
 //	
-//	@PostMapping(value = "/findUserCardActivationList", headers = { ApiVersion.HEADER_V2_0,ClientType.HEADER_CLIENT_IOS })
-//	@Operation(summary = "")
 
 //	ResponseBase findUserCardActivationListV2(AppUserCardEntity entity);
 

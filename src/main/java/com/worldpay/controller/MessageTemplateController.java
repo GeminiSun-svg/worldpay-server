@@ -29,13 +29,13 @@ public class MessageTemplateController {
 
     @PostMapping
     @Operation(summary = "新增消息模板")
-    public ResponseBase add(MessageTemplateEntity entity) {
+    public ResponseBase add(@RequestBody MessageTemplateEntity entity) {
         return messageTemplateService.add(entity);
     }
 
     @PutMapping
     @Operation(summary = "更新消息模板")
-    public ResponseBase update(MessageTemplateEntity entity) {
+    public ResponseBase update(@RequestBody MessageTemplateEntity entity) {
         return messageTemplateService.update(entity);
     }
 
@@ -53,7 +53,7 @@ public class MessageTemplateController {
 
     @PostMapping("/list")
     @Operation(summary = "条件查询消息模板列表")
-    public ResponseBase findList(MessageTemplateEntity entity) {
+    public ResponseBase findList(@RequestBody MessageTemplateEntity entity) {
         return messageTemplateService.findList(entity);
     }
 }

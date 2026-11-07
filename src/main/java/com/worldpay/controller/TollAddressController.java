@@ -35,19 +35,19 @@ public class TollAddressController {
 
     @PostMapping
     @Operation(summary = "新增收费地址")
-    public ResponseBase add(TollAddressEntity entity) {
+    public ResponseBase add(@RequestBody TollAddressEntity entity) {
         return tollAddressService.add(entity);
     }
 
     @PutMapping
     @Operation(summary = "更新收费地址")
-    public ResponseBase update(TollAddressEntity entity) {
+    public ResponseBase update(@RequestBody TollAddressEntity entity) {
         return tollAddressService.update(entity);
     }
 
     @PostMapping("/list")
     @Operation(summary = "条件查询收费地址列表")
-    public ResponseBase findList(TollAddressEntity entity) {
+    public ResponseBase findList(@RequestBody TollAddressEntity entity) {
         return tollAddressService.findList(entity);
     }
 

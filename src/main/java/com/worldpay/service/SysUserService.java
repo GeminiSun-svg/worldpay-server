@@ -1,7 +1,6 @@
 package com.worldpay.service;
 import jakarta.servlet.http.HttpServletRequest;
 
-import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.worldpay.base.ResponseBase;
@@ -13,15 +12,15 @@ public interface SysUserService {
 
 ResponseBase findList(SysUserEntity entity);
 
-ResponseBase signUp(String user,@RequestPart(required = false) MultipartFile faceFile);
+ResponseBase signUp(String user,MultipartFile faceFile);
 
 ResponseBase findToken(HttpServletRequest request);
 
-ResponseBase delUser(@PathVariable Integer userId);
+ResponseBase delUser(Integer userId);
 
 ResponseBase updateUserState( Integer userId, Integer newState);
 
-ResponseBase updateUser( String user,@RequestPart(required = false) MultipartFile file);
+ResponseBase updateUser( String user,MultipartFile file);
 
 ResponseBase resetPwd(Integer userId,String password);
 

@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
@@ -21,7 +19,6 @@ import com.worldpay.utils.I18nUtil;
 
 @Service
 @Transactional
-@CrossOrigin
 public class IpWhitelistServiceImpl extends BaseApiService implements IpWhitelistService{
 	
 	@Autowired
@@ -29,7 +26,7 @@ public class IpWhitelistServiceImpl extends BaseApiService implements IpWhitelis
 
 	@Override
 	@SysLogAnnotation(module = "ip白名单", type = "post", remark = "查询列表")
-	public ResponseBase findUserCardAssets(@RequestBody IpWhitelistEntity entity) {
+	public ResponseBase findUserCardAssets(IpWhitelistEntity entity) {
 		PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 		List<IpWhitelistEntity> list = ipWhitelistDao.findList(entity);
 		PageInfo<IpWhitelistEntity> info = new PageInfo<>(list);
@@ -38,7 +35,7 @@ public class IpWhitelistServiceImpl extends BaseApiService implements IpWhitelis
 
 	@Override
 	@SysLogAnnotation(module = "ip白名单", type = "post", remark = "新增")
-	public ResponseBase add(@RequestBody IpWhitelistEntity entity) {
+	public ResponseBase add(IpWhitelistEntity entity) {
 		try {
 			IpWhitelistEntity ipWhitelist = ipWhitelistDao.findIp(entity.getIpSite());
 			if(ipWhitelist != null) {

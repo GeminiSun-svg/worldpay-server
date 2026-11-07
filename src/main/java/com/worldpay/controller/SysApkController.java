@@ -42,7 +42,7 @@ public class SysApkController {
 
     @PostMapping("/list")
     @Operation(summary = "条件查询App 版本列表")
-    public ResponseBase findList(SysApkEntity entity) {
+    public ResponseBase findList(@RequestBody SysApkEntity entity) {
         return sysApkService.findList(entity);
     }
 

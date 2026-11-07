@@ -41,19 +41,19 @@ public class PayTypeSateController {
 
     @PutMapping
     @Operation(summary = "更新支付方式")
-    public ResponseBase update(PayTypeSateEntity entity) {
+    public ResponseBase update(@RequestBody PayTypeSateEntity entity) {
         return payTypeSateService.update(entity);
     }
 
     @PostMapping("/list")
     @Operation(summary = "条件查询支付方式列表")
-    public ResponseBase findList(PayTypeSateEntity entity) {
+    public ResponseBase findList(@RequestBody PayTypeSateEntity entity) {
         return payTypeSateService.findList(entity);
     }
 
     @PostMapping
     @Operation(summary = "新增支付方式")
-    public ResponseBase add(PayTypeSateEntity entity) {
+    public ResponseBase add(@RequestBody PayTypeSateEntity entity) {
         return payTypeSateService.add(entity);
     }
 }

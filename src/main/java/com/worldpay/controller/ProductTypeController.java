@@ -29,13 +29,13 @@ public class ProductTypeController {
 
     @PostMapping
     @Operation(summary = "新增产品类型")
-    public ResponseBase add(ProductTypeEntity entity) {
+    public ResponseBase add(@RequestBody ProductTypeEntity entity) {
         return productTypeService.add(entity);
     }
 
     @PostMapping("/list")
     @Operation(summary = "条件查询产品类型列表")
-    public ResponseBase findList(ProductTypeEntity entity) {
+    public ResponseBase findList(@RequestBody ProductTypeEntity entity) {
         return productTypeService.findList(entity);
     }
 

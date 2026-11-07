@@ -30,7 +30,7 @@ public class CardbannerController {
 
     @PostMapping("/all")
     @Operation(summary = "查询卡 Banner列表")
-    public ResponseBase findAll(CardBannerEntity entity) {
+    public ResponseBase findAll(@RequestBody CardBannerEntity entity) {
         return cardbannerService.findAll(entity);
     }
 

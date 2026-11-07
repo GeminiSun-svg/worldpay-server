@@ -24,8 +24,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 
 import jakarta.annotation.Resource;
@@ -47,7 +45,6 @@ import java.util.Map;
 @Slf4j
 @Service
 @Transactional
-@CrossOrigin
 public class ForecastServiceImpl extends BaseApiService implements ForecastService {
 
     @Autowired
@@ -179,7 +176,7 @@ public class ForecastServiceImpl extends BaseApiService implements ForecastServi
     }
 
     @Override
-    public ResponseBase saveSlideshow(@RequestBody ForecastSlideshowEntity entity) {
+    public ResponseBase saveSlideshow(ForecastSlideshowEntity entity) {
         try {
             GenericityUtil.setDate(entity);
             forecastSlideshowDao.insert(entity);

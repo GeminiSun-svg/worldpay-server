@@ -23,8 +23,6 @@ import com.worldpay.utils.StringUtils;
 import org.apache.commons.collections4.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,7 +33,6 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
-@CrossOrigin
 public class MenuServiceImpl extends BaseApiService implements MenuService {
 	
 	@Autowired
@@ -342,7 +339,7 @@ public class MenuServiceImpl extends BaseApiService implements MenuService {
 		 */
 		@Override
 		@SysLogAnnotation(module = "菜单管理", type = "POST", remark = "新增菜单")
-		public ResponseBase add(@RequestBody SysMenuEntity entity) {
+		public ResponseBase add(SysMenuEntity entity) {
 			try {
 				entity.setCreateTime(new Date());
 				int temp = sysMenuDao.insert(entity);
@@ -375,7 +372,7 @@ public class MenuServiceImpl extends BaseApiService implements MenuService {
 
 		@Override
 		@SysLogAnnotation(module = "菜单管理", type = "POST", remark = "获取菜单详情")
-		public ResponseBase update(@RequestBody SysMenuEntity entity) {
+		public ResponseBase update(SysMenuEntity entity) {
 			try {
 				SysMenuEntity menuEntity = sysMenuDao.selectById(entity.getMenuId());
 				if(menuEntity != null) {

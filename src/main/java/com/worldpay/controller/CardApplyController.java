@@ -30,7 +30,7 @@ public class CardApplyController {
 
     @PostMapping("/open-card-apply")
     @Operation(summary = "开通卡片申请")
-    public ResponseBase openCardApply(CardApplyEntity entity) {
+    public ResponseBase openCardApply(@RequestBody CardApplyEntity entity) {
         return cardApplyService.openCardApply(entity);
     }
 
@@ -48,13 +48,13 @@ public class CardApplyController {
 
     @PostMapping("/reject")
     @Operation(summary = "驳回开卡申请")
-    public ResponseBase reject(RejectApplyEntity entity) {
+    public ResponseBase reject(@RequestBody RejectApplyEntity entity) {
         return cardApplyService.reject(entity);
     }
 
     @PostMapping("/reject-v2")
     @Operation(summary = "驳回开卡申请（V2）")
-    public ResponseBase rejectV2(RejectApplyEntity entity) {
+    public ResponseBase rejectV2(@RequestBody RejectApplyEntity entity) {
         return cardApplyService.rejectV2(entity);
     }
 

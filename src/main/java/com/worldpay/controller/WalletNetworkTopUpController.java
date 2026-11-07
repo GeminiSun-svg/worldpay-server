@@ -29,13 +29,13 @@ public class WalletNetworkTopUpController {
 
     @PostMapping
     @Operation(summary = "新增链上充值")
-    public ResponseBase add(WalletNetworkTopUpEntity entity) {
+    public ResponseBase add(@RequestBody WalletNetworkTopUpEntity entity) {
         return walletNetworkTopUpService.add(entity);
     }
 
     @PostMapping("/list")
     @Operation(summary = "条件查询链上充值列表")
-    public ResponseBase findList(WalletNetworkTopUpEntity entity) {
+    public ResponseBase findList(@RequestBody WalletNetworkTopUpEntity entity) {
         return walletNetworkTopUpService.findList(entity);
     }
 

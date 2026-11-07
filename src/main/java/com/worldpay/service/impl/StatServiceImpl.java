@@ -33,8 +33,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -45,7 +43,6 @@ import java.util.*;
 
 @Service
 @Transactional
-@CrossOrigin
 public class StatServiceImpl extends BaseApiService implements StatService {
 
     private static final Logger log = LoggerFactory.getLogger(StatServiceImpl.class);
@@ -86,7 +83,7 @@ public class StatServiceImpl extends BaseApiService implements StatService {
 
 
     @Override
-    public ResponseBase adminStat(HttpServletRequest req, @RequestBody PublicQueryEntity entity) {
+    public ResponseBase adminStat(HttpServletRequest req, PublicQueryEntity entity) {
         try {
             AdminStatEntity adminStatEntity = new AdminStatEntity();
             // 如果没有传开始时间和结束时间 设置为今天的时间
@@ -385,7 +382,7 @@ public class StatServiceImpl extends BaseApiService implements StatService {
     }
 
     @Override
-    public ResponseBase channelTotal(@RequestBody PublicQueryEntity entity) {
+    public ResponseBase channelTotal(PublicQueryEntity entity) {
 //        PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
         // 如果没有传开始时间和结束时间 设置为今天的时间
         PageInfo<AdminStatEntity> info = null;

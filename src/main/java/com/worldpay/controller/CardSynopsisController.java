@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,13 +30,13 @@ public class CardSynopsisController {
 
     @PostMapping
     @Operation(summary = "新增卡简介")
-    public ResponseBase add(CardSynopsisEntity entity) {
+    public ResponseBase add(@RequestBody CardSynopsisEntity entity) {
         return cardSynopsisService.add(entity);
     }
 
     @PutMapping
     @Operation(summary = "更新卡简介")
-    public ResponseBase update(CardSynopsisEntity entity) {
+    public ResponseBase update(@RequestBody @Valid CardSynopsisEntity entity) {
         return cardSynopsisService.update(entity);
     }
 
@@ -47,7 +48,7 @@ public class CardSynopsisController {
 
     @PostMapping("/list")
     @Operation(summary = "条件查询卡简介列表")
-    public ResponseBase findList(CardSynopsisEntity entity) {
+    public ResponseBase findList(@RequestBody CardSynopsisEntity entity) {
         return cardSynopsisService.findList(entity);
     }
 

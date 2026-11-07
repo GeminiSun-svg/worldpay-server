@@ -37,8 +37,6 @@ import lombok.Synchronized;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 import com.worldpay.base.BaseApiService;
 import com.worldpay.base.ResponseBase;
@@ -75,7 +73,6 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @Service
 @Transactional
-@CrossOrigin
 public class WalletServicelmpl extends BaseApiService implements WalletService {
 	
     @Autowired
@@ -198,7 +195,7 @@ public class WalletServicelmpl extends BaseApiService implements WalletService {
     
     
 	@Override
-	public ApiResponseEntity topinUsdtNotify(@RequestBody UsdtTopinNotifyEntity entity,HttpServletRequest req) {
+	public ApiResponseEntity topinUsdtNotify(UsdtTopinNotifyEntity entity,HttpServletRequest req) {
 		try {
 			 // 获取客户端 IP
 //	        String ipAddress = ipUtil.getClientIp(req);
@@ -287,7 +284,7 @@ public class WalletServicelmpl extends BaseApiService implements WalletService {
 
     @Override
     @SysLogAnnotation(module = "钱包接口", type = "post", remark = "获取钱包交易记录")
-    public ResponseBase walletLog(@RequestBody WalletLogEntity entity){
+    public ResponseBase walletLog(WalletLogEntity entity){
         try{
         	String languag = LanguageContext.getLanguage();
             PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
@@ -321,7 +318,7 @@ public class WalletServicelmpl extends BaseApiService implements WalletService {
     }
     @Override
     @SysLogAnnotation(module = "钱包接口", type = "post", remark = "获取钱包交易记录统计")
-    public ResponseBase walletLogStat(@RequestBody PublicQueryEntity entity){
+    public ResponseBase walletLogStat(PublicQueryEntity entity){
         try{
             //获取统计的值和对应的订单列表
             PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
@@ -345,7 +342,7 @@ public class WalletServicelmpl extends BaseApiService implements WalletService {
     
    
 	@Override
-	public ResponseBase walletTopUp(@RequestBody WalletManualLogEntity entity,HttpServletRequest req) {
+	public ResponseBase walletTopUp(WalletManualLogEntity entity,HttpServletRequest req) {
 		try {
 			AppUserEntity appUser = appUserDao.findByUid(entity.getUid());
 			if(appUser == null) {
@@ -438,7 +435,7 @@ public class WalletServicelmpl extends BaseApiService implements WalletService {
 	}
 
 	@Override
-	public ResponseBase findWalletLog(@RequestBody WalletLogEntity entity) {
+	public ResponseBase findWalletLog(WalletLogEntity entity) {
 		try {
 			PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 			List<WalletLogEntity> list = walletLogDao.findWalletLogsByConditions(entity);
@@ -472,7 +469,7 @@ public class WalletServicelmpl extends BaseApiService implements WalletService {
 
 	@Override
 	@Synchronized
-	public ResponseBase transfer(@RequestBody WalletTransfetListEntity entity) {
+	public ResponseBase transfer(WalletTransfetListEntity entity) {
 		try {
 			//查询发送方是否存在
 			AppUserEntity userEntity = appUserDao.findByUid(entity.getSendUid());
@@ -644,7 +641,7 @@ public class WalletServicelmpl extends BaseApiService implements WalletService {
 	
 	
 	@Override
-	public ApiResponseEntity withdrawalNotify(@RequestBody WithdrawalCallbackEntity entity) {
+	public ApiResponseEntity withdrawalNotify(WithdrawalCallbackEntity entity) {
 		try {
 			// 获取客户端 IP
 //			String ipAddress = ipUtil.getClientIp(req);

@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import com.alibaba.fastjson2.JSONObject;
@@ -25,7 +23,6 @@ import com.worldpay.utils.S3FileUploadUtil;
 
 @Service
 @Transactional
-@CrossOrigin
 public class SysApkServiceImpl extends BaseApiService implements SysApkService{
 	
 	@Autowired
@@ -90,7 +87,7 @@ public class SysApkServiceImpl extends BaseApiService implements SysApkService{
 
 	@Override
 	@SysLogAnnotation(module = "应用更新配置", type = "post", remark = "查询列表")
-	public ResponseBase findList(@RequestBody SysApkEntity entity) {
+	public ResponseBase findList(SysApkEntity entity) {
 		try {
 			PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 			List<SysApkEntity> list = sysApkDao.findList(entity);

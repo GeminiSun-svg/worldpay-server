@@ -29,13 +29,13 @@ public class EmailTemplateController {
 
     @PostMapping
     @Operation(summary = "新增邮件模板")
-    public ResponseBase add(EmailTemplateEntity entity) {
+    public ResponseBase add(@RequestBody EmailTemplateEntity entity) {
         return emailTemplateService.add(entity);
     }
 
     @PutMapping
     @Operation(summary = "更新邮件模板")
-    public ResponseBase update(EmailTemplateEntity entity) {
+    public ResponseBase update(@RequestBody EmailTemplateEntity entity) {
         return emailTemplateService.update(entity);
     }
 
@@ -53,7 +53,7 @@ public class EmailTemplateController {
 
     @PostMapping("/list")
     @Operation(summary = "条件查询邮件模板列表")
-    public ResponseBase findList(EmailTemplateEntity entity) {
+    public ResponseBase findList(@RequestBody EmailTemplateEntity entity) {
         return emailTemplateService.findList(entity);
     }
 }

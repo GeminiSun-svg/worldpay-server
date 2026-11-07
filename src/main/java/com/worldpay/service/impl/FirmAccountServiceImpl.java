@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
@@ -22,7 +20,6 @@ import com.worldpay.utils.I18nUtil;
 
 @Service
 @Transactional
-@CrossOrigin
 public class FirmAccountServiceImpl extends BaseApiService implements FirmAccountService{
 	
 	@Autowired
@@ -30,7 +27,7 @@ public class FirmAccountServiceImpl extends BaseApiService implements FirmAccoun
 
 	@Override
 	@SysLogAnnotation(module = "公司银行账户", type = "post", remark = "新增公司银行账户")
-	public ResponseBase add(@RequestBody FirmAccountEntity entity) {
+	public ResponseBase add(FirmAccountEntity entity) {
 		try {
 			FirmAccountEntity accountEntity = firmAccountDao.selectOne(null);
 			if(accountEntity != null) {
@@ -47,7 +44,7 @@ public class FirmAccountServiceImpl extends BaseApiService implements FirmAccoun
 
 	@Override
 	@SysLogAnnotation(module = "公司银行账户", type = "post", remark = "编辑公司银行账户")
-	public ResponseBase update(@RequestBody FirmAccountEntity entity) {
+	public ResponseBase update(FirmAccountEntity entity) {
 		try {
 			FirmAccountEntity accountEntity = firmAccountDao.selectById(entity.getId());
 			if(accountEntity != null) {

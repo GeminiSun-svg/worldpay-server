@@ -2,12 +2,9 @@ package com.worldpay.service.impl;
 
 import java.util.List;
 
-import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
@@ -25,7 +22,6 @@ import com.worldpay.utils.I18nUtil;
 
 @Service
 @Transactional
-@CrossOrigin
 public class CardLableServiceImpl extends BaseApiService implements CardLableService{
 	
 	@Autowired
@@ -36,7 +32,7 @@ public class CardLableServiceImpl extends BaseApiService implements CardLableSer
 
 	@Override
 	@SysLogAnnotation(module = "银行卡标签", type = "post", remark = "新增标签")
-	public ResponseBase add(@RequestBody @Valid CardLableEntity entity) {
+	public ResponseBase add(CardLableEntity entity) {
 		try {
 			CardLableEntity cardLableEntity = cardLableDao.findName(entity.getName());
 			if(cardLableEntity != null) {
@@ -66,7 +62,7 @@ public class CardLableServiceImpl extends BaseApiService implements CardLableSer
 
 	@Override
 	@SysLogAnnotation(module = "银行卡标签", type = "post", remark = "标签列表")
-	public ResponseBase findList(@RequestBody CardLableEntity entity) {
+	public ResponseBase findList(CardLableEntity entity) {
 		try {
 			PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 			List<CardLableEntity> list = cardLableDao.findList(entity);

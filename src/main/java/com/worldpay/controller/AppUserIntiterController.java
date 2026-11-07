@@ -32,7 +32,7 @@ public class AppUserIntiterController {
 
     @PostMapping("/all")
     @Operation(summary = "查询App 用户邀请列表")
-    public ResponseBase findAll(AppUserIntiterEntity entity, HttpServletRequest request) {
+    public ResponseBase findAll(@RequestBody AppUserIntiterEntity entity, HttpServletRequest request) {
         return appUserIntiterService.findAll(entity, request);
     }
 
@@ -50,7 +50,7 @@ public class AppUserIntiterController {
 
     @PostMapping("/app-user-intiter")
     @Operation(summary = "新增App用户邀请")
-    public ResponseBase insertAppUserIntiter(UserIntiterEntity userIntiterEntity) {
+    public ResponseBase insertAppUserIntiter(@RequestBody UserIntiterEntity userIntiterEntity) {
         return appUserIntiterService.insertAppUserIntiter(userIntiterEntity);
     }
 }

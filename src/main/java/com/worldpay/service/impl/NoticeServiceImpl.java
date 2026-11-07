@@ -27,10 +27,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
 
 @Service
-@CrossOrigin
 @Transactional
 public class NoticeServiceImpl extends BaseApiService implements NoticeService{
 	
@@ -48,7 +46,7 @@ public class NoticeServiceImpl extends BaseApiService implements NoticeService{
 
 	@Override
 	@SysLogAnnotation(module = "通知接口", type = "POST", remark = "查询所有通知")
-	public ResponseBase findAll(@RequestBody NoticeEntity entity) {
+	public ResponseBase findAll(NoticeEntity entity) {
 		try {
 			String language = LanguageContext.getLanguage();
 			entity.setLanguage(language);
@@ -65,7 +63,7 @@ public class NoticeServiceImpl extends BaseApiService implements NoticeService{
 
     @Override
     @SysLogAnnotation(module = "通知接口", type = "POST", remark = "新增通知")
-    public ResponseBase add(@RequestBody NoticeEntity entity) {
+    public ResponseBase add(NoticeEntity entity) {
         try {
             if(entity.getLanguage() == null){
                 return setResultError(Constants.NULL_LANGUAGE);
@@ -85,7 +83,7 @@ public class NoticeServiceImpl extends BaseApiService implements NoticeService{
 
     @Override
     @SysLogAnnotation(module = "通知接口", type = "POST", remark = "编辑通知信息")
-    public ResponseBase update(@RequestBody NoticeEntity entity) {
+    public ResponseBase update(NoticeEntity entity) {
         try {
             if(entity.getId() == null){
                 return setResultError(I18nUtil.getMessage("base_data_null"));
@@ -143,7 +141,7 @@ public class NoticeServiceImpl extends BaseApiService implements NoticeService{
 
 	@Override
 	@SysLogAnnotation(module = "通知接口", type = "POST", remark = "查询消息通知列表")
-	public ResponseBase findList(@RequestBody NoticeEntity entity) {
+	public ResponseBase findList(NoticeEntity entity) {
 		try {
 			PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 			List<NoticeEntity> list = NoticeDao.findList(entity);

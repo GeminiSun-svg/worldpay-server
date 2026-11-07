@@ -8,8 +8,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
@@ -33,7 +31,6 @@ import com.worldpay.utils.TelegramNotificationUtil;
 
 @Service
 @Transactional
-@CrossOrigin
 public class MessageTemplateServiceImpl extends BaseApiService implements MessageTemplateService{
 	
 	@Autowired
@@ -59,7 +56,7 @@ public class MessageTemplateServiceImpl extends BaseApiService implements Messag
 
 	@Override
 	@SysLogAnnotation(module = "消息模板", type = "post", remark = "新增消息模板")
-	public ResponseBase add(@RequestBody MessageTemplateEntity entity) {
+	public ResponseBase add(MessageTemplateEntity entity) {
 		try {
 			//查询相同语言下code是否已存在
 			MessageTemplateEntity template = messageTemplateDao.findOne(entity.getMessageCode(),entity.getLanguage());
@@ -78,7 +75,7 @@ public class MessageTemplateServiceImpl extends BaseApiService implements Messag
 
 	@Override
 	@SysLogAnnotation(module = "消息模板", type = "post", remark = "编辑消息模板")
-	public ResponseBase update(@RequestBody MessageTemplateEntity entity) {
+	public ResponseBase update(MessageTemplateEntity entity) {
 		try {
 			MessageTemplateEntity template = messageTemplateDao.selectById(entity.getId());
 			if(template != null) {
@@ -125,7 +122,7 @@ public class MessageTemplateServiceImpl extends BaseApiService implements Messag
 
 	@Override
 	@SysLogAnnotation(module = "消息模板", type = "post", remark = "根据code查询消息模板")
-	public ResponseBase findList(@RequestBody MessageTemplateEntity entity) {
+	public ResponseBase findList(MessageTemplateEntity entity) {
 		PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 		List<MessageTemplateEntity> list = messageTemplateDao.findList(entity);
 		PageInfo<MessageTemplateEntity> info = new PageInfo<>(list);

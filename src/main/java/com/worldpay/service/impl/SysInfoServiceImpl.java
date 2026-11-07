@@ -20,12 +20,10 @@ import com.worldpay.utils.S3FileUploadUtil;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
 @Service
-@CrossOrigin
 @Transactional
 public class SysInfoServiceImpl extends BaseApiService implements SysInfoService{
 	
@@ -34,7 +32,7 @@ public class SysInfoServiceImpl extends BaseApiService implements SysInfoService
 
 	@Override
 	@SysLogAnnotation(module = "配置接口", type = "POST", remark = "查询所有配置")
-	public ResponseBase findAll(@RequestBody SysInfoEntity entity) {
+	public ResponseBase findAll(SysInfoEntity entity) {
 		try {
 			PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 			List<SysInfoEntity> list = SysInfoDao.findList(entity);
@@ -62,7 +60,7 @@ public class SysInfoServiceImpl extends BaseApiService implements SysInfoService
 
     @Override
     @SysLogAnnotation(module = "配置接口", type = "POST", remark = "新增配置")
-    public ResponseBase add(@RequestBody SysInfoEntity entity) {
+    public ResponseBase add(SysInfoEntity entity) {
         try {
         	entity.setConfigTypeName(SysConfigTypeEnums.getType(entity.getConfigType()));
         	entity.setConfigLable(SysConfigTypeEnums.getLable(entity.getConfigType()));
@@ -83,7 +81,7 @@ public class SysInfoServiceImpl extends BaseApiService implements SysInfoService
 
     @Override
     @SysLogAnnotation(module = "配置接口", type = "POST", remark = "编辑配置信息")
-    public ResponseBase update(@RequestBody SysInfoEntity entity) {
+    public ResponseBase update(SysInfoEntity entity) {
         try {
             if(entity.getId() == null){
                 return setResultError(I18nUtil.getMessage("base_data_null"));

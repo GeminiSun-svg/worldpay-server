@@ -4,7 +4,6 @@ package com.worldpay.service.impl;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.worldpay.dao.system.KycFileIndexDao;
@@ -12,7 +11,6 @@ import com.worldpay.entity.baidu.KycFileIndexEntity;
 
 @Service
 @Transactional
-@CrossOrigin
 public class KycFileIndexServiceImpl {
 
 	@Autowired

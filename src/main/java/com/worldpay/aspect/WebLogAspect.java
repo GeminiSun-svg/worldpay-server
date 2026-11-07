@@ -1,8 +1,12 @@
 package com.worldpay.aspect;
 import com.worldpay.filter.JWTAuthenticationFilter;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.List;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -16,7 +20,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import com.alibaba.fastjson2.JSON;
-import com.alibaba.fastjson2.JSONException;
 import com.worldpay.aop.SysLogAnnotation;
 import com.worldpay.base.ResponseBase;
 import com.worldpay.dao.log.SysLogDao;
@@ -73,14 +76,25 @@ public class WebLogAspect {
              }
 
              Object[] args = joinPoint.getArgs();
-             if (args != null && args.length > 0 && args[0] != null) {
-                 try {
-                     String parameterJson = JSON.toJSONString(args[0]);
-                     log.info("PARAMETER：" + request.getRequestURL() + "-[" + parameterJson + "]");
-                     entity.setReqParamet("[" + parameterJson + "]");
-                 } catch (JSONException e) {
-                     log.error("PARAMETER：" + request.getRequestURL() + "-[]");
-                     entity.setReqParamet("[]");
+             if (args != null && args.length > 0) {
+                 // Servlet 对象不可序列化（fastjson 会调用 getAsyncContext() 等，
+                 // 非异步请求下 Tomcat 会抛 IllegalStateException），必须排除
+                 List<Object> logArgs = new ArrayList<>();
+                 for (Object arg : args) {
+                     if (arg == null || arg instanceof ServletRequest || arg instanceof ServletResponse) {
+                         continue;
+                     }
+                     logArgs.add(arg);
+                 }
+                 if (!logArgs.isEmpty()) {
+                     try {
+                         String parameterJson = JSON.toJSONString(logArgs);
+                         log.info("PARAMETER：" + request.getRequestURL() + "-[" + parameterJson + "]");
+                         entity.setReqParamet("[" + parameterJson + "]");
+                     } catch (Exception e) {
+                         log.error("PARAMETER：" + request.getRequestURL() + "-[]");
+                         entity.setReqParamet("[]");
+                     }
                  }
              }
 

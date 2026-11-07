@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,13 +30,13 @@ public class CardholderController {
 
     @PostMapping
     @Operation(summary = "新增持卡人")
-    public ResponseBase add(AppUserHolderEntity entity) {
+    public ResponseBase add(@RequestBody @Valid AppUserHolderEntity entity) {
         return cardholderService.add(entity);
     }
 
     @PutMapping
     @Operation(summary = "更新持卡人")
-    public ResponseBase update(AppUserHolderEntity entity) {
+    public ResponseBase update(@RequestBody @Valid AppUserHolderEntity entity) {
         return cardholderService.update(entity);
     }
 

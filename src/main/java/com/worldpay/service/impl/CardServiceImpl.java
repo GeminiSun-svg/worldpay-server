@@ -53,8 +53,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -70,7 +68,6 @@ import static com.worldpay.constants.Constants.HTTP_RES_CODE_200;
 
 @Service
 @Transactional
-@CrossOrigin
 public class CardServiceImpl extends BaseApiService implements CardService {
 
 	@Value("${EMS_API_KEY:}")
@@ -195,7 +192,7 @@ public class CardServiceImpl extends BaseApiService implements CardService {
 
 	@Override
 	@SysLogAnnotation(module = "银行卡管理", type = "post", remark = "银行卡信息列表")
-	public ResponseBase findList(@RequestBody CardEntity entity) {
+	public ResponseBase findList(CardEntity entity) {
 		try {
 			entity.setLanguage(LanguageContext.getLanguage());
 			entity.setCardState(PublicEnums.ONE.getIndex());
@@ -221,7 +218,7 @@ public class CardServiceImpl extends BaseApiService implements CardService {
 
 	@Override
 	@SysLogAnnotation(module = "银行卡管理", type = "post", remark = "编辑银行卡")
-	public ResponseBase update(@RequestBody CardEntity entity) {
+	public ResponseBase update(CardEntity entity) {
 		try {
 			CardEntity cardEntity = cardDao.findByuuId(entity.getUuid());
 			if (cardEntity != null) {
@@ -336,7 +333,7 @@ public class CardServiceImpl extends BaseApiService implements CardService {
 
 //	@Override
 //	@SysLogAnnotation(module = "银行卡管理", type = "post", remark = "申请开卡")
-//	public ResponseBase openCardApply(@RequestBody CardApplyQueryEntity entity) {
+//	public ResponseBase openCardApply(CardApplyQueryEntity entity) {
 //		try {
 //			//支付密码校验
 //			ResponseBase passwordBase = appUserServiceImpl.checkPayPasswrod(entity.getUid(), entity.getPayPassword());
@@ -552,7 +549,7 @@ public class CardServiceImpl extends BaseApiService implements CardService {
 //	@Override
 //	@Synchronized
 //	@SysLogAnnotation(module = "银行卡管理", type = "post", remark = "卡充值")
-//	public ResponseBase topUp(@RequestBody RechargeCardEntity entity) {
+//	public ResponseBase topUp(RechargeCardEntity entity) {
 //		try {
 //			entity.setAmount(entity.getTargetAmount());
 //			AppUserEntity userEntity = appUserDao.findByUid(entity.getUid());
@@ -639,7 +636,7 @@ public class CardServiceImpl extends BaseApiService implements CardService {
 	
 	
 	@Synchronized
-	public ResponseBase firstTopUp(@RequestBody RechargeCardEntity entity, CardApplyEntity applyData) {
+	public ResponseBase firstTopUp(RechargeCardEntity entity, CardApplyEntity applyData) {
 		try {
 			entity.setAmount(entity.getTargetAmount());
 			AppUserEntity userEntity = appUserDao.findByUid(entity.getUid());
@@ -962,7 +959,7 @@ public class CardServiceImpl extends BaseApiService implements CardService {
 
 	@Override
 	@SysLogAnnotation(module = "银行卡管理", type = "get", remark = "实体卡发货")
-	public ResponseBase shipping(@RequestBody CardShippingEntity entity,HttpServletRequest request) {
+	public ResponseBase shipping(CardShippingEntity entity,HttpServletRequest request) {
 		try {
 			if(entity.getLogisticsMonery() == null) {
 				entity.setLogisticsMonery(0.0);
@@ -1255,7 +1252,7 @@ public class CardServiceImpl extends BaseApiService implements CardService {
 
 	@Override
 	@SysLogAnnotation(module = "银行卡管理", type = "post", remark = "银行卡信息分页列表")
-	public ResponseBase findListPag(@RequestBody CardEntity entity) {
+	public ResponseBase findListPag(CardEntity entity) {
 		try {
 			PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 			entity.setLanguage(LanguageContext.getLanguage());
@@ -1612,7 +1609,7 @@ public class CardServiceImpl extends BaseApiService implements CardService {
 
 	@Override
 	@Synchronized
-	public ResponseBase openCardApplyV2(@RequestBody CardApplyQueryEntity entity) {
+	public ResponseBase openCardApplyV2(CardApplyQueryEntity entity) {
 		try {
 			// 获取当前app用户
 			AppUserEntity userEntity = appUserDao.findByUid(entity.getUid());
@@ -1783,7 +1780,7 @@ public class CardServiceImpl extends BaseApiService implements CardService {
 
 		@Override
 		@Synchronized
-		public ResponseBase topUpV2(@RequestBody RechargeCardEntity entity) {
+		public ResponseBase topUpV2(RechargeCardEntity entity) {
 			try {
 				entity.setAmount(entity.getTargetAmount());
 				AppUserEntity userEntity = appUserDao.findByUid(entity.getUid());

@@ -30,7 +30,7 @@ public class SysInfoController {
 
     @PostMapping("/all")
     @Operation(summary = "查询系统信息 / 配置列表")
-    public ResponseBase findAll(SysInfoEntity entity) {
+    public ResponseBase findAll(@RequestBody SysInfoEntity entity) {
         return sysInfoService.findAll(entity);
     }
 
@@ -42,13 +42,13 @@ public class SysInfoController {
 
     @PostMapping
     @Operation(summary = "新增系统信息 / 配置")
-    public ResponseBase add(SysInfoEntity entity) {
+    public ResponseBase add(@RequestBody SysInfoEntity entity) {
         return sysInfoService.add(entity);
     }
 
     @PutMapping
     @Operation(summary = "更新系统信息 / 配置")
-    public ResponseBase update(SysInfoEntity entity) {
+    public ResponseBase update(@RequestBody SysInfoEntity entity) {
         return sysInfoService.update(entity);
     }
 

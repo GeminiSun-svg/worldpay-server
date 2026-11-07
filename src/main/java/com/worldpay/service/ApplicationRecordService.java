@@ -5,10 +5,6 @@ import com.worldpay.api.request.AppBindChannelReqEntity;
 import com.worldpay.api.request.ApplicationRecordReqEntity;
 import com.worldpay.base.ResponseBase;
 import com.worldpay.entity.appuser.ApplicationRecordEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import io.swagger.v3.oas.annotations.Operation;
 /**
@@ -22,11 +18,11 @@ public interface ApplicationRecordService {
 
 ResponseBase findApplicationRecord(ApplicationRecordEntity entity);
 
-ResponseBase appFindChannel(@RequestBody AppBindChannelReqEntity appBindChannelReqEntity);
+ResponseBase appFindChannel(AppBindChannelReqEntity appBindChannelReqEntity);
 
-ResponseBase appBindChannel(@RequestBody AppBindChannelEditEntity appBindChannelEditEntity);
+ResponseBase appBindChannel(AppBindChannelEditEntity appBindChannelEditEntity);
 
-ResponseBase appIsChannel(@RequestBody AppBindChannelEditEntity appBindChannelEditEntity);
+ResponseBase appIsChannel(AppBindChannelEditEntity appBindChannelEditEntity);
 
-ResponseBase updateStatus(@RequestBody ApplicationRecordReqEntity entity);
+ResponseBase updateStatus(ApplicationRecordReqEntity entity);
 }

@@ -6,8 +6,6 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
@@ -35,7 +33,6 @@ import com.worldpay.utils.I18nUtil;
 
 @Service
 @Transactional
-@CrossOrigin
 public class IosGoodsServiceImpl extends BaseApiService implements IosGoodsService{
 	
 	@Autowired
@@ -73,7 +70,7 @@ public class IosGoodsServiceImpl extends BaseApiService implements IosGoodsServi
 	}
 
 	@Override
-	public ResponseBase verify(@RequestBody IosPayReqEntity entity) {
+	public ResponseBase verify(IosPayReqEntity entity) {
 		try {
 			 // 1️⃣ 基础参数校验
 		    if (StringUtils.isAnyBlank(
@@ -178,7 +175,7 @@ public class IosGoodsServiceImpl extends BaseApiService implements IosGoodsServi
 	}
 
 	@Override
-	public ResponseBase add(@RequestBody IosGoodsEntity entity) {
+	public ResponseBase add(IosGoodsEntity entity) {
 		try {
 			IosGoodsEntity goodsEntity = iosGoodsDao.findByNum(entity.getGoodsNum());
 			if(goodsEntity != null) {
@@ -194,7 +191,7 @@ public class IosGoodsServiceImpl extends BaseApiService implements IosGoodsServi
 	}
 
 	@Override
-	public ResponseBase update(@RequestBody IosGoodsEntity entity) {
+	public ResponseBase update(IosGoodsEntity entity) {
 		try {
 			IosGoodsEntity goodsEntity = iosGoodsDao.selectById(entity.getId());
 			if(goodsEntity != null) {
@@ -224,7 +221,7 @@ public class IosGoodsServiceImpl extends BaseApiService implements IosGoodsServi
 	}
 
 	@Override
-	public ResponseBase findList(@RequestBody IosGoodsEntity entity) {
+	public ResponseBase findList(IosGoodsEntity entity) {
 		PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 		List<IosGoodsEntity> list = iosGoodsDao.findList(entity);
 		// 获取总记录数

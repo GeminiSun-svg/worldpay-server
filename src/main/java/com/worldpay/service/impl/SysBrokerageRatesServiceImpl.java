@@ -9,7 +9,6 @@ import com.worldpay.service.SysBrokerageRatesService;
 import com.worldpay.utils.I18nUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -20,7 +19,6 @@ import static com.worldpay.base.BaseApiService.setResultSuccess;
 
 @Service
 @Transactional
-@CrossOrigin
 public class SysBrokerageRatesServiceImpl implements SysBrokerageRatesService {
 
     @Autowired

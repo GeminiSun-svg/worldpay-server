@@ -35,7 +35,7 @@ public class WalletToWebRatesController {
 
     @PutMapping
     @Operation(summary = "更新提现费率")
-    public ResponseBase update(WalletToWebRatesEntity entity) {
+    public ResponseBase update(@RequestBody WalletToWebRatesEntity entity) {
         return walletToWebRatesService.update(entity);
     }
 }

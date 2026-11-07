@@ -6,7 +6,6 @@ import com.worldpay.base.BaseApiService;
 import org.springframework.stereotype.Service;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.Map;
 import java.util.Base64;
@@ -16,7 +15,6 @@ import java.nio.charset.StandardCharsets;
 
 @Service
 @Transactional
-@CrossOrigin
 public class DecryptControllerImpl extends BaseApiService implements com.worldpay.service.DecryptController{
 
 	  private static final String AES_KEY = "Ej0c8VSW9l2sP7kM"; // 使用的 AES 密钥，和加密时一致

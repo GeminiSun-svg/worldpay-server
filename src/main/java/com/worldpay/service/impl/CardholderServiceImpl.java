@@ -3,12 +3,9 @@ package com.worldpay.service.impl;
 import java.util.Date;
 import java.util.List;
 
-import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 
 import com.worldpay.aop.SysLogAnnotation;
@@ -26,7 +23,6 @@ import com.worldpay.utils.I18nUtil;
 
 @Service
 @Transactional
-@CrossOrigin
 public class CardholderServiceImpl extends BaseApiService implements CardholderService{
 	
 	@Autowired
@@ -37,7 +33,7 @@ public class CardholderServiceImpl extends BaseApiService implements CardholderS
 
 	@Override
 	@SysLogAnnotation(module = "持卡人信息", type = "POST", remark = "新增持卡人")
-	public ResponseBase add(@RequestBody @Valid AppUserHolderEntity entity) {
+	public ResponseBase add(AppUserHolderEntity entity) {
 		try {
 			if(entity.getUserSexNum() != null) {
 				if(SexEnums.MALE.getIndex().equals(entity.getUserSexNum())) {
@@ -72,7 +68,7 @@ public class CardholderServiceImpl extends BaseApiService implements CardholderS
 
 	@Override
 	@SysLogAnnotation(module = "持卡人信息", type = "POST", remark = "编辑持卡人")
-	public ResponseBase update(@RequestBody @Valid AppUserHolderEntity entity) {
+	public ResponseBase update(AppUserHolderEntity entity) {
 		try {
 			AppUserHolderEntity cardholderEntity = cardholderDao.selectById(entity.getId());
 			if(cardholderEntity != null) {

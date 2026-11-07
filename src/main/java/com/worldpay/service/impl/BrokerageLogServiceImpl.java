@@ -18,7 +18,6 @@ import com.worldpay.utils.GenericityUtil;
 import com.worldpay.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.stereotype.Service;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,7 +26,6 @@ import java.util.List;
 
 @Service
 @Transactional
-@CrossOrigin
 public class BrokerageLogServiceImpl extends BaseApiService implements BrokerageLogService {
 
     @Autowired

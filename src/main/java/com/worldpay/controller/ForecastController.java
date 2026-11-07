@@ -56,7 +56,7 @@ public class ForecastController {
 
     @PostMapping("/slideshow")
     @Operation(summary = "保存预测轮播图")
-    public ResponseBase saveSlideshow(ForecastSlideshowEntity entity) {
+    public ResponseBase saveSlideshow(@RequestBody ForecastSlideshowEntity entity) {
         return forecastService.saveSlideshow(entity);
     }
 }

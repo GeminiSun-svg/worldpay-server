@@ -12,7 +12,6 @@ import com.worldpay.service.ChannelLevelService;
 import com.worldpay.utils.I18nUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -20,7 +19,6 @@ import java.util.List;
 
 @Service
 @Transactional
-@CrossOrigin
 public class ChannelLevelServiceImpl extends BaseApiService implements ChannelLevelService {
 
     @Autowired

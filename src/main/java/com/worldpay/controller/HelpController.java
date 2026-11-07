@@ -29,13 +29,13 @@ public class HelpController {
 
     @PostMapping
     @Operation(summary = "新增帮助中心")
-    public ResponseBase add(HelpEntity entity) {
+    public ResponseBase add(@RequestBody HelpEntity entity) {
         return helpService.add(entity);
     }
 
     @PutMapping
     @Operation(summary = "更新帮助中心")
-    public ResponseBase update(HelpEntity entity) {
+    public ResponseBase update(@RequestBody HelpEntity entity) {
         return helpService.update(entity);
     }
 
@@ -47,13 +47,13 @@ public class HelpController {
 
     @PostMapping("/list")
     @Operation(summary = "条件查询帮助中心列表")
-    public ResponseBase findList(HelpEntity entity) {
+    public ResponseBase findList(@RequestBody HelpEntity entity) {
         return helpService.findList(entity);
     }
 
     @PostMapping("/pc-find-list")
     @Operation(summary = "后台查询帮助中心列表")
-    public ResponseBase pcFindList(HelpEntity entity) {
+    public ResponseBase pcFindList(@RequestBody HelpEntity entity) {
         return helpService.pcFindList(entity);
     }
 

@@ -25,8 +25,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -35,7 +33,6 @@ import java.util.List;
 
 @Service
 @Transactional
-@CrossOrigin
 public class UserServiceImpl extends BaseApiService implements UserService{
 
 	@Autowired
@@ -107,7 +104,7 @@ public class UserServiceImpl extends BaseApiService implements UserService{
 
 	@Override
 	@SysLogAnnotation(module = "app用户管理", type = "post", remark = "修改密码")
-	public ResponseBase updaePwd(@RequestBody UpdatePwdEntity entity,HttpServletRequest request) {
+	public ResponseBase updaePwd(UpdatePwdEntity entity,HttpServletRequest request) {
 		try {
 			UsernamePasswordAuthenticationToken token = JWTAuthenticationFilter.getAuthentication(request);
 			String username = token.getName();
@@ -195,7 +192,7 @@ public class UserServiceImpl extends BaseApiService implements UserService{
 
 	@Override
 	@SysLogAnnotation(module = "app用户管理", type = "post", remark = "用户列表")
-	public ResponseBase findList(@RequestBody AppUserEntity entity) {
+	public ResponseBase findList(AppUserEntity entity) {
 		try {
 			PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 			List<AppUserChannelEntity> list = appUserDao.findList(entity);
@@ -308,7 +305,7 @@ public class UserServiceImpl extends BaseApiService implements UserService{
 	}
 
 	@Override
-	public ResponseBase upPayPasswrod(@RequestBody UpdatePwdEntity entity,HttpServletRequest request) {
+	public ResponseBase upPayPasswrod(UpdatePwdEntity entity,HttpServletRequest request) {
 		try {
 			UsernamePasswordAuthenticationToken token = JWTAuthenticationFilter.getAuthentication(request);
 			String username = token.getName();

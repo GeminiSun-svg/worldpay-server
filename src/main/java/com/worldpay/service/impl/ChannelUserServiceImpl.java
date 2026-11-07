@@ -37,7 +37,6 @@ import com.worldpay.utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.stereotype.Service;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -55,7 +54,6 @@ import static com.worldpay.constants.UserConstants.ROLE_KEY;
 
 @Service
 @Transactional
-@CrossOrigin
 public class ChannelUserServiceImpl extends BaseApiService implements ChannelUserService {
 
     @Autowired

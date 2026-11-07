@@ -31,7 +31,7 @@ public class WalletToWebLogController {
 
     @PostMapping
     @Operation(summary = "创建")
-    public ResponseBase create(WalletToWebLogEntity entity) {
+    public ResponseBase create(@RequestBody WalletToWebLogEntity entity) {
         return walletToWebLogService.create(entity);
     }
 
@@ -55,7 +55,7 @@ public class WalletToWebLogController {
 
     @PostMapping("/list")
     @Operation(summary = "条件查询钱包流水列表")
-    public ResponseBase findList(WalletToWebLogEntity entity) {
+    public ResponseBase findList(@RequestBody WalletToWebLogEntity entity) {
         return walletToWebLogService.findList(entity);
     }
 

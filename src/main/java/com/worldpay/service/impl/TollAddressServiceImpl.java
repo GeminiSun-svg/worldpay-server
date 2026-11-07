@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
@@ -20,7 +18,6 @@ import com.worldpay.utils.I18nUtil;
 
 @Service
 @Transactional
-@CrossOrigin
 public class TollAddressServiceImpl extends BaseApiService implements TollAddressService{
 	
 	@Autowired
@@ -33,7 +30,7 @@ public class TollAddressServiceImpl extends BaseApiService implements TollAddres
 	}
 
 	@Override
-	public ResponseBase add(@RequestBody TollAddressEntity entity) {
+	public ResponseBase add(TollAddressEntity entity) {
 		try {
 			TollAddressEntity addressEntity = tollAddressDao.findType(entity.getAddressType());
 			if(addressEntity != null) {
@@ -49,7 +46,7 @@ public class TollAddressServiceImpl extends BaseApiService implements TollAddres
 	}
 
 	@Override
-	public ResponseBase update(@RequestBody TollAddressEntity entity) {
+	public ResponseBase update(TollAddressEntity entity) {
 		try {
 			TollAddressEntity addressEntity = tollAddressDao.selectById(entity.getId());
 			if(addressEntity != null) {
@@ -64,7 +61,7 @@ public class TollAddressServiceImpl extends BaseApiService implements TollAddres
 	}
 
 	@Override
-	public ResponseBase findList(@RequestBody TollAddressEntity entity) {
+	public ResponseBase findList(TollAddressEntity entity) {
 		PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 		List<TollAddressEntity> list = tollAddressDao.findList(entity);
 		// 获取总记录数

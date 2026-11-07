@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -32,13 +33,13 @@ public class WebhookController {
 
     @PostMapping("/agent-notify")
     @Operation(summary = "代理回调通知")
-    public ApiResponseEntity agentNotify(CardRechargeResult entity) {
+    public ApiResponseEntity agentNotify(@RequestBody CardRechargeResult entity) {
         return webhookService.agentNotify(entity);
     }
 
     @PostMapping("/reset-addres")
     @Operation(summary = "重置地址回调")
-    public ResponseBase resetAddres(ResetAddressEntity entity,HttpServletRequest req) {
+    public ResponseBase resetAddres(@RequestBody @Valid ResetAddressEntity entity, HttpServletRequest req) {
         return webhookService.resetAddres(entity, req);
     }
 

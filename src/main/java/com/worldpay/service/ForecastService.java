@@ -4,10 +4,6 @@ import com.worldpay.base.ResponseBase;
 import com.worldpay.constants.ApiVersion;
 import com.worldpay.constants.ClientType;
 import com.worldpay.entity.forecast.ForecastSlideshowEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -27,7 +23,7 @@ ResponseBase getForecastSlideshow(HttpServletRequest request);
 
 ResponseBase forecastLoginV2(HttpServletRequest request);
 
-String callback(@RequestBody String json);
+String callback(String json);
 
 ResponseBase saveSlideshow(ForecastSlideshowEntity entity);
 

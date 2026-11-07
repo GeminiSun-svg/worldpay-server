@@ -5,8 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
@@ -26,7 +24,6 @@ import com.worldpay.utils.I18nUtil;
 
 @Service
 @Transactional
-@CrossOrigin
 public class MerchantServiceImpl extends BaseApiService implements MerchantService{
 	
 	@Autowired
@@ -76,7 +73,7 @@ public class MerchantServiceImpl extends BaseApiService implements MerchantServi
 
 	@Override
 	@SysLogAnnotation(module = "商户管理", type = "post", remark = "充值记录")
-	public ResponseBase rechargeList(@RequestBody RechargeEntity entity) {
+	public ResponseBase rechargeList(RechargeEntity entity) {
 		try {
 			ResponseBase resData = UCardApi.postData(null, UCardMethods.MERCHANT_RECHARGE_RECORDS, entity, null);
 			if(Constants.HTTP_RES_CODE_200.equals(resData.getRtncode())) {

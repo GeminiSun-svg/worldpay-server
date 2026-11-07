@@ -29,13 +29,13 @@ public class FirmAccountController {
 
     @PostMapping
     @Operation(summary = "新增公司账户")
-    public ResponseBase add(FirmAccountEntity entity) {
+    public ResponseBase add(@RequestBody FirmAccountEntity entity) {
         return firmAccountService.add(entity);
     }
 
     @PutMapping
     @Operation(summary = "更新公司账户")
-    public ResponseBase update(FirmAccountEntity entity) {
+    public ResponseBase update(@RequestBody FirmAccountEntity entity) {
         return firmAccountService.update(entity);
     }
 

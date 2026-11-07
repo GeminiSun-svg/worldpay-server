@@ -3,7 +3,6 @@ package com.worldpay.service.impl;
 import com.worldpay.utils.api.UCardApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.stereotype.Service;
 import com.worldpay.aop.SysLogAnnotation;
 import com.worldpay.api.request.KycApplyEntity;
@@ -27,7 +26,6 @@ import com.worldpay.utils.I18nUtil;
 
 @Service
 @Transactional
-@CrossOrigin
 public class KycServiceImpl extends BaseApiService implements KycService{
 	
 	@Autowired

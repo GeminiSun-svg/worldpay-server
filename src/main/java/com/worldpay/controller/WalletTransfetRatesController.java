@@ -35,13 +35,13 @@ public class WalletTransfetRatesController {
 
     @PostMapping
     @Operation(summary = "新增钱包转账费率")
-    public ResponseBase add(WalletTransfetRatesEntity entity) {
+    public ResponseBase add(@RequestBody WalletTransfetRatesEntity entity) {
         return walletTransfetRatesService.add(entity);
     }
 
     @PutMapping
     @Operation(summary = "更新钱包转账费率")
-    public ResponseBase update(WalletTransfetRatesEntity entity) {
+    public ResponseBase update(@RequestBody WalletTransfetRatesEntity entity) {
         return walletTransfetRatesService.update(entity);
     }
 }

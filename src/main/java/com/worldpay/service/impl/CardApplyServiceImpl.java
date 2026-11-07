@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 import com.alibaba.fastjson2.JSONObject;
 import com.github.pagehelper.PageHelper;
@@ -66,7 +64,6 @@ import lombok.Synchronized;
 
 @Service
 @Transactional
-@CrossOrigin
 public class CardApplyServiceImpl extends BaseApiService implements CardApplyService{
 	
 	@Autowired
@@ -117,7 +114,7 @@ public class CardApplyServiceImpl extends BaseApiService implements CardApplySer
 
 	@Override
 	@SysLogAnnotation(module = "银行卡申请记录", type = "post", remark = "查询申请记录")
-	public ResponseBase openCardApply(@RequestBody CardApplyEntity entity) {
+	public ResponseBase openCardApply(CardApplyEntity entity) {
 		try {
 			PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 			List<CardApplyEntity> list = cardApplyDao.findList(entity);
@@ -257,7 +254,7 @@ public class CardApplyServiceImpl extends BaseApiService implements CardApplySer
 	}
 
 	@Override
-	public ResponseBase reject(@RequestBody RejectApplyEntity entity) {
+	public ResponseBase reject(RejectApplyEntity entity) {
 		try {
 			CardApplyEntity applyEntity = cardApplyDao.selectById(entity.getId());
 			if(applyEntity != null) {
@@ -323,7 +320,7 @@ public class CardApplyServiceImpl extends BaseApiService implements CardApplySer
 	}
 
 	@Override
-	public ResponseBase rejectV2(@RequestBody RejectApplyEntity entity) {
+	public ResponseBase rejectV2(RejectApplyEntity entity) {
 		try {
 			CardApplyEntity applyEntity = cardApplyDao.selectById(entity.getId());
 			if(applyEntity != null) {

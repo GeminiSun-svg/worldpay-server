@@ -13,7 +13,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import com.alibaba.fastjson2.JSON;
 import com.github.pagehelper.PageHelper;
@@ -37,7 +36,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 @Service
 @Transactional
-@CrossOrigin
 public class SysUserServiceImpl extends BaseApiService implements SysUserService {
 
 	@Autowired
@@ -52,7 +50,7 @@ public class SysUserServiceImpl extends BaseApiService implements SysUserService
 
 	@Override
 	@SysLogAnnotation(module = "用户管理", type = "POST", remark = "用户列表分页查询未注销用户")
-	public ResponseBase findList(@RequestBody SysUserEntity entity) {
+	public ResponseBase findList(SysUserEntity entity) {
 		PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 		if (entity.getRoleId() != null && entity.getRoleId().size() < 1) {
 			entity.setRoleId(null);
@@ -153,7 +151,7 @@ public class SysUserServiceImpl extends BaseApiService implements SysUserService
 
 	@Override
 	@SysLogAnnotation(module = "用户管理", type = "GET", remark = "删除用户信息")
-	public ResponseBase delUser(@PathVariable("userId") Integer userId) {
+	public ResponseBase delUser(Integer userId) {
 		try {
 			SysUserEntity entity = sysUserDao.findById(userId);
 			if (entity != null) {
@@ -249,7 +247,7 @@ public class SysUserServiceImpl extends BaseApiService implements SysUserService
 
 	@Override
 	@SysLogAnnotation(module = "用户管理", type = "POST", remark = "修改密码")
-	public ResponseBase resetPwd(@RequestParam("userId") Integer userId, @RequestParam("password") String password) {
+	public ResponseBase resetPwd(Integer userId, String password) {
 		try {
 			SysUserEntity entity = sysUserDao.findById(userId);
 			if (entity != null) {
@@ -284,7 +282,7 @@ public class SysUserServiceImpl extends BaseApiService implements SysUserService
 
 
 	@Override
-	public ResponseBase updateDeviceModel(@RequestBody SysUserEntity entity) {
+	public ResponseBase updateDeviceModel(SysUserEntity entity) {
 		if (entity.getId() != null) {
 			SysUserEntity e = sysUserDao.findById(entity.getId());
 			if (e != null) {

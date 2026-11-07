@@ -11,8 +11,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -51,7 +49,6 @@ import com.worldpay.utils.OrderCodeFactory;
 
 @Service
 @Transactional
-@CrossOrigin
 public class WalletToWebLogServiceImpl extends BaseApiService implements WalletToWebLogService {
 
 	@Autowired
@@ -77,7 +74,7 @@ public class WalletToWebLogServiceImpl extends BaseApiService implements WalletT
 
 
 	@Override
-	public ResponseBase create(@RequestBody WalletToWebLogEntity entity) {
+	public ResponseBase create(WalletToWebLogEntity entity) {
 	    try {
 	        // 校验支付密码
 	        ResponseBase passwordBase = appUserServiceImpl.checkPayPasswrod(entity.getUid(), entity.getPayPassword());
@@ -322,7 +319,7 @@ public class WalletToWebLogServiceImpl extends BaseApiService implements WalletT
 	}
 
 	@Override
-	public ResponseBase findList(@RequestBody WalletToWebLogEntity entity) {
+	public ResponseBase findList(WalletToWebLogEntity entity) {
 		try {
 			PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 			List<WalletToWebLogEntity> list = walletToWebLogDao.findList(entity);

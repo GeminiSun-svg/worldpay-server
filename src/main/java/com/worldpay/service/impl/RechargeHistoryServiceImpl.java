@@ -3,8 +3,6 @@ package com.worldpay.service.impl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
@@ -18,14 +16,13 @@ import com.worldpay.utils.I18nUtil;
 
 @Service
 @Transactional
-@CrossOrigin
 public class RechargeHistoryServiceImpl extends BaseApiService implements RechargeHistoryService{
 	
 	@Autowired
 	private RechargeHistoryDao rechargeHistoryDao;
 
 	@Override
-	public ResponseBase findList(@RequestBody RechargeHistoryEntity entity) {
+	public ResponseBase findList(RechargeHistoryEntity entity) {
 		try {
 			PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 			List<RechargeHistoryEntity> list = rechargeHistoryDao.findList(entity);

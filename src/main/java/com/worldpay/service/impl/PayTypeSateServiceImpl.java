@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
@@ -21,7 +19,6 @@ import com.worldpay.utils.I18nUtil;
 
 @Service
 @Transactional
-@CrossOrigin
 public class PayTypeSateServiceImpl extends BaseApiService implements PayTypeSateService{
 	
 	@Autowired
@@ -40,7 +37,7 @@ public class PayTypeSateServiceImpl extends BaseApiService implements PayTypeSat
 	}
 
 	@Override
-	public ResponseBase update(@RequestBody PayTypeSateEntity entity) {
+	public ResponseBase update(PayTypeSateEntity entity) {
 		try {
 			PayTypeSateEntity typeSateEntity = PayTypeSateDao.selectById(entity.getId());
 			if(typeSateEntity != null) {
@@ -55,7 +52,7 @@ public class PayTypeSateServiceImpl extends BaseApiService implements PayTypeSat
 	}
 
 	@Override
-	public ResponseBase findList(@RequestBody PayTypeSateEntity entity) {
+	public ResponseBase findList(PayTypeSateEntity entity) {
 		PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 		List<PayTypeSateEntity> list = PayTypeSateDao.selectList(null);
 		// 获取总记录数
@@ -64,7 +61,7 @@ public class PayTypeSateServiceImpl extends BaseApiService implements PayTypeSat
 	}
 
 	@Override
-	public ResponseBase add(@RequestBody PayTypeSateEntity entity) {
+	public ResponseBase add(PayTypeSateEntity entity) {
 		try {
 			GenericityUtil.setDate(entity);
 			PayTypeSateDao.insert(entity);

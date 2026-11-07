@@ -50,19 +50,19 @@ public class ProductController {
 
     @PostMapping("/list")
     @Operation(summary = "条件查询产品列表")
-    public ResponseBase findList(ProductEntity entity) {
+    public ResponseBase findList(@RequestBody ProductEntity entity) {
         return productService.findList(entity);
     }
 
     @PostMapping("/pc-find-list")
     @Operation(summary = "后台查询产品列表")
-    public ResponseBase pcFindList(ProductEntity entity) {
+    public ResponseBase pcFindList(@RequestBody ProductEntity entity) {
         return productService.pcFindList(entity);
     }
 
     @PostMapping("/pay")
     @Operation(summary = "产品支付")
-    public ResponseBase pay(ProductPayEntity entity) {
+    public ResponseBase pay(@RequestBody ProductPayEntity entity) {
         return productService.pay(entity);
     }
 
@@ -74,7 +74,7 @@ public class ProductController {
 
     @PostMapping("/order-list")
     @Operation(summary = "查询订单列表")
-    public ResponseBase orderList(ProductOrderEntity entity) {
+    public ResponseBase orderList(@RequestBody ProductOrderEntity entity) {
         return productService.orderList(entity);
     }
 

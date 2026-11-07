@@ -35,8 +35,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Service;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -50,7 +48,6 @@ import java.util.List;
 
 @Service
 @Transactional
-@CrossOrigin
 public class AppUserServiceImpl extends BaseApiService implements AppUserService {
 
     private static final Logger log = LoggerFactory.getLogger(AppUserServiceImpl.class);
@@ -107,7 +104,7 @@ public class AppUserServiceImpl extends BaseApiService implements AppUserService
     private WalletLogDao walletLogDao;
 
     @Override
-    public ResponseBase signUp(@RequestBody AppUserEntity entity) {
+    public ResponseBase signUp(AppUserEntity entity) {
         try {
             if (entity.getToInvitationCode() != null && !entity.getToInvitationCode().isEmpty()) {
                 //查询邀请码是否存在
@@ -200,7 +197,7 @@ public class AppUserServiceImpl extends BaseApiService implements AppUserService
     }
 
     @Override
-    public ResponseBase login(@RequestBody AppUserEntity entity, HttpServletRequest req) {
+    public ResponseBase login(AppUserEntity entity, HttpServletRequest req) {
         try {
             AppUserEntity appUserEntity = appUserDao.findByEmail(entity.getUserEmail());
             if (appUserEntity != null) {
@@ -602,7 +599,7 @@ public class AppUserServiceImpl extends BaseApiService implements AppUserService
     }
 
     @Override
-    public ResponseBase signUpV2(@RequestBody AppUserEntity entity) {
+    public ResponseBase signUpV2(AppUserEntity entity) {
         try {
             if (entity.getToInvitationCode() != null && !entity.getToInvitationCode().isEmpty()) {
                 //查询邀请码是否存在
