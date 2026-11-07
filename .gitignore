@@ -1,0 +1,34 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### Eclipse / VSCode ###
+.vscode/
+.classpath
+.project
+.settings/
+.factorypath
+
+### macOS ###
+.DS_Store
+
+### 工具产物 ###
+.trae-html-share-packages/
+.screenshots/
+
+### Logs ###
+logs/
+*.log
+
+### Local env ###
+src/main/resources/application-local.yml
+.env
+
+# 本地密钥配置（禁止提交）

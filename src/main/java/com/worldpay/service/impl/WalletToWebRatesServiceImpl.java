@@ -1,0 +1,48 @@
+package com.worldpay.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.stereotype.Service;
+
+import com.worldpay.base.BaseApiService;
+import com.worldpay.base.ResponseBase;
+import com.worldpay.dao.wallet.WalletToWebRatesDao;
+import com.worldpay.entity.wallet.WalletToWebRatesEntity;
+import com.worldpay.service.WalletToWebRatesService;
+import com.worldpay.utils.I18nUtil;
+
+
+@Service
+@Transactional
+@CrossOrigin
+public class WalletToWebRatesServiceImpl extends BaseApiService implements WalletToWebRatesService{
+	
+	@Autowired
+	private WalletToWebRatesDao walletToWebRatesDao;
+
+	@Override
+	public ResponseBase find() {
+		List<WalletToWebRatesEntity> list = walletToWebRatesDao.selectList(null);
+		return setResultSuccess(list, I18nUtil.getMessage("base_success"));
+	}
+
+	@Override
+	public ResponseBase update(@RequestBody WalletToWebRatesEntity entity) {
+		try {
+			WalletToWebRatesEntity ratesEntity = walletToWebRatesDao.selectById(entity.getId());
+			if(ratesEntity != null) {
+				walletToWebRatesDao.updateById(entity);
+				return setResultSuccess(I18nUtil.getMessage("base_success"));
+			}
+			return setResultError(I18nUtil.getMessage("base_data_null"));
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+	}
+
+}

@@ -1,0 +1,146 @@
+server:
+  port: 8024
+  max-http-header-size: 2MB
+  tomcat:
+    max-http-form-post-size: 50MB
+
+spring:
+  application:
+    name: ucard
+
+  # 本地真实密钥配置（不入库），优先级高于本文件
+  config:
+    import: optional:classpath:/application-local.yml
+
+  servlet:
+    multipart:
+      max-file-size: 255MB
+      max-request-size: 255MB
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+  # MySQL 数据源配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/worldpay?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: root
+    password: ${MYSQL_PASSWORD:}
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 30
+      maximum-pool-size: 50
+      connection-timeout: 100000
+      idle-timeout: 300000
+
+  # Redis数据库索引（默认为0）
+  data:
+    redis:
+      database: 0
+      timeout: 5000  #连接超时时间（毫秒）
+      host: 127.0.0.1  #Redis服务器地址
+      port: 6379  #Redis服务器连接端口
+      lettuce:
+        pool:
+          max-active: 8   #连接池最大连接数（使用负值表示没有限制）
+          max-wait: -1ms  #连接池最大阻塞等待时间（使用负值表示没有限制）
+          max-idle: 8     #连接池中的最大空闲连接
+          min-idle: 0     #连接池中的最小空闲连接
+
+#U卡三方（密钥经 application-local.yml 或环境变量注入）
+bank:
+  gatewayUrl: https://open-api-dev-card.zeabur.app/openapi
+  appId: ${BANK_APP_ID:}
+  appSecret: ${BANK_APP_SECRET:}
+  rsaPrivateKey: ${BANK_RSA_PRIVATE_KEY:}
+  aesKey: ${BANK_AES_KEY:}
+
+invitation:
+   default_code: 888888
+
+#国际转账
+nationTransfer:
+  apk_key: ${NATION_TRANSFER_APK_KEY:}
+  api_secret: ${NATION_TRANSFER_API_SECRET:}
+  api_url: https://api-sandbox.deerpay.me #测试环境
+
+yunmail:
+  host: smtp.ezmail.vip
+  port: 465
+  username: ${YUNMAIL_USERNAME:}
+  password: ${YUNMAIL_PASSWORD:}
+  auth: true
+  ssl:
+    enable: true
+
+#百度人脸识别
+baidu:
+  baseUrl: https://aip.baidubce.com
+  apiKey: ${BAIDU_API_KEY:}
+  secretKey: ${BAIDU_SECRET_KEY:}
+  diskSite: /opt/idcard/
+
+#极光推送
+jpush:
+   app_key: ${JPUSH_APP_KEY:}
+   master_secret: ${JPUSH_MASTER_SECRET:}
+   environment: true #true生产false测试
+
+#uniPush推送
+push:
+  app_id: ${PUSH_APP_ID:}
+  app_key: ${PUSH_APP_KEY:}
+  master_secret: ${PUSH_MASTER_SECRET:}
+
+#web3链上监听
+monitor:
+  api_post: https://mornitor.worldpay.club
+  api_key: ${MONITOR_API_KEY:}
+  sign_key: ${MONITOR_SIGN_KEY:}
+
+#飞机消息
+telegram:
+   mornitor_bot_token: ${TELEGRAM_BOT_TOKEN:}
+   notice_group_id: ${TELEGRAM_GROUP_ID:}
+
+stripe:
+  secret-key: ${STRIPE_SECRET_KEY:}
+  webhook-secret: ${STRIPE_WEBHOOK_SECRET:}
+
+#物流
+EMS_API_KEY: ${EMS_API_KEY:}
+
+#s3存储（键名与代码 @Value 保持一致）
+s3:
+  file_bucket: onetokenapp
+  access-key: ${S3_ACCESS_KEY:}
+  secret-key: ${S3_SECRET_KEY:}
+  aws-region: ap-east-1
+
+# 预测接口调用
+forecast:
+  url: http://154.82.73.134:8687/
+  apikey: ${FORECAST_API_KEY:}
+  secret: ${FORECAST_SECRET:}
+
+#是否开启IP白名单、谷歌验证码验证
+dscoins:
+  login:
+    ipLimit:
+      enable: false
+    googleLimit:
+      enable: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  metrics:
+    tags:
+      application: ${spring.application.name}
+  prometheus:
+    metrics:
+      export:
+        enabled: true
