@@ -19,39 +19,39 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("card_banner")
-@Schema(description = "")
+@Schema(description = "卡片轮播图")
 public class CardBannerEntity extends PageQueryHelperEntity {
 
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Integer id;
+	@Schema(description = "主键ID")
+	private Integer id;
 
     @TableField("language")
-    @Schema(description = "")
-private String language;
+    @Schema(description = "语言")
+	private String language;
 
 	@TableField("title")
-	@Schema(description = "")
-private String title;
+	@Schema(description = "标题")
+	private String title;
 
 	@TableField("img_url")
-	@Schema(description = "")
-private String imgUrl;
+	@Schema(description = "图片地址")
+	private String imgUrl;
 
 	@TableField("status")
-	@Schema(description = "")
-private Integer status;
+	@Schema(description = "状态")
+	private Integer status;
 
 	@TableField("setTime")
-	@Schema(description = "")
-private Date setTime;
+	@Schema(description = "创建时间")
+	private Date setTime;
 	
 	@TableField("gmtModified")
-	@Schema(description = "")
-private Date gmtModified;
+	@Schema(description = "修改时间")
+	private Date gmtModified;
 
 	@TableField(exist = false)
-    @Schema(description = "")
-private String languageName;
+    @Schema(description = "语言名称")
+	private String languageName;
 
 }

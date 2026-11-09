@@ -14,43 +14,43 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("app_user_card_open")
-@Schema(description = "")
+@Schema(description = "用户开卡记录")
 public class AppUserCardOpenEntity extends PageQueryHelperEntity{
 	
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Integer id;
+	@Schema(description = "主键ID")
+	private Integer id;
 	
 	@TableField("uid")
-	@Schema(description = "")
-private String uid;
+	@Schema(description = "用户ID")
+	private String uid;
 	
 	@TableField("order_num")
-	@Schema(description = "")
-private String orderNum;
+	@Schema(description = "订单号")
+	private String orderNum;
 	
 	@TableField("user_bankcard_id")
-	@Schema(description = "")
-private Integer userBankcardId;
+	@Schema(description = "用户银行卡ID")
+	private Integer userBankcardId;
 	
 //	@TableField("card_no")
 //	@Schema(description = "")
 //	private String cardNo;
 	
 	@TableField("open_card_amount")
-	@Schema(description = "")
-private Double openCardAmount;
+	@Schema(description = "开卡金额")
+	private Double openCardAmount;
 	
 	@TableField("open_state")
-	@Schema(description = "")
-private Integer openState;
+	@Schema(description = "开卡状态")
+	private Integer openState;
 	
 	@TableField("setTime")
-	@Schema(description = "")
-private Date setTime;
+	@Schema(description = "创建时间")
+	private Date setTime;
 	
 	@TableField("gmtModified")
-	@Schema(description = "")
-private Date gmtModified;
+	@Schema(description = "修改时间")
+	private Date gmtModified;
 
 }

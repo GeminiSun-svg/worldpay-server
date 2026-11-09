@@ -14,79 +14,79 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("finance_product")
-@Schema(description = "")
+@Schema(description = "理财产品信息")
 public class ProductEntity extends PageQueryHelperEntity{
 
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Integer id;
+	@Schema(description = "主键ID")
+	private Integer id;
 	
 	@TableField("language")
-	@Schema(description = "")
-private String language;
+	@Schema(description = "语言")
+	private String language;
 	
 	@TableField("cover_img")
-	@Schema(description = "")
-private String coverImg;
+	@Schema(description = "封面图片")
+	private String coverImg;
 	
 	@TableField("product_name")
-	@Schema(description = "")
-private String productName;
+	@Schema(description = "产品名称")
+	private String productName;
 	
 	@TableField("product_info")
-	@Schema(description = "")
-private String productInfo;
+	@Schema(description = "产品信息")
+	private String productInfo;
 	
 	@TableField("product_type_id")
-	@Schema(description = "")
-private Integer productTypeId;
+	@Schema(description = "产品类型ID")
+	private Integer productTypeId;
 	
 	@TableField("product_type")
-	@Schema(description = "")
-private String productType;
+	@Schema(description = "产品类型")
+	private String productType;
 	
 	@TableField("funds_type")
-	@Schema(description = "")
-private String fundsType;
+	@Schema(description = "资金类型")
+	private String fundsType;
 	
 	@TableField("product_state_id")
-	@Schema(description = "")
-private Integer productStateId;
+	@Schema(description = "产品状态ID")
+	private Integer productStateId;
 	
 	@TableField("product_state")
-	@Schema(description = "")
-private String productState;
+	@Schema(description = "产品状态")
+	private String productState;
 	
 	@TableField("initial_monery")
-	@Schema(description = "")
-private Double initialMonery;
+	@Schema(description = "起投金额")
+	private Double initialMonery;
 	
 	@TableField("product_time")
-	@Schema(description = "")
-private Integer productTime;
+	@Schema(description = "产品期限")
+	private Integer productTime;
 	
 	@TableField("interest_rate")
-	@Schema(description = "")
-private Double interestRate;
+	@Schema(description = "利率")
+	private Double interestRate;
 	
 	@TableField("whether_current")
-	@Schema(description = "")
-private Integer whetherCurrent;
+	@Schema(description = "是否活期")
+	private Integer whetherCurrent;
 
 	@TableField("delete_state")
-	@Schema(description = "")
-private Integer deleteState;
+	@Schema(description = "删除状态")
+	private Integer deleteState;
 	
 	@TableField("setTime")
-	@Schema(description = "")
-private Date setTime;
+	@Schema(description = "创建时间")
+	private Date setTime;
 	
 	@TableField("gmtModified")
-	@Schema(description = "")
-private Date gmtModified;
+	@Schema(description = "修改时间")
+	private Date gmtModified;
 	
 	@TableField(exist = false)
-	@Schema(description = "")
-private String languageName;
+	@Schema(description = "语言名称")
+	private String languageName;
 
 }

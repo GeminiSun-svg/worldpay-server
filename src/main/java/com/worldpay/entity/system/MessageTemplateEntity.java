@@ -15,43 +15,43 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @TableName("message_template")
 @EqualsAndHashCode(callSuper = true)
-@Schema(description = "")
+@Schema(description = "消息模板")
 public class MessageTemplateEntity extends PageQueryHelperEntity{
 	
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Integer id;
+	@Schema(description = "主键ID")
+	private Integer id;
 	
 	@TableField("message_code")
-	@Schema(description = "")
-private Integer messageCode;
+	@Schema(description = "消息编码")
+	private Integer messageCode;
 	
 	@TableField("language")
-	@Schema(description = "")
-private String language;
+	@Schema(description = "语言编码")
+	private String language;
 	
 	@TableField("language_name")
-	@Schema(description = "")
-private String languageName;
+	@Schema(description = "语言名称")
+	private String languageName;
 	
 	@TableField("msg_titles")
-	@Schema(description = "")
-private String msgTitles;
+	@Schema(description = "消息标题")
+	private String msgTitles;
 	
 	@TableField("message_info")
-	@Schema(description = "")
-private String messageInfo;
+	@Schema(description = "消息内容")
+	private String messageInfo;
 	
 	@TableField("message_url")
-	@Schema(description = "")
-private String messageUrl;
+	@Schema(description = "消息链接")
+	private String messageUrl;
 	
 	@TableField("setTime")
-	@Schema(description = "")
-private Date setTime;
+	@Schema(description = "创建时间")
+	private Date setTime;
 	
 	@TableField("gmtModified")
-	@Schema(description = "")
-private Date gmtModified;
+	@Schema(description = "修改时间")
+	private Date gmtModified;
 
 }

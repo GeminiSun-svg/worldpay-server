@@ -9,24 +9,25 @@ import io.swagger.v3.oas.annotations.media.Schema;
  *
  */
 @Data
+@Schema(description = "开卡请求")
 public class OpenCardEntity {
 	
-	@Schema(description = "")
-private Integer bankcardId;
+	@Schema(description = "银行卡产品ID")
+	private Integer bankcardId;
 	
-	@Schema(description = "")
-private Integer userBankcardId;
+	@Schema(description = "用户银行卡ID")
+	private Integer userBankcardId;
 	
-	@Schema(description = "")
-private String residenceAddress;
+	@Schema(description = "用户居住地址")
+	private String residenceAddress;
 	
-	@Schema(description = "")
-private String tag;
+	@Schema(description = "卡片标签名称")
+	private String tag;
 	
-	@Schema(description = "")
-private Integer productId;
+	@Schema(description = "开卡产品ID")
+	private Integer productId;
 	
-	@Schema(description = "")
-private Integer deliveryAddressId;
+	@Schema(description = "收货地址ID")
+	private Integer deliveryAddressId;
 
 }

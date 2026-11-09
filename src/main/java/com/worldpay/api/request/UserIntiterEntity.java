@@ -10,11 +10,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * @date 2026/1/15 11:46
  */
 @Data
+@Schema(description = "用户归纳渠道商请求")
 public class UserIntiterEntity {
 
-    @Schema(description = "")
-private String coverInviterUser;
+    @Schema(description = "被覆盖的推荐人ID")
+	private String coverInviterUser;
 
-    @Schema(description = "")
-private String inviterUser;
+    @Schema(description = "渠道推荐人ID")
+	private String inviterUser;
 }

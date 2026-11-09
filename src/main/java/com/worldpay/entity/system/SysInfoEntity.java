@@ -19,56 +19,56 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("sys_info")
-@Schema(description = "")
+@Schema(description = "系统配置")
 public class SysInfoEntity extends PageQueryHelperEntity {
 
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Integer id;
+	@Schema(description = "主键ID")
+	private Integer id;
 	
 	@TableField("config_type")
-	@Schema(description = "")
-private Integer configType;
+	@Schema(description = "配置类型")
+	private Integer configType;
 	
 	@TableField("config_type_name")
-	@Schema(description = "")
-private String configTypeName;
+	@Schema(description = "配置类型名称")
+	private String configTypeName;
 	
 	@TableField("config_lable")
-	@Schema(description = "")
-private Integer configLable;
+	@Schema(description = "配置标签")
+	private Integer configLable;
 
     @TableField("language")
-    @Schema(description = "")
-private String language;
+    @Schema(description = "语言编码")
+	private String language;
 
 	@TableField("config_name")
-	@Schema(description = "")
-private String configName;
+	@Schema(description = "配置名称")
+	private String configName;
 
 	@TableField("config_content")
-	@Schema(description = "")
-private String configContent;
+	@Schema(description = "配置内容")
+	private String configContent;
 	
 	@TableField("config_url")
-	@Schema(description = "")
-private String configUrl;
+	@Schema(description = "配置链接")
+	private String configUrl;
 
 	@TableField("status")
-	@Schema(description = "")
-private Integer status;
+	@Schema(description = "状态")
+	private Integer status;
 
 	@TableField("setTime")
-	@Schema(description = "")
-private Date setTime;
+	@Schema(description = "创建时间")
+	private Date setTime;
 	
 	@TableField("gmtModified")
-	@Schema(description = "")
-private Date gmtModified;
+	@Schema(description = "修改时间")
+	private Date gmtModified;
 	
 	@TableField(exist = false)
-    @Schema(description = "")
-private String languageName;
+    @Schema(description = "语言名称")
+	private String languageName;
 
 
 }

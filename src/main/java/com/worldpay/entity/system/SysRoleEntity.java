@@ -25,90 +25,90 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("sys_role")
-@Schema(description = "")
+@Schema(description = "角色")
 public class SysRoleEntity extends BaseEntity  {
 
 	private static final long serialVersionUID = 1L;
 
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Integer roleId;
+	@Schema(description = "角色ID")
+	private Integer roleId;
 
 	@TableField("role_name")
-	@Schema(description = "")
-private String roleName;
+	@Schema(description = "角色名称")
+	private String roleName;
 
 	@TableField("role_key")
-	@Schema(description = "")
-private String roleKey;
+	@Schema(description = "权限字符")
+	private String roleKey;
 
 	@TableField("role_sort")
-	@Schema(description = "")
-private Integer roleSort;
+	@Schema(description = "排序")
+	private Integer roleSort;
 
 	@TableField("data_scope")
-	@Schema(description = "")
-private String dataScope;
+	@Schema(description = "数据范围")
+	private String dataScope;
 
 	@TableField("menu_check_strictly")
-	@Schema(description = "")
-private boolean menuCheckStrictly;
+	@Schema(description = "菜单树是否父子联动")
+	private boolean menuCheckStrictly;
 
 	@TableField("dept_check_strictly")
-	@Schema(description = "")
-private boolean deptCheckStrictly;
+	@Schema(description = "部门树是否父子联动")
+	private boolean deptCheckStrictly;
 
 	@TableField("status")
-	@Schema(description = "")
-private String status;
+	@Schema(description = "状态")
+	private String status;
 
 	@TableField("del_flag")
-	@Schema(description = "")
-private String delFlag;
+	@Schema(description = "删除标记")
+	private String delFlag;
 
 	@TableField("create_by")
-	@Schema(description = "")
-private String createBy;
+	@Schema(description = "创建人")
+	private String createBy;
 
 	@TableField("create_time")
-	@Schema(description = "")
-private Date createTime;
+	@Schema(description = "创建时间")
+	private Date createTime;
 
 	@TableField("update_by")
-	@Schema(description = "")
-private String updateBy;
+	@Schema(description = "更新人")
+	private String updateBy;
 
 	@TableField("update_time")
-	@Schema(description = "")
-private Date updateTime;
+	@Schema(description = "修改时间")
+	private Date updateTime;
 	
 	@TableField("remark")
-	@Schema(description = "")
-private String remark;
+	@Schema(description = "备注")
+	private String remark;
 	
 	@TableField(exist = false)
-	@Schema(description = "")
-private Integer pageNum;
+	@Schema(description = "页码")
+	private Integer pageNum;
 	
 	@TableField(exist = false)
-	@Schema(description = "")
-private Integer pageSize;
+	@Schema(description = "每页条数")
+	private Integer pageSize;
 
 	@TableField(exist = false)
-	@Schema(description = "")
-private boolean flag = false;
+	@Schema(description = "标识")
+	private boolean flag = false;
 
 	@TableField(exist = false)
-	@Schema(description = "")
-private Integer[] menuIds;
+	@Schema(description = "菜单ID集合")
+	private Integer[] menuIds;
 
 	@TableField(exist = false)
-	@Schema(description = "")
-private Long[] deptIds;
+	@Schema(description = "部门ID集合")
+	private Long[] deptIds;
 
 	@TableField(exist = false)
-	@Schema(description = "")
-private Set<String> permissions;
+	@Schema(description = "权限集合")
+	private Set<String> permissions;
 	
 
 	public SysRoleEntity() {

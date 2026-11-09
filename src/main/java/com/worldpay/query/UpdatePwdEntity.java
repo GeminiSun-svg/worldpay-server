@@ -5,22 +5,22 @@ import lombok.Data;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 @Data
-@Schema(description = "")
+@Schema(description = "修改密码参数")
 public class UpdatePwdEntity {
 
 	@NotBlank(message = "用户uid不能为空")
-	@Schema(description = "")
-private String uid;
+	@Schema(description = "用户ID")
+	private String uid;
 	
 	@NotBlank(message = "原密码不能为空")
-	@Schema(description = "")
-private String formerPassword;
+	@Schema(description = "原密码")
+	private String formerPassword;
 	
 	@NotBlank(message = "新密码不能为空")
-	@Schema(description = "")
-private String newPassword;
+	@Schema(description = "新密码")
+	private String newPassword;
 	
-	@Schema(description = "")
-private String emailCode;
+	@Schema(description = "邮箱验证码")
+	private String emailCode;
 
 }

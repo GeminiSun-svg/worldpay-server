@@ -2,6 +2,7 @@ package com.worldpay.entity.system;
 
 import com.worldpay.utils.StringUtils;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 /**
  * 路由显示信息
  * 
@@ -12,21 +13,25 @@ public class MetaVo
     /**
      * 设置该路由在侧边栏和面包屑中展示的名字
      */
+    @Schema(description = "路由名称")
     private String title;
 
     /**
      * 设置该路由的图标，对应路径src/assets/icons/svg
      */
+    @Schema(description = "路由图标")
     private String icon;
 
     /**
      * 设置为true，则不会被 <keep-alive>缓存
      */
+    @Schema(description = "是否不缓存")
     private boolean noCache;
 
     /**
      * 内链地址（http(s)://开头）
      */
+    @Schema(description = "内链地址")
     private String link;
 
     public MetaVo()

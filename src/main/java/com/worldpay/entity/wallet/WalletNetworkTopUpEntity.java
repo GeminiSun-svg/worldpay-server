@@ -16,71 +16,71 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @TableName("wallet_network_topup")
 @EqualsAndHashCode(callSuper = true)
-@Schema(description = "")
+@Schema(description = "链上充值记录")
 public class WalletNetworkTopUpEntity extends PageQueryHelperEntity {
 
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Integer id;
+	@Schema(description = "主键ID")
+	private Integer id;
 
 	@TableField("uid")
-	@Schema(description = "")
-private String uid;
+	@Schema(description = "用户ID")
+	private String uid;
 	
 	@TableField("user_email")
-	@Schema(description = "")
-private String userEmail;
+	@Schema(description = "用户邮箱")
+	private String userEmail;
 	
 	@TableField("user_tel")
-	@Schema(description = "")
-private String userTel;
+	@Schema(description = "用户手机号")
+	private String userTel;
 
 	@TableField("order_no")
-	@Schema(description = "")
-private String orderNo;
+	@Schema(description = "订单号")
+	private String orderNo;
 	
 	@TableField("network_type")
-	@Schema(description = "")
-private String networkType;
+	@Schema(description = "网络类型")
+	private String networkType;
 	
 	@TableField("wallet_address")
-	@Schema(description = "")
-private String walletAddress;
+	@Schema(description = "钱包地址")
+	private String walletAddress;
 	
 	@TableField("trade_hash")
-	@Schema(description = "")
-private String tradeHash;
+	@Schema(description = "交易哈希")
+	private String tradeHash;
 	
-    @TableField("topup_Amount")
-    @Schema(description = "")
-private BigDecimal topupAmount;
+	@TableField("topup_Amount")
+	@Schema(description = "充值金额")
+	private BigDecimal topupAmount;
     
-    @TableField("order_remark")
-    @Schema(description = "")
-private String orderRemark;
+	@TableField("order_remark")
+	@Schema(description = "订单备注")
+	private String orderRemark;
     
-    @TableField("review_remark")
-    @Schema(description = "")
-private String reviewRemark;
+	@TableField("review_remark")
+	@Schema(description = "审核备注")
+	private String reviewRemark;
     
-    @TableField("order_state")
-    @Schema(description = "")
-private Integer orderState;
+	@TableField("order_state")
+	@Schema(description = "订单状态")
+	private Integer orderState;
     
-    @TableField("order_state_name")
-    @Schema(description = "")
-private String orderStateName;
+	@TableField("order_state_name")
+	@Schema(description = "订单状态名称")
+	private String orderStateName;
     
 	@TableField("setTime")
-	@Schema(description = "")
-private Date setTime;
+	@Schema(description = "创建时间")
+	private Date setTime;
 
 	@TableField("gmtModified")
-	@Schema(description = "")
-private Date gmtModified;
+	@Schema(description = "修改时间")
+	private Date gmtModified;
 	
 	@TableField(exist = false)
-	@Schema(description = "")
-private Double walletBalance;
+	@Schema(description = "钱包余额")
+	private Double walletBalance;
 
 }

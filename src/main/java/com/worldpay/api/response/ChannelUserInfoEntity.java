@@ -10,11 +10,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * @date 2026/1/16 11:15
  */
 @Data
+@Schema(description = "渠道商用户信息响应")
 public class ChannelUserInfoEntity {
 
-    @Schema(description = "")
-private String userId;
+    @Schema(description = "渠道商用户ID")
+	private String userId;
 
-    @Schema(description = "")
-private String channelName;
+    @Schema(description = "渠道商名称")
+	private String channelName;
 }

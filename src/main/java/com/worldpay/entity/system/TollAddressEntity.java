@@ -14,28 +14,28 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @TableName("toll_address")
 @EqualsAndHashCode(callSuper = true)
-@Schema(description = "")
+@Schema(description = "收费地址")
 public class TollAddressEntity extends PageQueryHelperEntity{
 	
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Integer id;
+	@Schema(description = "主键ID")
+	private Integer id;
 	
 	@TableField("address_type")
-	@Schema(description = "")
-private String addressType;
+	@Schema(description = "地址类型")
+	private String addressType;
 	
 	@TableField("address_site")
-	@Schema(description = "")
-private String addressSite;
+	@Schema(description = "地址")
+	private String addressSite;
 	
 	@TableField("setTime")
-	@Schema(description = "")
-private Date setTime;
+	@Schema(description = "创建时间")
+	private Date setTime;
 	
 	@TableField("gmtModified")
-	@Schema(description = "")
-private Date gmtModified;
+	@Schema(description = "修改时间")
+	private Date gmtModified;
 	
 
 }

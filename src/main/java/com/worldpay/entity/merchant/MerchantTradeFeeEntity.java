@@ -15,47 +15,47 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("merchant_trade_fee")
-@Schema(description = "")
+@Schema(description = "商户交易手续费记录")
 public class MerchantTradeFeeEntity extends PageQueryHelperEntity{
 	
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Integer id;
+	@Schema(description = "主键ID")
+	private Integer id;
 	
 	@TableField("amount")
-	@Schema(description = "")
-private Double amount;
+	@Schema(description = "交易金额")
+	private Double amount;
 	
 	@TableField("createAt")
-	@Schema(description = "")
-private Long createAt;
+	@Schema(description = "创建时间戳")
+	private Long createAt;
 	
 	@TableField("currency")
-	@Schema(description = "")
-private String currency;
+	@Schema(description = "币种")
+	private String currency;
 	
 	@TableField("orderNo")
-	@Schema(description = "")
-private String orderNo;
+	@Schema(description = "订单号")
+	private String orderNo;
 	
 	@TableField("transactionId")
-	@Schema(description = "")
-private String transactionId;
+	@Schema(description = "交易流水号")
+	private String transactionId;
 	
 	@TableField("userBankcardId")
-	@Schema(description = "")
-private Integer userBankcardId;
+	@Schema(description = "用户银行卡ID")
+	private Integer userBankcardId;
 	
 	@TableField("cardNum")
-	@Schema(description = "")
-private String cardNum;
+	@Schema(description = "卡号")
+	private String cardNum;
 	
 	@TableField("setTime")
-	@Schema(description = "")
-private Date setTime;
+	@Schema(description = "创建时间")
+	private Date setTime;
 	
 	@TableField("gmtModified")
-	@Schema(description = "")
-private Date gmtModified;
+	@Schema(description = "修改时间")
+	private Date gmtModified;
 
 }

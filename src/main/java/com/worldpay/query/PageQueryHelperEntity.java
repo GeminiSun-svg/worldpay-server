@@ -11,16 +11,16 @@ import io.swagger.v3.oas.annotations.media.Schema;
  *
  */
 @Data
-@Schema(description = "")
+@Schema(description = "分页查询参数")
 public class PageQueryHelperEntity {
 	
 	@TableField(exist = false)
-	@Schema(description = "")
-private Integer pageNumber = Constants.PAGENUMBER;
+	@Schema(description = "页码")
+	private Integer pageNumber = Constants.PAGENUMBER;
 	
 	@TableField(exist = false)
-	@Schema(description = "")
-private Integer pageSize =Constants.PAGESIZE;
+	@Schema(description = "每页条数")
+	private Integer pageSize =Constants.PAGESIZE;
 
 	
 	

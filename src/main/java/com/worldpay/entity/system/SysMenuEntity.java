@@ -26,94 +26,94 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("sys_menu")
-@Schema(description = "")
+@Schema(description = "菜单")
 public class SysMenuEntity extends BaseEntity {
 	
 	private static final long serialVersionUID = 1L;
 
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Integer menuId;
+	@Schema(description = "菜单ID")
+	private Integer menuId;
 
 	@TableField("menu_name")
-	@Schema(description = "")
-private String menuName;
+	@Schema(description = "菜单名称")
+	private String menuName;
 
 	@TableField(exist = false)
-	@Schema(description = "")
-private String parentName;
+	@Schema(description = "父级菜单名称")
+	private String parentName;
 
 	@TableField("parent_id")
-	@Schema(description = "")
-private Integer parentId;
+	@Schema(description = "父级ID")
+	private Integer parentId;
 
 	@TableField("order_num")
-	@Schema(description = "")
-private Integer orderNum;
+	@Schema(description = "排序")
+	private Integer orderNum;
 
 	@TableField("path")
-	@Schema(description = "")
-private String path;
+	@Schema(description = "路由路径")
+	private String path;
 
 	@TableField("component")
-	@Schema(description = "")
-private String component;
+	@Schema(description = "组件路径")
+	private String component;
 
 	@TableField("query")
-	@Schema(description = "")
-private String query;
+	@Schema(description = "路由参数")
+	private String query;
 
 	@TableField("is_frame")
-	@Schema(description = "")
-private String isFrame;
+	@Schema(description = "是否外链")
+	private String isFrame;
 
 	@TableField("is_cache")
-	@Schema(description = "")
-private String isCache;
+	@Schema(description = "是否缓存")
+	private String isCache;
 
 	@TableField("menu_type")
-	@Schema(description = "")
-private String menuType;
+	@Schema(description = "菜单类型")
+	private String menuType;
 
 	@TableField("visible")
-	@Schema(description = "")
-private String visible;
+	@Schema(description = "是否显示")
+	private String visible;
 
 	@TableField("status")
-	@Schema(description = "")
-private String status;
+	@Schema(description = "状态")
+	private String status;
 
 	@TableField("perms")
-	@Schema(description = "")
-private String perms;
+	@Schema(description = "权限标识")
+	private String perms;
 
 	@TableField("icon")
-	@Schema(description = "")
-private String icon;
+	@Schema(description = "图标")
+	private String icon;
 
 	@TableField("create_by")
-	@Schema(description = "")
-private String createBy;
+	@Schema(description = "创建人")
+	private String createBy;
 
 	@TableField("create_time")
-	@Schema(description = "")
-private Date createTime;
+	@Schema(description = "创建时间")
+	private Date createTime;
 
 	@TableField("update_by")
-	@Schema(description = "")
-private String updateBy;
+	@Schema(description = "更新人")
+	private String updateBy;
 
 	@TableField("update_time")
-	@Schema(description = "")
-private Date updateTime;
+	@Schema(description = "修改时间")
+	private Date updateTime;
 
 	@TableField("remark")
-	@Schema(description = "")
-private String remark;
+	@Schema(description = "备注")
+	private String remark;
 
 	@TableField(exist = false)
-	@Schema(description = "")
-private List<SysMenuEntity> children = new ArrayList<SysMenuEntity>();
+	@Schema(description = "子菜单")
+	private List<SysMenuEntity> children = new ArrayList<SysMenuEntity>();
 
 	public Integer getMenuId() {
 		return menuId;

@@ -10,23 +10,23 @@ import lombok.Data;
 import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @TableName("fa_country")
-@Schema(description = "")
+@Schema(description = "国家数据")
 public class NationDataEntity {
 	
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Integer id;
+	@Schema(description = "主键ID")
+	private Integer id;
 	
 	@TableField("parentId")
-	@Schema(description = "")
-private Integer parentId;
+	@Schema(description = "父级ID")
+	private Integer parentId;
 	
 	@TableField("cname")
-	@Schema(description = "")
-private String cname;
+	@Schema(description = "中文名称")
+	private String cname;
 	
 	@TableField("ename")
-	@Schema(description = "")
-private String ename;
+	@Schema(description = "英文名称")
+	private String ename;
 
 }

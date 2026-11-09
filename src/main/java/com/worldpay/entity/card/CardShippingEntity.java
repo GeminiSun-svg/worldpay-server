@@ -15,71 +15,71 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @TableName("card_shipping")
 @EqualsAndHashCode(callSuper = true)
-@Schema(description = "")
+@Schema(description = "卡片邮寄信息")
 public class CardShippingEntity extends PageQueryHelperEntity{
 
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Integer id;
+	@Schema(description = "主键ID")
+	private Integer id;
 	
 	@TableField("apply_id")
-	@Schema(description = "")
-private Integer applyId;
+	@Schema(description = "申请ID")
+	private Integer applyId;
 	
 	@TableField("uid")
-	@Schema(description = "")
-private String uid;
+	@Schema(description = "用户ID")
+	private String uid;
 	
 	@TableField("user_email")
-	@Schema(description = "")
-private String userEmail;
+	@Schema(description = "用户邮箱")
+	private String userEmail;
 	
 	@TableField("user_name")
-	@Schema(description = "")
-private String userName;
+	@Schema(description = "用户名称")
+	private String userName;
 	
 	@TableField("user_tel")
-	@Schema(description = "")
-private String userTel;
+	@Schema(description = "用户手机号")
+	private String userTel;
 	
 	@TableField("logistics_providers")
-	@Schema(description = "")
-private String logisticsProviders;
+	@Schema(description = "物流服务商")
+	private String logisticsProviders;
 	
 	@TableField("logistics_num")
-	@Schema(description = "")
-private String logisticsNum;
+	@Schema(description = "物流单号")
+	private String logisticsNum;
 	
 	@TableField("logistics_monery")
-	@Schema(description = "")
-private Double logisticsMonery;
+	@Schema(description = "物流费用")
+	private Double logisticsMonery;
 	
 	@TableField("logistics_state")
-	@Schema(description = "")
-private Integer logisticsState;
+	@Schema(description = "物流状态")
+	private Integer logisticsState;
 	
 	@TableField("logistics_state_name")
-	@Schema(description = "")
-private String logisticsStateName;
+	@Schema(description = "物流状态名称")
+	private String logisticsStateName;
 	
 	@TableField("operate_user_id")
-	@Schema(description = "")
-private Integer operateUserId;
+	@Schema(description = "操作人ID")
+	private Integer operateUserId;
 
 	@TableField("operate_user_name")
-	@Schema(description = "")
-private String operateUserName;
+	@Schema(description = "操作人名称")
+	private String operateUserName;
 
 	@TableField("operate_user_ip")
-	@Schema(description = "")
-private String operateUserIp;
+	@Schema(description = "操作人IP")
+	private String operateUserIp;
 
 	@TableField("setTime")
-	@Schema(description = "")
-private Date setTime;
+	@Schema(description = "创建时间")
+	private Date setTime;
 
 	@TableField("gmtModified")
-	@Schema(description = "")
-private Date gmtModified;
+	@Schema(description = "修改时间")
+	private Date gmtModified;
 	
 }

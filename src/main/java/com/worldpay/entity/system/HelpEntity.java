@@ -15,39 +15,39 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @TableName("help_data")
 @EqualsAndHashCode(callSuper = true)
-@Schema(description = "")
+@Schema(description = "帮助文档")
 public class HelpEntity extends PageQueryHelperEntity{
 
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Integer id;
+	@Schema(description = "主键ID")
+	private Integer id;
 	
 	@TableField("language")
-	@Schema(description = "")
-private String language;
+	@Schema(description = "语言编码")
+	private String language;
 	
 	@TableField("language_name")
-	@Schema(description = "")
-private String languageName;
+	@Schema(description = "语言名称")
+	private String languageName;
 	
 	@TableField("article_name")
-	@Schema(description = "")
-private String articleName;
+	@Schema(description = "文章名称")
+	private String articleName;
 	
 	@TableField("article_url")
-	@Schema(description = "")
-private String articleUrl;
+	@Schema(description = "文章链接")
+	private String articleUrl;
 	
 	@TableField("article_content")
-	@Schema(description = "")
-private String articleContent;
+	@Schema(description = "文章内容")
+	private String articleContent;
 	
 	@TableField("setTime")
-	@Schema(description = "")
-private Date setTime;
+	@Schema(description = "创建时间")
+	private Date setTime;
 	
 	@TableField("gmtModified")
-	@Schema(description = "")
-private Date gmtModified;
+	@Schema(description = "修改时间")
+	private Date gmtModified;
 	
 }

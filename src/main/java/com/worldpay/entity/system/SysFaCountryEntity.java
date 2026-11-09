@@ -18,27 +18,27 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public class SysFaCountryEntity {
 	
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Integer id;
+	@Schema(description = "主键ID")
+	private Integer id;
 
     @TableField("parentId")
-    @Schema(description = "")
-private String parentId;
+    @Schema(description = "父级ID")
+	private String parentId;
     
     @TableField("cname")
-    @Schema(description = "")
-private String cname;
+    @Schema(description = "中文名称")
+	private String cname;
     
     @TableField("ename")
-    @Schema(description = "")
-private String ename;
+    @Schema(description = "英文名称")
+	private String ename;
     
     @TableField("tname")
-    @Schema(description = "")
-private String tname;
+    @Schema(description = "繁体名称")
+	private String tname;
     
     @TableField(exist = false)
-    @Schema(description = "")
-private String name;
+    @Schema(description = "名称")
+	private String name;
 
 }

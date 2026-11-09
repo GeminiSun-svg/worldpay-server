@@ -18,42 +18,42 @@ import io.swagger.v3.oas.annotations.media.Schema;
  */
 @Data
 @TableName("withdrawal_record")
-@Schema(description = "")
+@Schema(description = "提现记录")
 public class WithdrawalRecordEntity {
 
     @TableId(type = IdType.AUTO)
-    @Schema(description = "")
-private Long id;
+    @Schema(description = "主键ID")
+	private Long id;
 
     @TableField("app_id")
-    @Schema(description = "")
-private Integer appId;
+    @Schema(description = "应用ID")
+	private Integer appId;
 
     @TableField("app_uid")
-    @Schema(description = "")
-private String appUid;
+    @Schema(description = "用户ID")
+	private String appUid;
 
     @TableField("user_email")
-    @Schema(description = "")
-private String userEmail;
+    @Schema(description = "用户邮箱")
+	private String userEmail;
 
     @TableField("before_withdrawal_wallet_balance")
-    @Schema(description = "")
-private Double beforeWithdrawalWalletBalance;
+    @Schema(description = "提现前钱包余额")
+	private Double beforeWithdrawalWalletBalance;
 
     @TableField("after_withdrawal_wallet_balance")
-    @Schema(description = "")
-private Double afterWithdrawalWalletBalance;
+    @Schema(description = "提现后钱包余额")
+	private Double afterWithdrawalWalletBalance;
 
     @TableField("withdrawal_wallet_balance")
-    @Schema(description = "")
-private Double withdrawalWalletAmount;
+    @Schema(description = "提现金额")
+	private Double withdrawalWalletAmount;
 
     @TableField("setTime")
-    @Schema(description = "")
-private Date setTime;
+    @Schema(description = "创建时间")
+	private Date setTime;
 
     @TableField("gmtModified")
-    @Schema(description = "")
-private Date gmtModified;
+    @Schema(description = "修改时间")
+	private Date gmtModified;
 }

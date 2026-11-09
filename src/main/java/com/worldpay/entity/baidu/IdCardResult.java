@@ -3,35 +3,46 @@ package com.worldpay.entity.baidu;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 /**
  * 身份证识别结果
  */
+@Schema(description = "身份证识别结果")
 public class IdCardResult {
     
     @JsonProperty("log_id")
+    @Schema(description = "请求日志ID")
     private Long logId;
     
     @JsonProperty("image_status")
+    @Schema(description = "图像状态")
     private String imageStatus; // normal-正常，reversed_side-身份证正反面颠倒
     
     @JsonProperty("idcard_number_type")
+    @Schema(description = "证件号码类型")
     private Integer idcardNumberType; // 身份证号码类型：0-18位身份证，1-15位身份证
     
     @JsonProperty("words_result_num")
+    @Schema(description = "识别结果数量")
     private Integer wordsResultNum;
     
     @JsonProperty("words_result")
+    @Schema(description = "识别结果")
     private Map<String, IdCardField> wordsResult;
     
     // 风险类型（如果开启了detect_risk）
     @JsonProperty("risk_type")
+    @Schema(description = "风险类型")
     private String riskType;
     
     // 方向（如果开启了detect_direction）
+    @Schema(description = "图像方向")
     private Integer direction;
     
     // 卡片质量（如果开启了detect_quality）
     @JsonProperty("card_quality")
+    @Schema(description = "卡片质量")
     private Map<String, Object> cardQuality;
     
     // Getter和Setter方法
@@ -183,8 +194,10 @@ public class IdCardResult {
      */
     public static class IdCardField {
         
+        @Schema(description = "字段内容")
         private String words;  // 字段内容
         
+        @Schema(description = "位置信息")
         private Location location;  // 位置信息
         
         public String getWords() {
@@ -217,9 +230,13 @@ public class IdCardResult {
      */
     public static class Location {
         
+        @Schema(description = "左坐标")
         private Integer left;   // 左坐标
+        @Schema(description = "上坐标")
         private Integer top;    // 上坐标
+        @Schema(description = "宽度")
         private Integer width;  // 宽度
+        @Schema(description = "高度")
         private Integer height; // 高度
         
         public Integer getLeft() {

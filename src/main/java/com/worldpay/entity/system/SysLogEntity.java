@@ -15,52 +15,52 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @TableName("sys_log")
 @EqualsAndHashCode(callSuper = true)
-@Schema(description = "")
+@Schema(description = "系统日志")
 public class SysLogEntity extends PageQueryHelperEntity{
 	
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Long id;
+	@Schema(description = "主键ID")
+	private Long id;
 	
 	@TableField("userName")
-	@Schema(description = "")
-private String userName;
+	@Schema(description = "用户名")
+	private String userName;
 	
 	@TableField("moduleName")
-	@Schema(description = "")
-private String moduleName;
+	@Schema(description = "模块名称")
+	private String moduleName;
 	
 	@TableField("moduleInfo")
-	@Schema(description = "")
-private String moduleInfo;
+	@Schema(description = "模块信息")
+	private String moduleInfo;
 	
 	@TableField("reqType")
-	@Schema(description = "")
-private String reqType;
+	@Schema(description = "请求类型")
+	private String reqType;
 	
 	@TableField("reqUrl")
-	@Schema(description = "")
-private String reqUrl;
+	@Schema(description = "请求地址")
+	private String reqUrl;
 	
 	@TableField("ipUrl")
-	@Schema(description = "")
-private String ipUrl;
+	@Schema(description = "IP地址")
+	private String ipUrl;
 	
 	@TableField("reqParamet")
-	@Schema(description = "")
-private String reqParamet;
+	@Schema(description = "请求参数")
+	private String reqParamet;
 	
 	@TableField("resData")
-	@Schema(description = "")
-private String resData;
+	@Schema(description = "响应数据")
+	private String resData;
 	
 	@TableField("begTime")
-	@Schema(description = "")
-private Date begTime;
+	@Schema(description = "开始时间")
+	private Date begTime;
 	
 	@TableField("endTime")
-	@Schema(description = "")
-private Date endTime;
+	@Schema(description = "结束时间")
+	private Date endTime;
 	
 	
 

@@ -12,27 +12,27 @@ import lombok.Data;
 import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @TableName("app_user_uid_join")
-@Schema(description = "")
+@Schema(description = "用户UID变更记录")
 public class AppUserUidJoinEntity {
 
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Integer id;
+	@Schema(description = "主键ID")
+	private Integer id;
 	
 	@TableField("old_uid")
-	@Schema(description = "")
-private String oldUid;
+	@Schema(description = "旧用户ID")
+	private String oldUid;
 	
 	@TableField("new_uid")
-	@Schema(description = "")
-private String newUid;
+	@Schema(description = "新用户ID")
+	private String newUid;
 	
 	@TableField("setTime")
-	@Schema(description = "")
-private Date setTime;
+	@Schema(description = "创建时间")
+	private Date setTime;
 	
 	@TableField("gmtModified")
-	@Schema(description = "")
-private Date gmtModified;
+	@Schema(description = "修改时间")
+	private Date gmtModified;
 	
 }

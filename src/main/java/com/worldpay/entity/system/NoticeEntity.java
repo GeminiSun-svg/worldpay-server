@@ -21,64 +21,64 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("msg_notice")
-@Schema(description = "")
+@Schema(description = "公告消息")
 public class NoticeEntity extends PageQueryHelperEntity {
 
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Integer id;
+	@Schema(description = "主键ID")
+	private Integer id;
 	
 	@TableField("uid")
-	@Schema(description = "")
-private String uid;
+	@Schema(description = "用户ID")
+	private String uid;
 
-    @TableField("language")
-    @Schema(description = "")
-private String language;
+	@TableField("language")
+	@Schema(description = "语言编码")
+	private String language;
     
-    @TableField("language_name")
-    @Schema(description = "")
-private String languageName;
+	@TableField("language_name")
+	@Schema(description = "语言名称")
+	private String languageName;
 
 	@TableField("title")
-	@Schema(description = "")
-private String title;
+	@Schema(description = "标题")
+	private String title;
 
 	@TableField("intro")
-	@Schema(description = "")
-private String intro;
+	@Schema(description = "简介")
+	private String intro;
 
-    @TableField("content")
-    @Schema(description = "")
-private String content;
+	@TableField("content")
+	@Schema(description = "内容")
+	private String content;
 
-    @TableField("type")
-    @Schema(description = "")
-private Integer type;
+	@TableField("type")
+	@Schema(description = "类型")
+	private Integer type;
     
-    @TableField("type_name")
-    @Schema(description = "")
-private String typeName;
+	@TableField("type_name")
+	@Schema(description = "类型名称")
+	private String typeName;
 
 	@TableField("status")
-	@Schema(description = "")
-private Integer status;
+	@Schema(description = "状态")
+	private Integer status;
 	
 	@TableField("status_name")
-	@Schema(description = "")
-private String statusName;
+	@Schema(description = "状态名称")
+	private String statusName;
 
 	@TableField("setTime")
-	@Schema(description = "")
-private Date setTime;
+	@Schema(description = "创建时间")
+	private Date setTime;
 	
 	@TableField("gmtModified")
-	@Schema(description = "")
-private Date gmtModified;
+	@Schema(description = "修改时间")
+	private Date gmtModified;
 	
 	@TableField(exist = false)
-	@Schema(description = "")
-private AppUserEntity userData;
+	@Schema(description = "用户信息")
+	private AppUserEntity userData;
 
 
 }

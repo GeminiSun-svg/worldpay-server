@@ -16,31 +16,31 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @TableName("sys_brokerage_rates")
 @EqualsAndHashCode(callSuper = true)
-@Schema(description = "")
+@Schema(description = "佣金费率")
 public class SysBrokerageRatesEntity extends PageQueryHelperEntity {
 	
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Integer id;
+	@Schema(description = "主键ID")
+	private Integer id;
 	
 	@TableField("brokerage_rates")
-	@Schema(description = "")
-private BigDecimal brokerageRates;
+	@Schema(description = "佣金费率")
+	private BigDecimal brokerageRates;
 
 	@TableField("brokerage_rates_type")
-	@Schema(description = "")
-private String brokerageRatesType;
+	@Schema(description = "佣金费率类型")
+	private String brokerageRatesType;
 	
 	@TableField("remark_info")
-	@Schema(description = "")
-private String remarkInfo;
+	@Schema(description = "备注信息")
+	private String remarkInfo;
 	
 	@TableField("setTime")
-	@Schema(description = "")
-private Date setTime;
+	@Schema(description = "创建时间")
+	private Date setTime;
 	
 	@TableField("gmtModified")
-	@Schema(description = "")
-private Date gmtModified;
+	@Schema(description = "修改时间")
+	private Date gmtModified;
 
 }

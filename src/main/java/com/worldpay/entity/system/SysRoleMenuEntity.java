@@ -15,26 +15,26 @@ import io.swagger.v3.oas.annotations.media.Schema;
  */
 @Data
 @TableName("sys_role_menu")
-@Schema(description = "")
+@Schema(description = "角色菜单关联")
 public class SysRoleMenuEntity {
 	
     @TableId(type = IdType.AUTO)
-    @Schema(description = "")
-private Integer id;
+    @Schema(description = "主键ID")
+	private Integer id;
     
     @TableField("role_id")
-    @Schema(description = "")
-private Integer roleId;
+    @Schema(description = "角色ID")
+	private Integer roleId;
     
     @TableField("menu_id")
-    @Schema(description = "")
-private Integer menuId;
+    @Schema(description = "菜单ID")
+	private Integer menuId;
     
     @TableField("create_user")
-    @Schema(description = "")
-private Integer createUser;
+    @Schema(description = "创建人")
+	private Integer createUser;
     
     @TableField("create_time")
-    @Schema(description = "")
-private Date createTime;
+    @Schema(description = "创建时间")
+	private Date createTime;
 }

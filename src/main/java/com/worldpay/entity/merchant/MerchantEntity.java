@@ -10,34 +10,34 @@ import lombok.Data;
 import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @TableName("merchant_data")
-@Schema(description = "")
+@Schema(description = "商户资产信息")
 public class MerchantEntity {
 
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Integer id;
+	@Schema(description = "主键ID")
+	private Integer id;
 	
 	@TableField("address")
-	@Schema(description = "")
-private String address;
+	@Schema(description = "商户钱包地址")
+	private String address;
 	
 	@TableField("network")
-	@Schema(description = "")
-private String network;
+	@Schema(description = "网络名称")
+	private String network;
 	
 	@TableField("symbol")
-	@Schema(description = "")
-private String symbol;
+	@Schema(description = "币种符号")
+	private String symbol;
 	
 	@TableField("currency")
-	@Schema(description = "")
-private String currency;
+	@Schema(description = "币种")
+	private String currency;
 	
 	@TableField("available_amount")
-	@Schema(description = "")
-private BigDecimal availableAmount;
+	@Schema(description = "可用余额")
+	private BigDecimal availableAmount;
 	
 	@TableField("frozen_amount")
-	@Schema(description = "")
-private BigDecimal frozenAmount;
+	@Schema(description = "冻结金额")
+	private BigDecimal frozenAmount;
 }

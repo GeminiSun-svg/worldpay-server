@@ -14,147 +14,147 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @TableName("card_data")
 @EqualsAndHashCode(callSuper = true)
-@Schema(description = "")
+@Schema(description = "卡片信息")
 public class CardEntity extends PageQueryHelperEntity{
 	
 	@TableField("uuid")
-	@Schema(description = "")
-private String uuid;
+	@Schema(description = "唯一标识")
+	private String uuid;
 	
 	@TableField("applyDiscount")
-	@Schema(description = "")
-private Integer applyDiscount;
+	@Schema(description = "申请折扣")
+	private Integer applyDiscount;
 
 	@TableField("applyFee")
-	@Schema(description = "")
-private Double applyFee;
+	@Schema(description = "申请费用")
+	private Double applyFee;
 
 	@TableField("bankCardNature")
-	@Schema(description = "")
-private String bankCardNature;
+	@Schema(description = "卡片性质")
+	private String bankCardNature;
 
 	@TableField("bankCardSource")
-	@Schema(description = "")
-private String bankCardSource;
+	@Schema(description = "卡片来源")
+	private String bankCardSource;
 
 	@TableField("bankCardType")
-	@Schema(description = "")
-private String bankCardType;
+	@Schema(description = "卡片种类")
+	private String bankCardType;
 
 	@TableField("categoryId")
-	@Schema(description = "")
-private Integer categoryId;
+	@Schema(description = "分类ID")
+	private Integer categoryId;
 
 	@TableField("ccy")
-	@Schema(description = "")
-private String ccy;
+	@Schema(description = "币种")
+	private String ccy;
 
 	@TableField("description1")
-	@Schema(description = "")
-private String description1;
+	@Schema(description = "描述一")
+	private String description1;
 
 	@TableField("description2")
-	@Schema(description = "")
-private String description2;
+	@Schema(description = "描述二")
+	private String description2;
 
 	@TableField("enable")
-	@Schema(description = "")
-private Boolean enable;
+	@Schema(description = "是否启用")
+	private Boolean enable;
 
 	@TableField("hot")
-	@Schema(description = "")
-private Boolean hot;
+	@Schema(description = "是否热门")
+	private Boolean hot;
 
 	@TableId(type = IdType.INPUT)
-	@Schema(description = "")
-private Integer id;
+	@Schema(description = "主键ID")
+	private Integer id;
 
 	@TableField("img")
-	@Schema(description = "")
-private String img;
+	@Schema(description = "图片地址")
+	private String img;
 	
 	@TableField("list_img")
-	@Schema(description = "")
-private String listImg;
+	@Schema(description = "列表图片地址")
+	private String listImg;
 
 	@TableField("monthFee")
-	@Schema(description = "")
-private Integer monthFee;
+	@Schema(description = "月费")
+	private Integer monthFee;
 
 	@TableField("rechargeFee")
-	@Schema(description = "")
-private Double rechargeFee;
+	@Schema(description = "充值手续费率")
+	private Double rechargeFee;
 
 	@TableField("refundFee")
-	@Schema(description = "")
-private Double refundFee;
+	@Schema(description = "退款手续费率")
+	private Double refundFee;
 
 	@TableField("recommend")
-	@Schema(description = "")
-private Boolean recommend;
+	@Schema(description = "是否推荐")
+	private Boolean recommend;
 
 	@TableField("sortParam")
-	@Schema(description = "")
-private Integer sortParam;
+	@Schema(description = "排序")
+	private Integer sortParam;
 
 	@TableField("title")
-	@Schema(description = "")
-private String title;
+	@Schema(description = "标题")
+	private String title;
 
 	@TableField("activeMinLimit")
-	@Schema(description = "")
-private Double activeMinLimit;
+	@Schema(description = "激活最低金额")
+	private Double activeMinLimit;
 
 	@TableField("rechargeMinLimit")
-	@Schema(description = "")
-private Double rechargeMinLimit;
+	@Schema(description = "单次充值最低金额")
+	private Double rechargeMinLimit;
 
 	@TableField("rechargeMaxLimit")
-	@Schema(description = "")
-private Double rechargeMaxLimit;
+	@Schema(description = "单次充值最高金额")
+	private Double rechargeMaxLimit;
 
 	@TableField("cardBin")
-	@Schema(description = "")
-private String cardBin;
+	@Schema(description = "卡BIN")
+	private String cardBin;
 	
 	@TableField("open_card_cost")
-	@Schema(description = "")
-private Double openCardCost;
+	@Schema(description = "开卡费用")
+	private Double openCardCost;
 	
 	@TableField("pre_save_cost")
-	@Schema(description = "")
-private Double preSaveCost;
+	@Schema(description = "预存金额")
+	private Double preSaveCost;
 	
 	@TableField("card_state")
-	@Schema(description = "")
-private Integer cardState;
+	@Schema(description = "卡片状态")
+	private Integer cardState;
 	
 	@TableField(exist = false)
-	@Schema(description = "")
-private String language;
+	@Schema(description = "语言")
+	private String language;
 	
 	@TableField(exist = false)
-	@Schema(description = "")
-private List<CardLableEntity> lableList;
+	@Schema(description = "标签列表")
+	private List<CardLableEntity> lableList;
 	
 	@TableField(exist = false)
-	@Schema(description = "")
-private List<Integer> lableIdList;
+	@Schema(description = "标签ID列表")
+	private List<Integer> lableIdList;
 	
 	@TableField(exist = false)
-	@Schema(description = "")
-private CardSynopsisEntity synopsisData;
+	@Schema(description = "简介信息")
+	private CardSynopsisEntity synopsisData;
 	
 	@TableField(exist = false)
-	@Schema(description = "")
-private List<Integer> synopsisIdList;
+	@Schema(description = "简介ID列表")
+	private List<Integer> synopsisIdList;
 	
 	@TableField(exist = false)
-	@Schema(description = "")
-private List<CardSynopsisEntity> synopsisReq;
+	@Schema(description = "简介请求列表")
+	private List<CardSynopsisEntity> synopsisReq;
 	
 	@TableField(exist = false)
-	@Schema(description = "")
-private String cardBrand;
+	@Schema(description = "卡组织品牌")
+	private String cardBrand;
 
 }

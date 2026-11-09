@@ -11,31 +11,31 @@ import lombok.Data;
 import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @TableName("firm_account")
-@Schema(description = "")
+@Schema(description = "公司账户")
 public class FirmAccountEntity {
 
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Integer id;
+	@Schema(description = "主键ID")
+	private Integer id;
 	
 	@TableField("opening_bank")
-	@Schema(description = "")
-private String openingBank;
+	@Schema(description = "开户银行")
+	private String openingBank;
 	
 	@TableField("payee_man")
-	@Schema(description = "")
-private String payeeMan;
+	@Schema(description = "收款人姓名")
+	private String payeeMan;
 	
 	@TableField("payee_account")
-	@Schema(description = "")
-private String payeeAccount;
+	@Schema(description = "收款账户")
+	private String payeeAccount;
 	
 	@TableField("setTime")
-	@Schema(description = "")
-private Date setTime;
+	@Schema(description = "创建时间")
+	private Date setTime;
 	
 	@TableField("gmtModified")
-	@Schema(description = "")
-private Date gmtModified;
+	@Schema(description = "修改时间")
+	private Date gmtModified;
 
 }

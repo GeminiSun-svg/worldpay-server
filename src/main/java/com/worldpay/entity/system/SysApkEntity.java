@@ -15,67 +15,67 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @TableName("sys_apk")
 @EqualsAndHashCode(callSuper = true)
-@Schema(description = "")
+@Schema(description = "APK版本信息")
 public class SysApkEntity extends PageQueryHelperEntity{
 	
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Integer id;
+	@Schema(description = "主键ID")
+	private Integer id;
 	
 	@TableField("platform")
-	@Schema(description = "")
-private Integer platform;
+	@Schema(description = "平台类型")
+	private Integer platform;
 	
 	@TableField("app_name")
-	@Schema(description = "")
-private String appName;
+	@Schema(description = "应用名称")
+	private String appName;
 	
 	@TableField("state")
-	@Schema(description = "")
-private Integer state;
+	@Schema(description = "状态")
+	private Integer state;
 	
 	@TableField("apk_url")
-	@Schema(description = "")
-private String apkUrl;
+	@Schema(description = "安装包下载地址")
+	private String apkUrl;
 	
 	@TableField("update_type")
-	@Schema(description = "")
-private Integer updateType;
+	@Schema(description = "更新类型")
+	private Integer updateType;
 	
 	@TableField("app_version")
-	@Schema(description = "")
-private String appVersion;
+	@Schema(description = "应用版本号")
+	private String appVersion;
 
 	@TableField("version_code")
-	@Schema(description = "")
-private String versionCode;
+	@Schema(description = "版本编码")
+	private String versionCode;
 	
 	@TableField("update_content_zh")
-	@Schema(description = "")
-private String updateContentZh;
+	@Schema(description = "中文更新内容")
+	private String updateContentZh;
 	
 	@TableField("update_content_en")
-	@Schema(description = "")
-private String updateContentEn;
+	@Schema(description = "英文更新内容")
+	private String updateContentEn;
 	
 	@TableField("update_content_tw")
-	@Schema(description = "")
-private String updateContentTw;
+	@Schema(description = "繁体更新内容")
+	private String updateContentTw;
 	
 	@TableField("set_user")
-	@Schema(description = "")
-private Integer setUser;
+	@Schema(description = "设置人ID")
+	private Integer setUser;
 	
 	@TableField("set_user_name")
-	@Schema(description = "")
-private String setUserName;
+	@Schema(description = "设置人名称")
+	private String setUserName;
 	
 	@TableField("set_time")
-	@Schema(description = "")
-private Date setTime;
+	@Schema(description = "创建时间")
+	private Date setTime;
 	
 	@TableField("gmt_modified")
-	@Schema(description = "")
-private Date gmtModified;
+	@Schema(description = "修改时间")
+	private Date gmtModified;
 
 }

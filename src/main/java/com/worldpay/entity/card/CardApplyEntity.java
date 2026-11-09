@@ -15,144 +15,144 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @TableName("card_apply")
 @EqualsAndHashCode(callSuper = true)
-@Schema(description = "")
+@Schema(description = "卡片申请记录")
 public class CardApplyEntity extends PageQueryHelperEntity{
 	
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Integer id;
+	@Schema(description = "主键ID")
+	private Integer id;
 	
 	@TableField("uid")
-	@Schema(description = "")
-private String uid;
+	@Schema(description = "用户ID")
+	private String uid;
 	
 	@TableField("holder_id")
-	@Schema(description = "")
-private Integer holderId;
+	@Schema(description = "持卡人ID")
+	private Integer holderId;
 	
 	@TableField("topup_type")
-	@Schema(description = "")
-private Integer topupType;
+	@Schema(description = "充值类型")
+	private Integer topupType;
 	
 	@TableField("card_id")
-	@Schema(description = "")
-private Integer cardId;
+	@Schema(description = "卡片ID")
+	private Integer cardId;
 	
 	@TableField("card_uuid")
-	@Schema(description = "")
-private String cardUuid;
+	@Schema(description = "卡片唯一标识")
+	private String cardUuid;
 	
 	@TableField("card_type")
-	@Schema(description = "")
-private String cardType;
+	@Schema(description = "卡片类型")
+	private String cardType;
 	
 	@TableField("apply_state")
-	@Schema(description = "")
-private Integer applyState;
+	@Schema(description = "申请状态")
+	private Integer applyState;
 	
 	@TableField("apply_state_name")
-	@Schema(description = "")
-private String applyStateName;
+	@Schema(description = "申请状态名称")
+	private String applyStateName;
 	
 	@TableField("kyc_state")
-	@Schema(description = "")
-private Integer kycState;
+	@Schema(description = "实名认证状态")
+	private Integer kycState;
 	
 	@TableField("kyc_state_name")
-	@Schema(description = "")
-private String kycStateName;
+	@Schema(description = "实名认证状态名称")
+	private String kycStateName;
 	
 	@TableField("kyc_audit_result")
-	@Schema(description = "")
-private String kycAuditResult;
+	@Schema(description = "实名审核结果")
+	private String kycAuditResult;
 	
 	@TableField("month_fee")
-	@Schema(description = "")
-private Integer monthFee;
+	@Schema(description = "月费")
+	private Integer monthFee;
 	
 	@TableField("open_card_cost")
-	@Schema(description = "")
-private Double openCardCost;
+	@Schema(description = "开卡费用")
+	private Double openCardCost;
 	
 	@TableField("pre_save_cost")
-	@Schema(description = "")
-private Double preSaveCost;
+	@Schema(description = "预存金额")
+	private Double preSaveCost;
 	
 	@TableField("open_card_total")
-	@Schema(description = "")
-private Double openCardTotal;
+	@Schema(description = "开卡总费用")
+	private Double openCardTotal;
 	
 	@TableField("reject_info")
-	@Schema(description = "")
-private String rejectInfo;
+	@Schema(description = "驳回原因")
+	private String rejectInfo;
 	
 	@TableField("reject_user")
-	@Schema(description = "")
-private Integer rejectUser;
+	@Schema(description = "驳回人ID")
+	private Integer rejectUser;
 	
 	@TableField("reject_user_name")
-	@Schema(description = "")
-private String rejectUserName;
+	@Schema(description = "驳回人名称")
+	private String rejectUserName;
 	
 	@TableField("shipping_state")
-	@Schema(description = "")
-private Integer shippingState;
+	@Schema(description = "邮寄状态")
+	private Integer shippingState;
 	
 	@TableField("shipping_state_name")
-	@Schema(description = "")
-private String shippingStateName;
+	@Schema(description = "邮寄状态名称")
+	private String shippingStateName;
 	
 	@TableField("shipping_time")
-	@Schema(description = "")
-private Date shippingTime;
+	@Schema(description = "邮寄时间")
+	private Date shippingTime;
 	
 	@TableField("logistics_num")
-	@Schema(description = "")
-private String logisticsNum;
+	@Schema(description = "物流单号")
+	private String logisticsNum;
 	
 	@TableField("logistics_monery")
-	@Schema(description = "")
-private Double logisticsMonery;
+	@Schema(description = "物流费用")
+	private Double logisticsMonery;
 	
 	@TableField("port_type")
-	@Schema(description = "")
-private Integer portType;
+	@Schema(description = "申请端口类型")
+	private Integer portType;
 	
 	@TableField("setTime")
-	@Schema(description = "")
-private Date setTime;
+	@Schema(description = "创建时间")
+	private Date setTime;
 	
 	@TableField("gmtModified")
-	@Schema(description = "")
-private Date gmtModified;
+	@Schema(description = "修改时间")
+	private Date gmtModified;
 	
 	@TableField(exist = false)
-	@Schema(description = "")
-private CardEntity cardData;
+	@Schema(description = "卡片信息")
+	private CardEntity cardData;
 	
 	@TableField(exist = false)
-	@Schema(description = "")
-private CardApplyManEntity applyManData;
+	@Schema(description = "申请人信息")
+	private CardApplyManEntity applyManData;
 	
 	@TableField(exist = false)
-	@Schema(description = "")
-private CardApplySendEntity applySendData;
+	@Schema(description = "邮寄信息")
+	private CardApplySendEntity applySendData;
 	
 	@TableField(exist = false)
-	@Schema(description = "")
-private CardApplyKycEntity kycData;
+	@Schema(description = "实名认证信息")
+	private CardApplyKycEntity kycData;
 	
 	@TableField(exist = false)
-	@Schema(description = "")
-private AppUserCardEntity userCardData;
+	@Schema(description = "用户卡片信息")
+	private AppUserCardEntity userCardData;
 	
 	@TableField(exist = false)
-	@Schema(description = "")
-private Object logisticsInfo;
+	@Schema(description = "物流信息")
+	private Object logisticsInfo;
 	
 	@TableField(exist = false)
-	@Schema(description = "")
-private String cardNo;
+	@Schema(description = "卡号")
+	private String cardNo;
 
 
 }

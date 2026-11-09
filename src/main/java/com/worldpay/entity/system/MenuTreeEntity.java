@@ -4,19 +4,23 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
 public class MenuTreeEntity {
 	
 	/** 节点ID */
+	@Schema(description = "节点ID")
     private Integer id;
 
     /** 节点名称 */
+	@Schema(description = "节点名称")
     private String label;
 
     /** 子节点 */
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
+	@Schema(description = "子节点")
     private List<MenuTreeEntity> children;
 
 	public MenuTreeEntity(Integer id, String label, List<MenuTreeEntity> children) {

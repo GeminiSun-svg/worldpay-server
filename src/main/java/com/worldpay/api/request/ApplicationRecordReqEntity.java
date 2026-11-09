@@ -10,26 +10,27 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * @date 2026/2/4 10:20
  */
 @Data
+@Schema(description = "申请记录变更请求")
 public class ApplicationRecordReqEntity {
 
-    @Schema(description = "")
-private Integer id;
+    @Schema(description = "申请记录主键ID")
+	private Integer id;
 
-    @Schema(description = "")
-private String appId;
+    @Schema(description = "APP用户ID")
+	private String appId;
 
-    @Schema(description = "")
-private String appUid;
+    @Schema(description = "APP用户UID")
+	private String appUid;
 
-    @Schema(description = "")
-private String channelId;
+    @Schema(description = "渠道商用户ID")
+	private String channelId;
 
-    @Schema(description = "")
-private String channelUid;
+    @Schema(description = "渠道商UID")
+	private String channelUid;
 
-    @Schema(description = "")
-private Integer channelLevel;
+    @Schema(description = "渠道等级编号")
+	private Integer channelLevel;
 
-    @Schema(description = "")
-private Integer status;
+    @Schema(description = "申请记录状态")
+	private Integer status;
 }

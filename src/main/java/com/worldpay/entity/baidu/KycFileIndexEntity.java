@@ -17,30 +17,31 @@ import io.swagger.v3.oas.annotations.media.Schema;
  */
 @Data
 @TableName("kyc_file_index")
+@Schema(description = "KYC文件索引")
 public class KycFileIndexEntity {
 
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Integer id;
+	@Schema(description = "主键ID")
+	private Integer id;
 
 	@TableField("config_key")
-	@Schema(description = "")
-private String configKey;
+	@Schema(description = "配置键")
+	private String configKey;
 
 	@TableField("config_value")
-	@Schema(description = "")
-private Integer configValue;
+	@Schema(description = "配置值")
+	private Integer configValue;
 	
 	@TableField("config_info")
-	@Schema(description = "")
-private String configInfo;
+	@Schema(description = "配置信息")
+	private String configInfo;
 
 	@TableField("setTime")
-	@Schema(description = "")
-private Date setTime;
+	@Schema(description = "创建时间")
+	private Date setTime;
 
 	@TableField("gmtModified")
-	@Schema(description = "")
-private Date gmtModified;
+	@Schema(description = "修改时间")
+	private Date gmtModified;
 
 }

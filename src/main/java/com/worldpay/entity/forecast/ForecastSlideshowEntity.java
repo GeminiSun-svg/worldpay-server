@@ -21,33 +21,33 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @TableName("forecast_slideshow")
 @EqualsAndHashCode(callSuper = true)
-@Schema(description = "")
+@Schema(description = "预测轮播图")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ForecastSlideshowEntity extends PageQueryHelperEntity {
 
     @TableId(type = IdType.AUTO)
-    @Schema(description = "")
-private Integer id;
+    @Schema(description = "主键ID")
+	private Integer id;
 
     @TableField("language")
-    @Schema(description = "")
-private String language;
+    @Schema(description = "语言")
+	private String language;
 
     @TableField("img_url")
-    @Schema(description = "")
-private String imgUrl;
+    @Schema(description = "图片地址")
+	private String imgUrl;
 
     @TableField("type")
-    @Schema(description = "")
-private Integer type;
+    @Schema(description = "轮播图类型")
+	private Integer type;
 
     @TableField("setTime")
-    @Schema(description = "")
-private Date setTime;
+    @Schema(description = "创建时间")
+	private Date setTime;
 
     @TableField("gmtModified")
-    @Schema(description = "")
-private Date gmtModified;
+    @Schema(description = "修改时间")
+	private Date gmtModified;
 
 
 }

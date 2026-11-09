@@ -20,40 +20,40 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @TableName("app_channel_intiter")
 @EqualsAndHashCode(callSuper = true)
-@Schema(description = "")
+@Schema(description = "App用户与渠道商绑定关系")
 public class AppChannelIntiterEntity extends PageQueryHelperEntity{
 	
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Integer id;
+	@Schema(description = "主键ID")
+	private Integer id;
 	
 	@TableField("app_id")
-	@Schema(description = "")
-private Integer appId;
+	@Schema(description = "应用ID")
+	private Integer appId;
 	
 	@TableField("app_uid")
-	@Schema(description = "")
-private String appUid;
+	@Schema(description = "用户ID")
+	private String appUid;
 	
 	@TableField("channel_id")
-	@Schema(description = "")
-private Integer channelId;
+	@Schema(description = "渠道ID")
+	private Integer channelId;
 	
 	@TableField("channel_uid")
-	@Schema(description = "")
-private String channelUid;
+	@Schema(description = "渠道用户ID")
+	private String channelUid;
 	
 	@TableField("invitation_code")
-	@Schema(description = "")
-private String invitationCode;
+	@Schema(description = "邀请码")
+	private String invitationCode;
 
 	@TableField("setTime")
-	@Schema(description = "")
-private Date setTime;
+	@Schema(description = "创建时间")
+	private Date setTime;
 	
 	@TableField("gmtModified")
-	@Schema(description = "")
-private Date gmtModified;
+	@Schema(description = "修改时间")
+	private Date gmtModified;
 
 	
 }

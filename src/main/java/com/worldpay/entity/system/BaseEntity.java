@@ -21,37 +21,37 @@ public class BaseEntity implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
-    @JsonIgnore
-    @TableField(exist = false)
-	@Schema(description = "")
-private String searchValue;
+	@JsonIgnore
+	@TableField(exist = false)
+	@Schema(description = "搜索值")
+	private String searchValue;
 
-    @TableField(exist = false)
-	@Schema(description = "")
-private String createBy;
+	@TableField(exist = false)
+	@Schema(description = "创建人")
+	private String createBy;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @TableField(exist = false)
-	@Schema(description = "")
-private Date createTime;
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@TableField(exist = false)
+	@Schema(description = "创建时间")
+	private Date createTime;
 
-    @TableField(exist = false)
-	@Schema(description = "")
-private String updateBy;
+	@TableField(exist = false)
+	@Schema(description = "更新人")
+	private String updateBy;
 
-    @TableField(exist = false)
-	@Schema(description = "")
+	@TableField(exist = false)
+	@Schema(description = "修改时间")
 @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
-    @TableField(exist = false)
-   	@Schema(description = "")
-private String remark;
+	@TableField(exist = false)
+   	@Schema(description = "备注")
+	private String remark;
 
-    @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    @TableField(exist = false)
-   	@Schema(description = "")
-private Map<String, Object> params;
+	@JsonInclude(JsonInclude.Include.NON_EMPTY)
+	@TableField(exist = false)
+   	@Schema(description = "扩展参数")
+	private Map<String, Object> params;
 
     public String getSearchValue()
     {

@@ -8,7 +8,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-import com.worldpay.config.LanguageContext;
 import com.worldpay.constants.Constants;
 import com.worldpay.security.CustomAuthenticationProvider;
 import com.worldpay.security.GrantedAuthorityImpl;
@@ -41,11 +40,7 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		try {
-			String language = request.getHeader("language");
-			if (language == null || language.trim().isEmpty()) {
-				language = "en";
-			}
-			LanguageContext.setLanguage(language);
+			// 语言统一由 LanguageInterceptor 处理，此处不再重复设置
 			String uri = request.getServletPath();
 			if (releaseApi(uri)) {
 				chain.doFilter(request, response);
@@ -85,8 +80,6 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
 		} catch (Exception e) {
 			e.printStackTrace();
 			CustomUtils.sendJsonMessage(response, JsonData.Error("系统异常稍后再试"));
-		} finally {
-			LanguageContext.clear();
 		}
 	}
 

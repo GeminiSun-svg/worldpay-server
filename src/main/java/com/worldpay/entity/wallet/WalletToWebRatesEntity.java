@@ -12,52 +12,52 @@ import lombok.Data;
 import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @TableName("wallet_to_web_rates")
-@Schema(description = "")
+@Schema(description = "钱包转出费率配置")
 
 public class WalletToWebRatesEntity {
 	
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
+	@Schema(description = "主键ID")
 
 	private Integer id;
 	
 	@TableField("min_amount")
-	@Schema(description = "")
+	@Schema(description = "最小转账金额")
 
 	private Double minAmount;
 	
 	@TableField("max_amount")
-	@Schema(description = "")
+	@Schema(description = "最大转账金额")
 
 	private Double maxAmount;
 	
 	@TableField("handling_rates")
-	@Schema(description = "")
+	@Schema(description = "手续费率")
 
 	private Double handlingRates;
 	
 	@TableField("server_amount")
-	@Schema(description = "")
+	@Schema(description = "服务费")
 
 	private Double serverAmount;
 	
 	@TableField("set_user")
-	@Schema(description = "")
+	@Schema(description = "设置人ID")
 
 	private Integer setUser;
 	
 	@TableField("set_user_name")
-	@Schema(description = "")
+	@Schema(description = "设置人名称")
 
 	private String setUserName;
 	
 	@TableField("setTime")
-	@Schema(description = "")
+	@Schema(description = "创建时间")
 
 	private Date setTime;
 
 	@TableField("gmtModified")
-	@Schema(description = "")
+	@Schema(description = "修改时间")
 
 	private Date gmtModified;
 

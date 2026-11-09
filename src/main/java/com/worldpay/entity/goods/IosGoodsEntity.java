@@ -14,35 +14,35 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @TableName("ios_goods")
 @EqualsAndHashCode(callSuper = true)
-@Schema(description = "")
+@Schema(description = "iOS商品")
 public class IosGoodsEntity extends PageQueryHelperEntity{
 	
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Integer id;
+	@Schema(description = "主键ID")
+	private Integer id;
 	
 	@TableField("goods_name")
-	@Schema(description = "")
-private String goodsName;
+	@Schema(description = "商品名称")
+	private String goodsName;
 	
 	@TableField("goods_num")
-	@Schema(description = "")
-private String goodsNum;
+	@Schema(description = "商品编号")
+	private String goodsNum;
 	
 	@TableField("goods_info")
-	@Schema(description = "")
-private String goodsInfo;
+	@Schema(description = "商品信息")
+	private String goodsInfo;
 	
 	@TableField("goods_price")
-	@Schema(description = "")
-private String goodsPrice;
+	@Schema(description = "商品价格")
+	private String goodsPrice;
 	
 	@TableField("setTime")
-	@Schema(description = "")
-private Date setTime;
+	@Schema(description = "创建时间")
+	private Date setTime;
 	
 	@TableField("gmtModified")
-	@Schema(description = "")
-private Date gmtModified;
+	@Schema(description = "修改时间")
+	private Date gmtModified;
 
 }

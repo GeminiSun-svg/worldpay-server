@@ -12,31 +12,31 @@ import lombok.Data;
 import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @TableName("card_lable_join")
-@Schema(description = "")
+@Schema(description = "卡片标签关联")
 public class CardLableJoinEntity {
 	
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Integer id;
+	@Schema(description = "主键ID")
+	private Integer id;
 	
 	@TableField("language")
-	@Schema(description = "")
-private String language;
+	@Schema(description = "语言")
+	private String language;
 	
 	@TableField("card_id")
-	@Schema(description = "")
-private String cardId;
+	@Schema(description = "卡片ID")
+	private String cardId;
 	
 	@TableField("lable_id")
-	@Schema(description = "")
-private Integer lableId;
+	@Schema(description = "标签ID")
+	private Integer lableId;
 	
 	@TableField("setTime")
-	@Schema(description = "")
-private Date setTime;
+	@Schema(description = "创建时间")
+	private Date setTime;
 	
 	@TableField("gmtModified")
-	@Schema(description = "")
-private Date gmtModified;
+	@Schema(description = "修改时间")
+	private Date gmtModified;
 
 }

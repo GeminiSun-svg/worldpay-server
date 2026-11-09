@@ -13,23 +13,23 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public class SyssCountryCodeEntity {
 	
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Long id;
+	@Schema(description = "主键ID")
+	private Long id;
 	
 	@TableField("name")
-	@Schema(description = "")
-private String name;
+	@Schema(description = "国家名称")
+	private String name;
 	
 	@TableField("dial_code")
-	@Schema(description = "")
-private String dialCode;
+	@Schema(description = "国际区号")
+	private String dialCode;
 	
 	@TableField("code")
-	@Schema(description = "")
-private String code;
+	@Schema(description = "国家编码")
+	private String code;
 	
 	@TableField("language")
-	@Schema(description = "")
-private String language;
+	@Schema(description = "语言")
+	private String language;
 
 }

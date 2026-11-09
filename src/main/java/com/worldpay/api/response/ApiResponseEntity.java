@@ -4,19 +4,27 @@ import com.worldpay.enums.PublicEnums;
 
 import lombok.Data;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 @Data
+@Schema(description = "通用API响应")
 public class ApiResponseEntity {
 	
+	@Schema(description = "请求是否成功")
 	private Boolean success;
 	
+	@Schema(description = "响应结果")
 	private String result;
 	
+	@Schema(description = "响应状态码")
 	private Integer code;
 	
+	@Schema(description = "响应消息")
 	private String message;
 	
+	@Schema(description = "响应数据")
 	private Object data;
 	
+	@Schema(description = "响应提示信息")
 	private String msg;
 	
 	public static ApiResponseEntity error() {

@@ -10,11 +10,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * @date 2026/1/15 16:23
  */
 @Data
+@Schema(description = "权限用户查询响应")
 public class UserEntity {
 
-    @Schema(description = "")
-private String uid;
+    @Schema(description = "用户ID")
+	private String uid;
 
-    @Schema(description = "")
-private String roleKey;
+    @Schema(description = "角色标识")
+	private String roleKey;
 }

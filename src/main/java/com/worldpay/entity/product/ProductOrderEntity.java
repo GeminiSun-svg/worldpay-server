@@ -15,99 +15,99 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("finance_product_order")
-@Schema(description = "")
+@Schema(description = "理财产品订单")
 public class ProductOrderEntity extends PageQueryHelperEntity{
 	
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Integer id;
+	@Schema(description = "主键ID")
+	private Integer id;
 	
 	@TableField("uid")
-	@Schema(description = "")
-private String uid;
+	@Schema(description = "用户ID")
+	private String uid;
 	
 	@TableField("product_id")
-	@Schema(description = "")
-private Integer productId;
+	@Schema(description = "产品ID")
+	private Integer productId;
 	
 	@TableField("order_num")
-	@Schema(description = "")
-private String orderNum;
+	@Schema(description = "订单号")
+	private String orderNum;
 	
 	@TableField("order_state")
-	@Schema(description = "")
-private String orderState;
+	@Schema(description = "订单状态")
+	private String orderState;
 	
 	@TableField("order_monery")
-	@Schema(description = "")
-private Double orderMonery;
+	@Schema(description = "订单金额")
+	private Double orderMonery;
 	
 	@TableField("pay_num")
-	@Schema(description = "")
-private Integer payNum;
+	@Schema(description = "购买份数")
+	private Integer payNum;
 	
 	@TableField("product_name")
-	@Schema(description = "")
-private String productName;
+	@Schema(description = "产品名称")
+	private String productName;
 	
 	@TableField("product_img")
-	@Schema(description = "")
-private String productImg;
+	@Schema(description = "产品图片")
+	private String productImg;
 	
 	@TableField("product_type")
-	@Schema(description = "")
-private String productType;
+	@Schema(description = "产品类型")
+	private String productType;
 	
 	@TableField("funds_type")
-	@Schema(description = "")
-private String fundsType;
+	@Schema(description = "资金类型")
+	private String fundsType;
 	
 	@TableField("product_time")
-	@Schema(description = "")
-private Integer productTime;
+	@Schema(description = "产品期限")
+	private Integer productTime;
 	
 	@TableField("interest_rate")
-	@Schema(description = "")
-private Double interestRate;
+	@Schema(description = "利率")
+	private Double interestRate;
 	
 	@TableField("whether_current")
-	@Schema(description = "")
-private Integer whetherCurrent;
+	@Schema(description = "是否活期")
+	private Integer whetherCurrent;
 
 	@TableField("estimate_income")
-	@Schema(description = "")
-private Double estimateIncome;
+	@Schema(description = "预计收益")
+	private Double estimateIncome;
 	
 	@TableField("actual_income")
-	@Schema(description = "")
-private Double actualIncome;
+	@Schema(description = "实际收益")
+	private Double actualIncome;
 	
 	@TableField("pay_time")
-	@Schema(description = "")
-private Date payTime;
+	@Schema(description = "支付时间")
+	private Date payTime;
 	
 	@TableField("expire_time")
-	@Schema(description = "")
-private Date expireTime;
+	@Schema(description = "到期时间")
+	private Date expireTime;
 	
 	@TableField("finish_time")
-	@Schema(description = "")
-private Date finishTime;
+	@Schema(description = "完成时间")
+	private Date finishTime;
 	
 	@TableField("setTime")
-	@Schema(description = "")
-private Date setTime;
+	@Schema(description = "创建时间")
+	private Date setTime;
 	
 	@TableField("gmtModified")
-	@Schema(description = "")
-private Date gmtModified;
+	@Schema(description = "修改时间")
+	private Date gmtModified;
 	
 	@TableField(exist = false)
-	@Schema(description = "")
-private AppUserEntity appUser;
+	@Schema(description = "用户信息")
+	private AppUserEntity appUser;
 	
 	@TableField(exist = false)
-	@Schema(description = "")
-private ProductEntity product;
+	@Schema(description = "产品信息")
+	private ProductEntity product;
 
 }

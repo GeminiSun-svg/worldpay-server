@@ -17,39 +17,39 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Data
 @TableName("card_synopsis")
 @EqualsAndHashCode(callSuper = true)
-@Schema(description = "")
+@Schema(description = "卡片简介")
 public class CardSynopsisEntity extends PageQueryHelperEntity{
 
 	@TableId(type = IdType.AUTO)
-	@Schema(description = "")
-private Integer id;
+	@Schema(description = "主键ID")
+	private Integer id;
 	
 	@TableField("language")
 	@NotBlank(message = "语言不能为空")
-	@Schema(description = "")
-private String language;
+	@Schema(description = "语言")
+	private String language;
 	
 	@TableField("title")
 	@NotBlank(message = "标题不能为空")
-	@Schema(description = "")
-private String title;
+	@Schema(description = "标题")
+	private String title;
 	
 	@TableField("content")
 	@NotBlank(message = "内容不能为空")
-	@Schema(description = "")
-private String content;
+	@Schema(description = "内容")
+	private String content;
 	
 	@TableField("setTime")
-	@Schema(description = "")
-private Date setTime;
+	@Schema(description = "创建时间")
+	private Date setTime;
 	
 	@TableField("gmtModified")
-	@Schema(description = "")
-private Date gmtModified;
+	@Schema(description = "修改时间")
+	private Date gmtModified;
 	
 	@TableField(exist = false)
-	@Schema(description = "")
-private String languageName;
+	@Schema(description = "语言名称")
+	private String languageName;
 	
 	
 }
