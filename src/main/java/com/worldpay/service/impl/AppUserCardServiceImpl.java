@@ -132,7 +132,6 @@ public class AppUserCardServiceImpl extends BaseApiService implements AppUserCar
 	@SysLogAnnotation(module = "用户银行卡", type = "post", remark = "查询用户持有银行卡列表")
 	public ResponseBase findUserCardList(AppUserCardEntity entity) {
 		try {
-			PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 			List<AppUserCardEntity> list = appUserCardDao.findStateList(entity);
 			if(list != null && list.size() > 0) {
 				for (int i = 0; i < list.size(); i++) {
@@ -140,8 +139,7 @@ public class AppUserCardServiceImpl extends BaseApiService implements AppUserCar
 					list.get(i).setCardData(cardEntity);
 				}
 			}
-			PageInfo<AppUserCardEntity> info = new PageInfo<>(list);
-			return setResultSuccess(info,I18nUtil.getMessage("base_success"));
+			return setResultSuccess(list,I18nUtil.getMessage("base_success"));
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException();
