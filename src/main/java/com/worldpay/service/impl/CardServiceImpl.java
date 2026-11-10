@@ -165,22 +165,42 @@ public class CardServiceImpl extends BaseApiService implements CardService {
 	@SysLogAnnotation(module = "银行卡管理", type = "get", remark = "拉取三方银行卡信息列表入库")
 	public ResponseBase pullList() {
 		try {
-			ResponseBase resData = UCardApi.postData(null, UCardMethods.MERCHANT_BANKCARD_TEMPLATE_LIST, new Object(),
-					null);
-			String dataStr = resData.getData().toString();
-			List<CardEntity> list = JSONArray.parseArray(dataStr, CardEntity.class);
-			if (list != null && list.size() > 0) {
-				for (int i = 0; i < list.size(); i++) {
-					CardEntity entity = cardDao.findById(list.get(i).getId());
-					if (entity != null) {
+			ResponseBase resData = UCardApi.postData(null, UCardMethods.MERCHANT_BANKCARD_TEMPLATE_LIST, null, null);
+			if (!Constants.HTTP_RES_CODE_200.equals(resData.getRtncode()) || resData.getData() == null) {
+				return resData;
+			}
+			JSONArray array = JSONArray.parseArray(resData.getData().toString());
+			List<CardEntity> list = new ArrayList<>();
+			if (array != null && !array.isEmpty()) {
+				for (int i = 0; i < array.size(); i++) {
+					JSONObject item = array.getJSONObject(i);
+					Integer productId = item.getInteger("id");
+					if (productId == null) {
 						continue;
 					}
-					list.get(i).setCardState(PublicEnums.ONE.getIndex());
-					list.get(i).setMonthFee(0);
-					list.get(i).setRechargeMaxLimit(1000000.0);
-					list.get(i).setBankCardType(list.get(i).getCardBrand());
-					list.get(i).setUuid(UUID.randomUUID().toString().replace("-", ""));
-					cardDao.insert(list.get(i));
+					CardEntity exists = cardDao.findById(productId);
+					if (exists != null) {
+						continue;
+					}
+					CardEntity entity = new CardEntity();
+					entity.setId(productId);
+					entity.setTitle(item.getString("cardTitle"));
+					entity.setCardBin(item.getString("cardBin"));
+					entity.setBankCardNature(item.getString("bankCardNature"));
+					entity.setBankCardType(item.getString("cardBrand"));
+					entity.setCardBrand(item.getString("cardBrand"));
+					entity.setCcy(item.getString("ccy"));
+					entity.setApplyFee(item.getDouble("applyFee"));
+					entity.setOpenCardCost(item.getDouble("applyFee"));
+					entity.setRechargeFee(item.getDouble("rechargeFee"));
+					entity.setActiveMinLimit(item.getDouble("activeMinLimit"));
+					entity.setRechargeMinLimit(item.getDouble("rechargeMinLimit"));
+					entity.setCardState(PublicEnums.ONE.getIndex());
+					entity.setMonthFee(0);
+					entity.setRechargeMaxLimit(1000000.0);
+					entity.setUuid(UUID.randomUUID().toString().replace("-", ""));
+					cardDao.insert(entity);
+					list.add(entity);
 				}
 			}
 			return setResultSuccess(list, I18nUtil.getMessage("base_success"));

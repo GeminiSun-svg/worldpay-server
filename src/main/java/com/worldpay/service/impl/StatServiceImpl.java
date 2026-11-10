@@ -363,14 +363,20 @@ public class StatServiceImpl extends BaseApiService implements StatService {
 //                }
                 // 钱包总额/冻结总额
                 AdminStatEntity statEntity = appUserDao.findWalletTotal(uidList);
-                adminStatEntity.setWalletTotal(statEntity.getWalletTotal());
-                adminStatEntity.setWalletFreezeTotal(statEntity.getWalletFreezeTotal());
+                if (statEntity != null){
+                    adminStatEntity.setWalletTotal(statEntity.getWalletTotal());
+                    adminStatEntity.setWalletFreezeTotal(statEntity.getWalletFreezeTotal());
+                }else {
+                    adminStatEntity.setWalletTotal(0.0);
+                    adminStatEntity.setWalletFreezeTotal(0.0);
+                }
                 // 银行卡总额
                 Double cardTotal = appUserCardDao.findCardTotal(uidList);
                 adminStatEntity.setCardTotal(cardTotal);
                 // 钱包总额/冻结总额
-                adminStatEntity.setWalletTotal(appUserDao.findWalletTotal(uidList).getWalletTotal());
-                adminStatEntity.setWalletFreezeTotal(appUserDao.findWalletTotal(uidList).getWalletFreezeTotal());
+                AdminStatEntity walletTotal = appUserDao.findWalletTotal(uidList);
+                adminStatEntity.setWalletTotal(walletTotal == null ? 0.0 : walletTotal.getWalletTotal());
+                adminStatEntity.setWalletFreezeTotal(walletTotal == null ? 0.0 : walletTotal.getWalletFreezeTotal());
                 // 银行卡总额
                 adminStatEntity.setCardTotal(appUserCardDao.findCardTotal(uidList));
             }

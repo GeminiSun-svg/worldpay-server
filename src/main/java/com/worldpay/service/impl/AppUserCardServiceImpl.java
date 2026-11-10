@@ -185,8 +185,12 @@ public class AppUserCardServiceImpl extends BaseApiService implements AppUserCar
 			}
 			if(list != null && list.size() > 0 ) {
 				for (int i = 0; i < list.size(); i++) {
-					Double transMoney = Math.abs(Double.parseDouble(list.get(i).getLocalCurrencyAmt()));
-					Double feesMoney = list.get(i).getHandlingFees();
+					String localCurrencyAmt = list.get(i).getLocalCurrencyAmt();
+					if (localCurrencyAmt == null || localCurrencyAmt.trim().isEmpty()) {
+						localCurrencyAmt = "0";
+					}
+					Double transMoney = Math.abs(Double.parseDouble(localCurrencyAmt));
+					Double feesMoney = list.get(i).getHandlingFees() == null ? 0.0 : list.get(i).getHandlingFees();
 					if(TransTypeEnums.TOPUP.getName().equals(list.get(i).getTransType())) {
 					    list.get(i).setTotalManey(list.get(i).getTransCurrencyAmt());
 					} else {

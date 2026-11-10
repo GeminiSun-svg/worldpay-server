@@ -2,6 +2,7 @@ package com.worldpay.service.impl;
 
 import com.worldpay.utils.api.WalletApi;
 import com.worldpay.utils.api.UCardApi;
+import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -130,7 +131,7 @@ public class WebhookServiceImpl extends BaseApiService implements WebhookService
 
 	@Override
 	@Synchronized
-	public ApiResponseEntity agentNotify(CardRechargeResult entity) {
+	public ApiResponseEntity agentNotify(CardRechargeResult entity, HttpServletRequest request) {
 		try {
 			if (entity != null && entity.getEventType().equals("cardRechargeResult")) {// 充值
 				return this.topUpCallback(entity);
@@ -154,31 +155,64 @@ public class WebhookServiceImpl extends BaseApiService implements WebhookService
 
 	// 卡充值回调
 	public ApiResponseEntity topUpCallback(CardRechargeResult result) {
-		System.out.println("********************银行卡充值回调**********************");
-		if (Double.parseDouble(result.getRechargeAmount()) <= 0.0) {
-			return ApiResponseEntity.success();
-		}
-		AppUserCardEntity appUserCard = appUserCardDao.findUserBankcardId(result.getUserBankcardId());
-		if(appUserCard != null) {
-			if (!CardStateEnums.ACTIVE.getIndex().toString().equals(appUserCard.getStatus())) {
+		try {
+			System.out.println("********************银行卡充值回调**********************");
+			if (result.getRechargeAmount() == null || Double.parseDouble(result.getRechargeAmount()) <= 0.0) {
+				return ApiResponseEntity.success();
+			}
+			// 新三方带 status：非成功直接结束（已有预订单则标失败）
+			if (result.getStatus() != null && !"SUCCESS".equalsIgnoreCase(result.getStatus())
+					&& !"success".equalsIgnoreCase(result.getStatus())) {
+				CardTransactionEntity failTx = cardTransactionDao.findOrderNum(result.getOrderId());
+				if (failTx != null) {
+					failTx.setOrderState(OrderStateEnums.FAILED.getName());
+					cardTransactionDao.updateById(failTx);
+				}
+				log.warn("充值回调非成功 status={}, orderId={}, userBankcardId={}",
+						result.getStatus(), result.getOrderId(), result.getUserBankcardId());
+				return ApiResponseEntity.success();
+			}
+			AppUserCardEntity appUserCard = appUserCardDao.findUserBankcardId(result.getUserBankcardId());
+			if (appUserCard == null) {
 				return ApiResponseEntity.error();
 			}
-			// 修改卡充值记录状态
+			// 实体卡/虚拟卡：卡未激活时仍允许落充值成功单并同步余额（避免仅因状态校验丢记录）
 			CardTransactionEntity transaction = cardTransactionDao.findOrderNum(result.getOrderId());
 			if (transaction != null) {
 				transaction.setCardNo(appUserCard.getCardNo());
 				transaction.setOrderState(OrderStateEnums.POSTED.getName());
 				cardTransactionDao.updateById(transaction);
+			} else {
+				// 下单时未落库（三方返回码与本地判断不一致等）时，按回调补建 TOPUP 记录
+				log.warn("充值回调未找到预订单，按回调补建 orderId={}, userBankcardId={}, amount={}",
+						result.getOrderId(), result.getUserBankcardId(), result.getRechargeAmount());
+				transaction = new CardTransactionEntity();
+				transaction.setUid(appUserCard.getUid());
+				transaction.setUserBankcardId(appUserCard.getUserBankcardId());
+				transaction.setCardId(appUserCard.getCardId());
+				transaction.setCardUuid(appUserCard.getCardUuid());
+				transaction.setCardNo(appUserCard.getCardNo());
+				transaction.setHandlingFees(0.0);
+				transaction.setRequestOrderId(result.getOrderId());
+				transaction.setOrderState(OrderStateEnums.POSTED.getName());
+				transaction.setLocalCurrency(TransCurrencyEnums.USD.getName());
+				transaction.setLocalCurrencyAmt("+" + result.getRechargeAmount());
+				transaction.setTransCurrency(TransCurrencyEnums.USD.getName());
+				transaction.setTransCurrencyAmt("+" + result.getRechargeAmount());
+				transaction.setTransType(TransTypeEnums.TOPUP.getName());
+				GenericityUtil.setDate(transaction);
+				cardTransactionDao.insert(transaction);
 			}
 			// 修改钱包消费记录状态(佣金处理)
-			this.upWalletLog(result,appUserCard,transaction);
+			this.upWalletLog(result, appUserCard, transaction);
 			// 查询银行卡余额，修改数据库卡余额
-			this.upUserCardBalance(appUserCard,transaction);
+			this.upUserCardBalance(appUserCard, transaction);
 			return ApiResponseEntity.success();
-		}else {
-			return ApiResponseEntity.error();
+		} catch (IllegalAccessException e) {
+			throw new RuntimeException(e);
+		} catch (InvocationTargetException e) {
+			throw new RuntimeException(e);
 		}
-		
 	}
 	
 	/**
@@ -268,79 +302,131 @@ public class WebhookServiceImpl extends BaseApiService implements WebhookService
 	public ApiResponseEntity transactionCreated(CardRechargeResult entity) {
 		try {
 			System.out.println("***********************交易回调************************");
-			AppUserCardEntity cardEntity = appUserCardDao.findUserBankcardId(entity.getUserBankcardId());
-			if (cardEntity != null) {
-				//添加卡交易记录
-				CardTransactionEntity transaction = new CardTransactionEntity();
-				transaction.setCardId(cardEntity.getCardId());
-				transaction.setCardUuid(cardEntity.getCardUuid());
-				transaction.setCardNo(cardEntity.getCardNo());
-				transaction.setUid(cardEntity.getUid());
-				transaction.setCreateAt(new Date(entity.getCreateAt()));
-				transaction.setLocalCurrency(entity.getTransaction().getLocalCurrency());
-				String statusName = OrderStateEnums.getIdToName(entity.getTransaction().getTransStatus());
-				transaction.setOrderState(statusName);
-				transaction.setRequestOrderId(entity.getTransaction().getTransactionId());
-				transaction.setTransCurrency(entity.getTransaction().getLocalCurrency());
-				String TransType = TransTypeEnums.getType(entity.getTransaction().getTransType());
-				transaction.setTransType(TransType);
-				if(TransTypeEnums.AUTH.getApiType().equals(entity.getTransaction().getTransType())) {//消费
-					transaction.setLocalCurrencyAmt("-"+entity.getTransaction().getLocalCurrencyAmt());
-					transaction.setTransCurrencyAmt("-"+entity.getTransaction().getLocalCurrencyAmt());					
-				}else if(TransTypeEnums.REFUND.getApiType().equals(entity.getTransaction().getTransType())) {//退款
-					transaction.setLocalCurrencyAmt("+"+entity.getTransaction().getLocalCurrencyAmt());
-					transaction.setTransCurrencyAmt("+"+entity.getTransaction().getLocalCurrencyAmt());	
-				}
-				transaction.setUserBankcardId(entity.getUserBankcardId());
-				String lastFourDigits = cardEntity.getCardNo().length() >= 4
-						? cardEntity.getCardNo().substring(cardEntity.getCardNo().length() - 4)
-						: cardEntity.getCardNo();
-				if (entity.getTransaction().getMerchantName() != null
-						&& entity.getTransaction().getMerchantName().length() > 0) {
-					transaction.setTitle(
-							"Card:" + lastFourDigits + " " + entity.getTransaction().getMerchantName());
-				}
-				if (entity.getTransaction().getFeeAmount() != null) {
-					transaction.setHandlingFees(
-							Math.abs(Double.parseDouble(entity.getTransaction().getFeeAmount())));
-				}
-				if (entity.getCreateAt() > 0) {
-					Long time = entity.getCreateAt();
-					transaction.setSetTime(new Date(time));
-				} else {
-					transaction.setSetTime(new Date());
-				}
-				transaction.setGmtModified(new Date());
-				cardTransactionDao.insert(transaction);
-				//如果交易成功查询修改卡余额
-				if (OrderStateEnums.POSTED.getName().equals(statusName)) {
-					// 修改卡余额
-					UserBankcardEntity bankcardEntity = new UserBankcardEntity();
-					bankcardEntity.setUserBankcardId(transaction.getUserBankcardId());
-					ResponseBase base = UCardApi.postData(cardEntity.getUid(), UCardMethods.QUERY_BANKCARD_BALANCE,
-							bankcardEntity, null);
-					Double balance = 0.0;
-					if (base.getRtncode() == Constants.HTTP_RES_CODE_200) {
-						String apiData = base.getData().toString();
-						CardBalanceEntity balanceEntity = JSONObject.parseObject(apiData, CardBalanceEntity.class);
-						balance = Double.parseDouble(balanceEntity.getBalance());
-						cardEntity.setBalance(Double.parseDouble(balanceEntity.getBalance()));
-						appUserCardDao.updateById(cardEntity);
-					}
-					//消息处理
-					messageTemplateServiceImpl.unifiedSendAsync(
-							MessageEnums.CONSUME_ZH.getIndex(), 
-							LanguageContext.getLanguage(),
-							cardEntity.getUid(), 
-							cardEntity.getCardNo(),
-							entity.getTransaction().getLocalCurrencyAmt() + TransCurrencyEnums.USD.getName(),
-							Math.abs(Double.parseDouble(entity.getTransaction().getFeeAmount()))
-									+ TransCurrencyEnums.USD.getName(),
-							balance + TransCurrencyEnums.USD.getName());
-				}
+			if (entity == null || entity.getTransaction() == null || entity.getUserBankcardId() == null) {
+				log.warn("交易回调参数不完整，忽略");
 				return ApiResponseEntity.success();
 			}
-			return ApiResponseEntity.error();
+			CardRechargeResult.transaction tx = entity.getTransaction();
+			Integer apiTransType = tx.getTransType();
+			String transType = TransTypeEnums.getType(apiTransType);
+			String amountRaw = tx.getLocalCurrencyAmt();
+			// 未知交易类型（开卡噪声等）不入库，避免出现无类型/0元脏数据
+			if (transType == null) {
+				log.warn("交易回调未知transType={}, transactionId={}, userBankcardId={}, 跳过入库",
+						apiTransType, tx.getTransactionId(), entity.getUserBankcardId());
+				return ApiResponseEntity.success();
+			}
+			// 仅处理消费/退款；金额无效也不入库
+			if (!TransTypeEnums.AUTH.getName().equals(transType)
+					&& !TransTypeEnums.REFUND.getName().equals(transType)) {
+				log.warn("交易回调非消费/退款类型 transType={}, 跳过入库", transType);
+				return ApiResponseEntity.success();
+			}
+			if (amountRaw == null || amountRaw.trim().isEmpty()) {
+				log.warn("交易回调金额为空 transactionId={}, 跳过入库", tx.getTransactionId());
+				return ApiResponseEntity.success();
+			}
+			double amountVal;
+			try {
+				amountVal = Math.abs(Double.parseDouble(amountRaw.trim()));
+			} catch (NumberFormatException ex) {
+				log.warn("交易回调金额非法 amount={}, transactionId={}, 跳过入库",
+						amountRaw, tx.getTransactionId());
+				return ApiResponseEntity.success();
+			}
+			if (amountVal <= 0) {
+				log.warn("交易回调金额为0 transactionId={}, 跳过入库", tx.getTransactionId());
+				return ApiResponseEntity.success();
+			}
+			// 幂等：同一三方交易号不重复入库
+			if (tx.getTransactionId() != null && !tx.getTransactionId().trim().isEmpty()) {
+				CardTransactionEntity exists = cardTransactionDao.findOrderNum(tx.getTransactionId());
+				if (exists != null) {
+					log.info("交易回调已存在 transactionId={}, 跳过", tx.getTransactionId());
+					return ApiResponseEntity.success();
+				}
+			}
+
+			AppUserCardEntity cardEntity = appUserCardDao.findUserBankcardId(entity.getUserBankcardId());
+			if (cardEntity == null) {
+				return ApiResponseEntity.error();
+			}
+			CardTransactionEntity transaction = new CardTransactionEntity();
+			transaction.setCardId(cardEntity.getCardId());
+			transaction.setCardUuid(cardEntity.getCardUuid());
+			transaction.setCardNo(cardEntity.getCardNo());
+			transaction.setUid(cardEntity.getUid());
+			if (entity.getCreateAt() != null && entity.getCreateAt() > 0) {
+				transaction.setCreateAt(new Date(entity.getCreateAt()));
+				transaction.setSetTime(new Date(entity.getCreateAt()));
+			} else {
+				transaction.setSetTime(new Date());
+			}
+			transaction.setLocalCurrency(tx.getLocalCurrency());
+			String statusName = OrderStateEnums.getIdToName(tx.getTransStatus());
+			transaction.setOrderState(statusName);
+			transaction.setRequestOrderId(tx.getTransactionId());
+			transaction.setTransCurrency(tx.getLocalCurrency());
+			transaction.setTransType(transType);
+			if (TransTypeEnums.AUTH.getName().equals(transType)) {
+				transaction.setLocalCurrencyAmt("-" + amountRaw.trim());
+				transaction.setTransCurrencyAmt("-" + amountRaw.trim());
+			} else {
+				transaction.setLocalCurrencyAmt("+" + amountRaw.trim());
+				transaction.setTransCurrencyAmt("+" + amountRaw.trim());
+			}
+			transaction.setUserBankcardId(entity.getUserBankcardId());
+			String lastFourDigits = cardEntity.getCardNo() != null && cardEntity.getCardNo().length() >= 4
+					? cardEntity.getCardNo().substring(cardEntity.getCardNo().length() - 4)
+					: cardEntity.getCardNo();
+			if (tx.getMerchantName() != null && !tx.getMerchantName().isEmpty()) {
+				transaction.setTitle("Card:" + lastFourDigits + " " + tx.getMerchantName());
+			}
+			if (tx.getFeeAmount() != null && !tx.getFeeAmount().trim().isEmpty()) {
+				try {
+					transaction.setHandlingFees(Math.abs(Double.parseDouble(tx.getFeeAmount().trim())));
+				} catch (NumberFormatException ignore) {
+					transaction.setHandlingFees(0.0);
+				}
+			} else {
+				transaction.setHandlingFees(0.0);
+			}
+			transaction.setGmtModified(new Date());
+			cardTransactionDao.insert(transaction);
+
+			if (OrderStateEnums.POSTED.getName().equals(statusName)) {
+				UserBankcardEntity bankcardEntity = new UserBankcardEntity();
+				bankcardEntity.setUserBankcardId(transaction.getUserBankcardId());
+				ResponseBase base = UCardApi.postData(cardEntity.getUid(), UCardMethods.QUERY_BANKCARD_BALANCE,
+						bankcardEntity, null);
+				Double balance = 0.0;
+				if (base.getRtncode() == Constants.HTTP_RES_CODE_200 && base.getData() != null) {
+					CardBalanceEntity balanceEntity = JSONObject.parseObject(base.getData().toString(),
+							CardBalanceEntity.class);
+					if (balanceEntity != null && balanceEntity.getBalance() != null) {
+						balance = Double.parseDouble(balanceEntity.getBalance());
+						cardEntity.setBalance(balance);
+						appUserCardDao.updateById(cardEntity);
+					}
+				}
+				String feeStr = tx.getFeeAmount() == null || tx.getFeeAmount().trim().isEmpty()
+						? "0" : tx.getFeeAmount().trim();
+				double feeVal = 0.0;
+				try {
+					feeVal = Math.abs(Double.parseDouble(feeStr));
+				} catch (NumberFormatException ignore) {
+					feeVal = 0.0;
+				}
+				messageTemplateServiceImpl.unifiedSendAsync(
+						MessageEnums.CONSUME_ZH.getIndex(),
+						LanguageContext.getLanguage(),
+						cardEntity.getUid(),
+						cardEntity.getCardNo(),
+						amountRaw.trim() + TransCurrencyEnums.USD.getName(),
+						feeVal + TransCurrencyEnums.USD.getName(),
+						balance + TransCurrencyEnums.USD.getName());
+			}
+			return ApiResponseEntity.success();
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException();

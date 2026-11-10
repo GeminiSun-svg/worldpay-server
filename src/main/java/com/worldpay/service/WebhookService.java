@@ -11,7 +11,7 @@ import io.swagger.v3.oas.annotations.Operation;
 
 public interface WebhookService {
 
-ApiResponseEntity agentNotify(CardRechargeResult entity);
+ApiResponseEntity agentNotify(CardRechargeResult entity, HttpServletRequest request);
 
 ResponseBase resetAddres(ResetAddressEntity entity,HttpServletRequest req);
 

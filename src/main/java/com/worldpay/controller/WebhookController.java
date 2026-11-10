@@ -33,8 +33,8 @@ public class WebhookController {
 
     @PostMapping("/agent-notify")
     @Operation(summary = "代理回调通知")
-    public ApiResponseEntity agentNotify(@RequestBody CardRechargeResult entity) {
-        return webhookService.agentNotify(entity);
+    public ApiResponseEntity agentNotify(@RequestBody CardRechargeResult entity, HttpServletRequest request) {
+        return webhookService.agentNotify(entity, request);
     }
 
     @PostMapping("/reset-addres")
