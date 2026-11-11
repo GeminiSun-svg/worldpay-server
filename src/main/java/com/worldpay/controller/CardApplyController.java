@@ -43,7 +43,7 @@ public class CardApplyController {
     @GetMapping("/open-card")
     @Operation(summary = "开通卡片")
     public ResponseBase openCard(Integer id) {
-        return cardApplyService.openCard(id);
+        return cardApplyService.openCardV2(id);
     }
 
     @PostMapping("/reject")

@@ -33,7 +33,7 @@ public class AppUserController {
     @PostMapping("/sign-up")
     @Operation(summary = "用户注册（通用版）")
     public ResponseBase signUp(@RequestBody AppUserEntity entity) {
-        return appUserService.signUp(entity);
+        return appUserService.signUpV2(entity);
     }
 
     @PostMapping
@@ -57,7 +57,7 @@ public class AppUserController {
     @GetMapping("/token")
     @Operation(summary = "查询当前登录 Token")
     public ResponseBase findToken(HttpServletRequest request) {
-        return appUserService.findToken(request);
+        return appUserService.findTokenV2(request);
     }
 
     @GetMapping
