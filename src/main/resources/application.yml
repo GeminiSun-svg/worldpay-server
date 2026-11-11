@@ -50,7 +50,7 @@ spring:
 
 #U卡三方（密钥经 application-local.yml 或环境变量注入）
 bank:
-  gatewayUrl: https://open-api-dev-card.zeabur.app/openapi
+  gatewayUrl: "https://polymeric.yingchuanmedia.com/worldpayPolymeric"
   appId: ${BANK_APP_ID:}
   appSecret: ${BANK_APP_SECRET:}
   rsaPrivateKey: ${BANK_RSA_PRIVATE_KEY:}
