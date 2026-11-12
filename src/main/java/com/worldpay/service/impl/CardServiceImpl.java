@@ -1777,8 +1777,8 @@ public class CardServiceImpl extends BaseApiService implements CardService {
 							kycEntity.setApplyId(applyEntity.getId());
 							cardApplyKycDao.updateById(kycEntity);	
 						}else {
+							kycEntity.setId(null);
 							kycEntity.setApplyId(applyEntity.getId());
-							kycEntity.setUid(entity.getUid());
 							GenericityUtil.setDate(kycEntity);
 							cardApplyKycDao.insert(kycEntity);							
 						}
