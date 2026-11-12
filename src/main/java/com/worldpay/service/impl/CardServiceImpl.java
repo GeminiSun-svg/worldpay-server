@@ -1944,18 +1944,20 @@ public class CardServiceImpl extends BaseApiService implements CardService {
 					ResponseBase meBase = UCardApi.postData(null, UCardMethods.MERCHANT_ASSET, new Object(), null);
 					if(!HTTP_RES_CODE_200.equals(meBase.getRtncode())) {
 						return meBase;
-					} 
-					List<MerchantAssetsEntity> assetsEntity = JSONArray.parseArray(JSON.toJSONString(meBase.getData()), MerchantAssetsEntity.class);
-					if(assetsEntity != null && assetsEntity.size() > 0) {
-						if(assetsEntity.get(0).getAvailableAmount() <= consume) {
-							//飞机消息
-							messageTemplateServiceImpl.robotSendAsync(
-									MessageEnums.ROBOT_MERCHANT_ZH.getIndex(),
-									LanguageEnums.ZH_CN.getName(),
-									RobotRoleEnums.FINANCE.getIndex(),
-									assetsEntity.get(0).getAvailableAmount(),
-									consume);
-							return setResult(Constants.HTTP_RES_CODE_500, I18nUtil.getMessage("Merchants_money_scarcity"), null);
+					}
+					if (meBase.getData() != null) {
+						MerchantAssetsEntity assetsEntity = JSON.parseObject(meBase.getData().toString(), MerchantAssetsEntity.class);
+						if(assetsEntity != null && assetsEntity.getAvailableAmount() != null) {
+							if(assetsEntity.getAvailableAmount() <= consume) {
+								//飞机消息
+								messageTemplateServiceImpl.robotSendAsync(
+										MessageEnums.ROBOT_MERCHANT_ZH.getIndex(),
+										LanguageEnums.ZH_CN.getName(),
+										RobotRoleEnums.FINANCE.getIndex(),
+										assetsEntity.getAvailableAmount(),
+										consume);
+								return setResult(Constants.HTTP_RES_CODE_500, I18nUtil.getMessage("Merchants_money_scarcity"), null);
+							}
 						}
 					}
 					

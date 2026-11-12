@@ -16,7 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,6 +26,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 /**
  * Spring Security 配置类（适配 Spring Security 6）
@@ -60,18 +65,54 @@ public class WebSecurityConfig {
     @Value("${dscoins.login.googleLimit.enable:false}")
     private Boolean googleLimit;
 
+    /**
+     * 认证管理器：只使用自定义的 {@link CustomAuthenticationProvider}（MD5 校验）。
+     *
+     * 不能直接用 {@code config.getAuthenticationManager()}：由于容器里存在
+     * UserDetailsService Bean，Spring Security 会自动装配一个 DaoAuthenticationProvider，
+     * 该 Provider 默认使用 DelegatingPasswordEncoder，而数据库里存的是无前缀的 MD5 密文，
+     * 于是抛 IllegalArgumentException: each password must have a password encoding prefix。
+     * 老版本（WebSecurityConfigurerAdapter）是通过 configure(AuthenticationManagerBuilder)
+     * 显式注册自定义 Provider 覆盖掉的，这里等价地手动构建 ProviderManager。
+     */
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-        return config.getAuthenticationManager();
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) {
+        return new ProviderManager(new CustomAuthenticationProvider(userDetailsService, sysUserDao, null));
+    }
+
+    /**
+     * CORS 配置源（供 Spring Security + Spring MVC 共享）
+     * 与 WorldPayApplication 里的 CorsFilter 保持一致。
+     * 但 Security 的 .cors() 必须用 CorsConfigurationSource，不能用 CorsFilter Bean
+     * （二者是两套独立入口，会叠加生效导致 Header 重复），
+     * 所以这里统一在 Security filter chain 里配置 CORS，
+     * WorldPayApplication 的 CorsFilter Bean 可以删掉。
+     */
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.addAllowedOriginPattern("*");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
+        config.addExposedHeader("token");
+        config.addExposedHeader("Access-Control-Expose-Headers");
+        config.setMaxAge(3600L);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        return source;
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authenticationManager) throws Exception {
         http.authenticationProvider(new CustomAuthenticationProvider(userDetailsService, sysUserDao, null));
-        http.cors(cors -> cors.disable())
+        http.cors(c -> c.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        // ✅ 放行所有 OPTIONS 预检请求（浏览器跨域先调这个）
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        .requestMatchers("/login").permitAll()
                         .requestMatchers("/statistics/**").permitAll()
                         .requestMatchers("/druid/**").permitAll()
                         .requestMatchers("/actuator/**").permitAll()

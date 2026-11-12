@@ -277,9 +277,11 @@ public class ProductServiceImpl extends BaseApiService implements ProductService
 			if(list != null && list.size() > 0) {
 				for (int i = 0; i < list.size(); i++) {
 					AppUserEntity appUserEntity = appUserDao.findByUid(list.get(i).getUid());
-					appUserEntity.setPayPassword(null);
-					appUserEntity.setUserPassword(null);
-					list.get(i).setAppUser(appUserEntity);
+					if (appUserEntity != null) {
+						appUserEntity.setPayPassword(null);
+						appUserEntity.setUserPassword(null);
+						list.get(i).setAppUser(appUserEntity);
+					}
 					ProductEntity productEntity = productDao.selectById(list.get(i).getProductId());
 					list.get(i).setProduct(productEntity);
 				}

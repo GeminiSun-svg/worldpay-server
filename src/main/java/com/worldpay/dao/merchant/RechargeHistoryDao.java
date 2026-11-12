@@ -13,10 +13,12 @@ import com.worldpay.entity.merchant.RechargeHistoryEntity;
 public interface RechargeHistoryDao extends BaseMapper<RechargeHistoryEntity>{
 
 	@Select("<script>"
-			+ "select * from merchants_recharge_history where 1=1 "
-			+ "<if test = 'begTime != null'> and date_format(setTime, '%Y-%m-%d') &gt;= #{begTime}</if>"
-			+ "<if test = 'endTime != null'> and date_format(setTime, '%Y-%m-%d') &lt;= #{endTime}</if>"
-			+ "group by orderNo"
+			+ "select * from merchants_recharge_history where id in ("
+			+ "  select min(id) from merchants_recharge_history where 1=1 "
+			+ "  <if test = 'begTime != null'> and date_format(setTime, '%Y-%m-%d') &gt;= #{begTime}</if>"
+			+ "  <if test = 'endTime != null'> and date_format(setTime, '%Y-%m-%d') &lt;= #{endTime}</if>"
+			+ "  group by orderNo"
+			+ ")"
 			+ "</script>")
 	List<RechargeHistoryEntity> findList(RechargeHistoryEntity entity);
 

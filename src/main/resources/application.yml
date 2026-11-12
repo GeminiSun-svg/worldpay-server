@@ -79,7 +79,7 @@ baidu:
   baseUrl: https://aip.baidubce.com
   apiKey: ${BAIDU_API_KEY:}
   secretKey: ${BAIDU_SECRET_KEY:}
-  diskSite: /opt/idcard/
+  diskSite: /Users/linleiqin/idcard/
 
 #极光推送
 jpush:
