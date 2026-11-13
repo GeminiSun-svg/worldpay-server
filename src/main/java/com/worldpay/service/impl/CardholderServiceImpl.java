@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ import com.worldpay.service.CardholderService;
 import com.worldpay.utils.AgeCheckUtil;
 import com.worldpay.utils.GenericityUtil;
 import com.worldpay.utils.I18nUtil;
+import com.worldpay.utils.api.CheckUtil;
 
 @Service
 @Transactional
@@ -41,6 +43,15 @@ public class CardholderServiceImpl extends BaseApiService implements CardholderS
 				}else if(SexEnums.FEMALE.getIndex().equals(entity.getUserSexNum())) {
 					entity.setUserSex(SexEnums.FEMALE.getName());
 				}
+			}
+			
+			//手机号格式校验（谷歌 libphonenumber）
+			String dialCode = entity.getUserTelDialCode() == null ? "" : entity.getUserTelDialCode().trim();
+			if (!dialCode.startsWith("+")) {
+				dialCode = "+" + dialCode;
+			}
+			if (!CheckUtil.validatePhoneNumber(dialCode, entity.getUserTel(), entity.getUserTelCode())) {
+				return setResultError(I18nUtil.getMessage("holder_tel_error"));
 			}
 			
 			AppUserEntity appUserEntity = appUserDao.findByUid(entity.getUid());
@@ -72,6 +83,17 @@ public class CardholderServiceImpl extends BaseApiService implements CardholderS
 		try {
 			AppUserHolderEntity cardholderEntity = cardholderDao.selectById(entity.getId());
 			if(cardholderEntity != null) {
+				//手机号格式校验（谷歌 libphonenumber），仅传入手机号时才校验
+				if (StringUtils.isNotBlank(entity.getUserTel())) {
+					String dialCode = entity.getUserTelDialCode() == null ? "" : entity.getUserTelDialCode().trim();
+					if (!dialCode.startsWith("+")) {
+						dialCode = "+" + dialCode;
+					}
+					if (!CheckUtil.validatePhoneNumber(dialCode, entity.getUserTel(), entity.getUserTelCode())) {
+						return setResultError(I18nUtil.getMessage("holder_tel_error"));
+					}
+				}
+				
 				AppUserEntity appUserEntity = appUserDao.findByUid(entity.getUid());
 				if(appUserEntity != null) {
 					entity.setGmtModified(new Date());
