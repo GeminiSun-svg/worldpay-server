@@ -205,6 +205,13 @@
             <version>2.0.52</version>
         </dependency>
 
+        <!-- ========== 极光推送 ========== -->
+        <dependency>
+            <groupId>io.github.jpush</groupId>
+            <artifactId>jiguang-sdk</artifactId>
+            <version>5.1.10</version>
+        </dependency>
+
         <!-- ========== Commons ========== -->
         <dependency>
             <groupId>org.apache.commons</groupId>
